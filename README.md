@@ -1,49 +1,71 @@
 # TrustHold — The Cost of Fraud
 
-TrustHold is a synthetic digital-payments fraud strategy project. It studies how a payments business can balance fraud loss, customer friction, investigator capacity, and revenue when choosing to **APPROVE**, **CHALLENGE**, **REVIEW**, or **DECLINE** a transaction.
+TrustHold is a reproducible synthetic payments-risk project about the cost of fraud decisions. It generates a digital-payments world, plants four documented fraud typologies, builds point-in-time behavioral signals, compares rules and a logistic-regression baseline, and evaluates **APPROVE / CHALLENGE / REVIEW / DECLINE** strategies under finite investigator capacity and explicit economics.
 
-The goal is to compare business outcomes, not to maximize model accuracy. No results in this repository should be described as real-world findings: simulated parameters are documented assumptions, and conclusions will be added only after analysis of generated data.
+The objective is the overall business outcome: fraud loss, good-customer friction, review workload, and payment margin. The project does not optimize for accuracy alone. All outputs are synthetic and fictional; they are not evidence about a real company or customers.
 
-## Current milestone
+## Run the complete project
 
-The first build milestone generates a reproducible customer profile table with segment, typical spend, typical transaction rate, home region, and KYC risk band. The generator currently uses a 20-customer learning sample, continuing the saved script discovered during project recovery. The roadmap document described a 10-customer sample at an earlier point; the active count is an explicit setting in the code.
-
-## Run it
-
-From the repository root in PowerShell:
+From PowerShell at the repository root:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
-python -m src.simulation.generate_customers
+python -m src.run_project
 ```
 
-The script creates `data/synthetic/customers.csv` and prints a small profile summary. To change the learning sample or random seed, edit the clearly named settings near the top of `src/simulation/generate_customers.py`.
+The default run creates 200 customers, 80 merchants, 120 terminals, 60 days of baseline and injected events, and holds out the latest 30% of dates. The run uses only NumPy and pandas. Generated tables are saved as CSV and to a local SQLite database. No database server or downloaded dataset is required.
 
-## Repository map
+For a smaller walkthrough:
 
-- `src/simulation/` — reusable synthetic-data generation code.
-- `data/synthetic/` — generated, non-sensitive example data.
-- `docs/` — assumptions, project history, and teaching walkthroughs.
-- `notebooks/` — later exploratory analysis.
-- `sql/` — later investigation queries.
-- `reports/` — later business-facing outputs.
-- `tests/` — reserved for future automated checks.
+```powershell
+python -m src.run_project --customers 20 --days 30
+```
 
-## Learning-first build protocol
+The generator rejects horizons too short to place fraud examples in both the training and holdout periods. Adjust counts with `--customers`, `--days`, `--merchants`, `--terminals`, and `--review-capacity`. Output location can be changed with `--output-dir`.
 
-Each milestone explains the concept and reason, introduces syntax with a small example, states where code belongs, applies it to TrustHold, inspects the output, records assumptions, and connects the work to fraud/risk practice. See [`docs/customer_simulation_walkthrough.md`](docs/customer_simulation_walkthrough.md) and [`docs/simulation_assumptions.md`](docs/simulation_assumptions.md).
+## Generated outputs
 
-## Roadmap
+- `data/synthetic/run/*.csv` — customer, account, merchant, terminal, transaction, feature, decision, monitoring, and result tables.
+- `data/synthetic/run/restricted/fraud_ground_truth.csv` — planted labels and typology metadata for offline evaluation only. It is generated locally, ignored by Git, and excluded from the SQLite database and public analysis tables.
+- `data/synthetic/run/trusthold.sqlite` — local SQL investigation database containing observable transactions and derived features, strategy outputs, and aggregated metrics.
+- `data/synthetic/run/capacity_sensitivity.csv`, `economic_sensitivity.csv`, and `impact_by_customer_group.csv` — scenario and customer-impact diagnostics.
+- `reports/case_study.md` — generated held-out comparison plus capacity, economic, and group-impact tables, caveats, and interpretation.
+- `reports/dashboard.html` — self-contained visual comparison of economic outcomes and daily observable volume.
 
-1. Customer simulation — in progress; initial profile table implemented.
-2. Accounts, merchants, and terminals.
-3. Legitimate transaction generation.
-4. Fraud-event injection with separately held ground truth.
-5. Storage and SQL investigation.
-6. Point-in-time behavioral features, rules, and model comparisons.
-7. Decision policy, review capacity, and fraud economics.
-8. Network intelligence, monitoring, and portfolio case study.
+## SQL investigation
 
-See [`docs/project_history.md`](docs/project_history.md) for the recovered project context and [`docs/simulation_assumptions.md`](docs/simulation_assumptions.md) for assumptions. Later stages remain planned; no model results or case-study metrics are claimed yet.
+After the full run, inspect the generated SQLite tables with:
+
+```powershell
+python sql/run_investigation.py
+```
+
+The `.sql` files explore daily volume, terminal concentration, rapid low-value events, amount deviation, and authentication/channel behavior. They intentionally do not reference the hidden labels.
+
+## Repository guide
+
+- `src/simulation/` — customer/entity and transaction generation plus fraud injection.
+- `src/features/` — timestamp-ordered, lagged features.
+- `src/rules/` — readable score and reason codes.
+- `src/models/` — NumPy logistic-regression baseline.
+- `src/decisions/` — four-action strategy and daily review capacity.
+- `src/evaluation/` — PR-AUC and economic/customer-impact measures.
+- `src/network_intelligence.py` — label-free customer-terminal graph connectivity summaries.
+- `src/monitoring.py`, `src/storage.py`, `src/reporting.py` — rolling three-sigma monitoring, SQLite/CSV persistence, case study and dashboard.
+- `docs/` — assumptions, data dictionary, fraud scenarios, governance, and teaching walkthrough.
+- `sql/` — reproducible SQLite investigations.
+
+## Method guardrails
+
+- Fraud ground truth stays separate until after feature construction and is never a model input.
+- Every rolling feature uses only events earlier than the current timestamp.
+- The model evaluation uses a temporal holdout, not a random row split.
+- KYC risk is independent of planted fraud and excluded from the model.
+- Costs, fraud scenarios, populations, and intervention effectiveness are assumptions and are stress-tested.
+- An anomaly is a signal to investigate, not proof that an event is fraudulent.
+- No headline project results are prewritten: the case study is generated from each actual run and labels every result synthetic.
+
+See [`docs/learning_build_guide.md`](docs/learning_build_guide.md) for the teaching sequence, [`docs/simulation_assumptions.md`](docs/simulation_assumptions.md) for parameter values, and [`docs/model_governance.md`](docs/model_governance.md) for leakage and evaluation controls. Power BI remains an optional portfolio presentation layer; the delivered HTML dashboard works locally without it.
+The status of each original roadmap stage and the remaining prototype limits are recorded in [`docs/roadmap.md`](docs/roadmap.md).

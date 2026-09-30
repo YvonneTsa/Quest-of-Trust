@@ -1,0 +1,25 @@
+Strategy,Transactions,Fraud_Transactions,Fraud_Value,Fraud_Value_Captured_Pct,Fraud_Loss_After_Intervention,Precision_Among_Interventions,Fraud_Recall,Legitimate_Challenge_Count,Legitimate_Review_Count,False_Declines,Review_Overflow_Count,Net_Economic_Cost,Economic_Scenario
+Incumbent,6923,35,7194.17,0.0,8069.17,0.0,0.0,97,0,0,0,385.41,Base assumptions
+Rules,6923,35,7194.17,78.52,1749.65,0.0673,0.8286,390,9,3,0,-4859.65,Base assumptions
+Logistic,6923,35,7194.17,81.62,1496.89,0.1508,0.8571,143,23,3,0,-5847.42,Base assumptions
+Rules + logistic,6923,35,7194.17,81.08,1532.47,0.0683,0.8571,394,12,3,0,-5053.89,Base assumptions
+Incumbent,6923,35,7194.17,0.0,8069.17,0.0,0.0,97,0,0,0,385.41,Lower challenge effectiveness
+Rules,6923,35,7194.17,78.52,2234.61,0.0673,0.8286,390,9,3,0,-4374.69,Lower challenge effectiveness
+Logistic,6923,35,7194.17,81.62,1792.18,0.1508,0.8571,143,23,3,0,-5552.13,Lower challenge effectiveness
+Rules + logistic,6923,35,7194.17,81.08,2058.39,0.0683,0.8571,394,12,3,0,-4527.97,Lower challenge effectiveness
+Incumbent,6923,35,7194.17,0.0,8069.17,0.0,0.0,97,0,0,0,385.41,Higher challenge effectiveness
+Rules,6923,35,7194.17,78.52,1385.93,0.0673,0.8286,390,9,3,0,-5223.38,Higher challenge effectiveness
+Logistic,6923,35,7194.17,81.62,1275.42,0.1508,0.8571,143,23,3,0,-6068.89,Higher challenge effectiveness
+Rules + logistic,6923,35,7194.17,81.08,1138.03,0.0683,0.8571,394,12,3,0,-5448.33,Higher challenge effectiveness
+Incumbent,6923,35,7194.17,0.0,8069.17,0.0,0.0,97,0,0,0,385.41,Lower false-decline attrition
+Rules,6923,35,7194.17,78.52,1749.65,0.0673,0.8286,390,9,3,0,-4919.65,Lower false-decline attrition
+Logistic,6923,35,7194.17,81.62,1496.89,0.1508,0.8571,143,23,3,0,-5907.42,Lower false-decline attrition
+Rules + logistic,6923,35,7194.17,81.08,1532.47,0.0683,0.8571,394,12,3,0,-5113.89,Lower false-decline attrition
+Incumbent,6923,35,7194.17,0.0,8069.17,0.0,0.0,97,0,0,0,385.41,Higher false-decline attrition
+Rules,6923,35,7194.17,78.52,1749.65,0.0673,0.8286,390,9,3,0,-4784.65,Higher false-decline attrition
+Logistic,6923,35,7194.17,81.62,1496.89,0.1508,0.8571,143,23,3,0,-5772.42,Higher false-decline attrition
+Rules + logistic,6923,35,7194.17,81.08,1532.47,0.0683,0.8571,394,12,3,0,-4978.89,Higher false-decline attrition
+Incumbent,6923,35,7194.17,0.0,8069.17,0.0,0.0,97,0,0,0,385.41,Lower review recovery
+Rules,6923,35,7194.17,78.52,2190.53,0.0673,0.8286,390,9,3,0,-4418.78,Lower review recovery
+Logistic,6923,35,7194.17,81.62,2080.82,0.1508,0.8571,143,23,3,0,-5263.5,Lower review recovery
+Rules + logistic,6923,35,7194.17,81.08,1933.85,0.0683,0.8571,394,12,3,0,-4652.51,Lower review recovery

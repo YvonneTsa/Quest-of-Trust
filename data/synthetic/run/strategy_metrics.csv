@@ -1,0 +1,5 @@
+Strategy,Transactions,Fraud_Transactions,Fraud_Value,Fraud_Value_Captured_Pct,Fraud_Loss_After_Intervention,Precision_Among_Interventions,Fraud_Recall,Legitimate_Challenge_Count,Legitimate_Review_Count,False_Declines,Review_Overflow_Count,Net_Economic_Cost,PR_AUC
+Incumbent,6923,35,7194.17,0.0,8069.17,0.0,0.0,97,0,0,0,385.41,0.493
+Rules,6923,35,7194.17,78.52,1749.65,0.0673,0.8286,390,9,3,0,-4859.65,0.493
+Logistic,6923,35,7194.17,81.62,1496.89,0.1508,0.8571,143,23,3,0,-5847.42,0.4881
+Rules + logistic,6923,35,7194.17,81.08,1532.47,0.0683,0.8571,394,12,3,0,-5053.89,0.4815

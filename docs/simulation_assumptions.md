@@ -1,27 +1,34 @@
-# Simulation assumptions — customer profiles
+# Simulation assumptions
 
-These parameters create a fictional learning environment. They are not industry benchmarks or measurements from a real payments company. The initial sample is deliberately small; random samples do not have to reproduce the configured population percentages exactly.
+All parameters below are fictional settings for an educational simulator, not public-industry estimates.
 
-| Parameter | Current setting | Meaning |
+| Parameter | Default | Notes |
 |---|---:|---|
-| Random seed | `20260915` | Reproducible pseudo-random draws. |
-| Customer count | `20` | Continues the recovered local script; the older roadmap snapshot said 10. |
-| Segment probabilities | Standard 70%, Premium 20%, Business 10% | Fictional composition used to sample a segment per customer. |
-| Segment median typical spend | $45, $100, $180 | Dollar medians for Standard, Premium, Business customers. |
-| Spend log-space sigma | `0.40` | Spread of customer typical spend around the segment median. |
-| Segment median transaction rate | 1.5, 2.5, 4.0 per day | Fictional median customer-level latent rates by segment. |
-| Rate log-space sigma | `0.30` | Spread around each segment's transaction-rate median. |
-| Region probabilities | Northeast 24%, South 36%, Midwest 22%, West 18% | Fictional home-region composition. |
-| KYC band probabilities | Low 70%, Medium 25%, High 5% | Fictional KYC risk mix, sampled independently. |
+| Seed | `20260915` | Reproducible random generators use offset seeds by layer. |
+| Horizon | 60 days | Start date in code: 2026-01-01. |
+| Customers | 200 | CLI-overridable; initial recovery sample of 20 remains in `customers.csv`. |
+| Merchants / terminals | 80 / 120 | Each terminal maps to one merchant. |
+| Segment mix | 70/20/10 | Standard/Premium/Business, fictional. |
+| Segment median spend | $45/$100/$180 | Log-normal median parameterization; sigma 0.40 in log space. |
+| Segment median transactions/day | 1.5/2.5/4.0 | Latent rate; daily count sampled with Poisson. Rate sigma 0.30 in log space. |
+| Regions | Northeast 24%, South 36%, Midwest 22%, West 18% | Fictional customer mix. |
+| KYC bands | Low 70%, Medium 25%, High 5% | Independent sample; not a fraud proxy or baseline feature. |
+| Baseline channel mix | 52/33/15% | Card present/e-commerce/mobile wallet. |
+| Home-region behavior | 95% habitual-region endpoints; 5% any endpoint | Fictional regular activity retains occasional out-of-region events. |
+| Soft auth decline | 1.5% | Fictional. Incumbent challenges soft declines and approves the rest. |
+| Crisis onset | Day 58% of horizon | Four scenario bursts are spaced later in the crisis period. |
+| Fraud injections | 32/24/8/6 | Terminal compromise/card testing/credential compromise/ATO. |
+| Review capacity | 25 cases/day | Command-line configurable; capacity sensitivity uses 1/5/15/25/50. |
+| Interchange margin | 1.1% | Used as a simplified legitimate-payment benefit. |
+| Chargeback fee | $25 | Added to approved fraud loss. |
+| Challenge | $0.40 and 80% fraud stop | Assumed step-up economics. |
+| False-decline attrition | 5% × $500 lifetime value | Simplified customer-loss proxy. |
+| Manual review | $4.50 and 90% recovery | Assumed investigator economics. |
 
-## Statistical choices
+## Distribution notes
 
-Typical spend and typical daily transaction rate are positive, heterogeneous customer profiles. A log-normal distribution is a reasonable starting assumption for these quantities because it cannot generate negative values and allows a right tail. NumPy's `lognormal(mean=..., sigma=...)` takes the mean and standard deviation in log space. Supplying `log(configured_median)` makes the configured value the distribution median, not its arithmetic mean.
+Spend and latent transaction rate use log-normal distributions because they are positive and can be right-skewed. NumPy's `mean` argument is a log-space mean; passing the log of a configured median makes that value the population median. Daily transaction counts use Poisson draws with the customer rate. Beta is appropriate for bounded propensities, not unbounded dollars; exponential waiting times may be useful later for time gaps but do not describe the customer-level profile chosen here.
 
-The customer transaction rate is a profile, not a count of transactions observed on a particular day. A later event-generation step can draw an integer daily count from a Poisson model using this rate, after its assumptions are introduced and explained.
+## Sensitivity
 
-KYC risk describes an onboarding/control assessment in this synthetic world. It is not fraud ground truth and is not used to assign fraud labels. Region and KYC mix values are provisional design assumptions and should be stress-tested before portfolio conclusions rely on them.
-
-## Scope limits
-
-This milestone creates customer profiles only. It does not create accounts, merchants, terminals, transactions, fraud events, model features, or decision outcomes. The generated file is synthetic and reproducible, but it does not establish real-world fraud patterns.
+Every run exports review-capacity sensitivity and economic scenarios for lower/higher challenge effectiveness, lower/higher false-decline attrition, and lower review recovery. These outputs quantify how the preferred strategy can change when assumptions change; they are not statistical confidence intervals.

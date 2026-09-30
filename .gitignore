@@ -13,3 +13,6 @@ Thumbs.db
 # Keep generated synthetic CSV/Parquet files under version control while small.
 # Ignore large generated datasets if the simulation is later scaled up.
 data/synthetic/*.parquet
+data/synthetic/run/trusthold.sqlite
+data/synthetic/run/trusthold.sqlite-*
+data/synthetic/run/restricted/

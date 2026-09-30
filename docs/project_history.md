@@ -21,6 +21,6 @@ The prior local folder had empty `README.md`, `requirements.txt`, `.gitignore`, 
 - Build in small, inspectable steps while retaining the advanced end-to-end capstone structure.
 - Distinguish simulated hypotheses and future targets from measured results.
 
-## Current milestone
+## Current build
 
-The customer profile generator now produces stable IDs, segment, typical spend, a latent typical daily transaction rate, home region, and KYC risk band. This is still the foundation stage. Accounts, merchants, terminals, legitimate transactions, fraud injection, investigation, models, policy, capacity, economics, and dashboards remain future work. No performance or business-impact results are claimed.
+The local prototype now runs from customer profiles through entities, transactions, four fraud injections, point-in-time features, rules, a temporal logistic baseline, thresholded actions, finite review capacity, economics, sensitivity scenarios, customer-group diagnostics, SQL investigation, monitoring, and an interactive HTML dashboard. Generated case-study metrics are labeled as synthetic. A Power BI file and real production validation are not part of this build.
