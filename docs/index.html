@@ -380,7 +380,7 @@
             </svg>
           </div><div class="work-meta"><div><h2>Stress-test the operating choice <span class="card-arrow" aria-hidden="true">↗</span></h2><p>Adjust review capacity and compare fictional fraud costs.</p></div><span class="work-type">Open dashboard</span></div>
         </a>
-        <a class="work-card" href="#method" data-tags="analytics tools" aria-label="Read about the analytical pipeline">
+        <a class="work-card" href="#method" data-tags="tools" aria-label="Read about the analytical pipeline">
           <div class="work-art"><span class="art-kicker">03 / REPRODUCIBLE PIPELINE</span>
             <svg viewBox="0 0 720 390" role="img" aria-label="Six-stage analysis pipeline from simulation through evaluation">
               <rect x="34" y="76" width="652" height="238" fill="#f7f6f3"/>
@@ -390,7 +390,7 @@
             </svg>
           </div><div class="work-meta"><div><h2>Build the evidence trail <span class="card-arrow" aria-hidden="true">↗</span></h2><p>Simulation · point-in-time features · temporal evaluation</p></div><span class="work-type">Methods</span></div>
         </a>
-        <a class="work-card" href="#limits" data-tags="strategy analytics" aria-label="Read limitations and model governance">
+        <a class="work-card" href="#limits" data-tags="strategy" aria-label="Read limitations and model governance">
           <div class="work-art"><span class="art-kicker">04 / RESPONSIBLE INTERPRETATION</span>
             <svg viewBox="0 0 720 390" role="img" aria-label="Trade-off map connecting fraud loss, customer friction, review capacity, and margin">
               <rect x="40" y="46" width="640" height="298" fill="#f7f6f3"/>
@@ -564,8 +564,8 @@
               card.addEventListener("animationend", () => card.removeAttribute("data-reveal"), { once: true });
             }
           });
-          const label = selected === "all" ? "project views" : ({strategy:"strategy views", analytics:"analytics views", tools:"tools & methods views"}[selected]);
-          status.textContent = `Showing ${visible} ${label}`;
+          const label = selected === "all" ? "project" : ({strategy:"strategy", analytics:"analytics", tools:"tools & methods"}[selected]);
+          status.textContent = `Showing ${visible} ${label} ${visible === 1 ? "view" : "views"}`;
         });
       });
     })();
