@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Quest of Trust is a synthetic payments fraud strategy case study about loss, customer friction, and finite review capacity.">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>Quest of Trust — Fraud Strategy Case Study</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f0e8;
+      --paper-deep: #e9e2d5;
+      --ink: #202b2a;
+      --muted: #5d6964;
+      --line: #c9c4b8;
+      --forest: #173c34;
+      --forest-light: #dce8df;
+      --copper: #a94d32;
+      --copper-pale: #f3dfd5;
+      --gold: #c29542;
+      --white: #fffdf8;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Segoe UI", Tahoma, sans-serif;
+      --mono: "Cascadia Code", Consolas, monospace;
+      --measure: 72rem;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.6 var(--sans); }
+    a { color: var(--forest); text-decoration-thickness: 1px; text-underline-offset: .2em; }
+    a:hover { color: var(--copper); }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--copper); outline-offset: 4px; }
+    .shell { width: min(var(--measure), calc(100% - 3rem)); margin-inline: auto; }
+    .topline { border-bottom: 1px solid var(--line); }
+    .topline-inner { min-height: 4.6rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+    .brand { display: flex; align-items: center; gap: .8rem; color: var(--ink); text-decoration: none; }
+    .brand-mark { width: 2rem; height: 2rem; display: grid; place-items: center; border: 1px solid var(--forest); color: var(--forest); font: 700 1.1rem var(--serif); transform: rotate(-3deg); }
+    .brand-name { font: 700 1.05rem var(--serif); letter-spacing: .01em; }
+    .brand-note { color: var(--muted); font-size: .77rem; margin-left: .15rem; }
+    nav { display: flex; gap: 1.4rem; align-items: center; font-size: .88rem; }
+    nav a { color: var(--muted); text-decoration: none; }
+    nav a:hover { color: var(--forest); }
+    .hero { padding: clamp(4rem, 9vw, 8rem) 0 5.5rem; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(17rem, .7fr); gap: clamp(2rem, 8vw, 8rem); align-items: end; }
+    .eyebrow { color: var(--copper); text-transform: uppercase; letter-spacing: .14em; font-size: .76rem; font-weight: 700; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 13ch; margin-bottom: 1.4rem; font: 500 clamp(3.2rem, 7vw, 6.7rem)/.99 var(--serif); letter-spacing: -.055em; }
+    .hero-lede { max-width: 58ch; color: #3f4b46; font-size: clamp(1.1rem, 1.6vw, 1.35rem); line-height: 1.55; }
+    .hero-side { border-top: 3px solid var(--forest); padding-top: 1rem; }
+    .hero-side p { margin-bottom: .7rem; }
+    .hero-side .small { font-size: .86rem; color: var(--muted); }
+    .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.7rem; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 2.8rem; padding: .65rem 1rem; border: 1px solid var(--forest); background: var(--forest); color: var(--white); text-decoration: none; font-weight: 650; font-size: .9rem; }
+    .button:hover { background: #24564a; color: white; }
+    .button.secondary { background: transparent; color: var(--forest); }
+    .button.secondary:hover { background: var(--forest-light); }
+    .proof-strip { background: var(--forest); color: var(--white); }
+    .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .proof { padding: 1.4rem 1.5rem 1.55rem 0; border-right: 1px solid #ffffff3d; }
+    .proof + .proof { padding-left: 1.5rem; }
+    .proof:last-child { border-right: 0; }
+    .proof strong { display: block; font: 500 clamp(1.65rem, 3vw, 2.45rem)/1.1 var(--serif); letter-spacing: -.03em; }
+    .proof span { display: block; margin-top: .4rem; color: #d4e0d8; font-size: .77rem; line-height: 1.35; }
+    section { padding: 5.5rem 0; border-bottom: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: .45fr 1fr; gap: 2rem; align-items: start; margin-bottom: 2.5rem; }
+    .section-index { color: var(--copper); font: 700 .8rem var(--mono); letter-spacing: .08em; }
+    h2 { margin-bottom: .65rem; font: 500 clamp(2.1rem, 4vw, 3.7rem)/1.08 var(--serif); letter-spacing: -.04em; }
+    .section-intro { max-width: 60ch; color: var(--muted); margin-bottom: 0; }
+    .decision-layout { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 6rem); }
+    .decision-copy { max-width: 48ch; }
+    .decision-copy p { color: #46534d; }
+    .action-list { border-top: 1px solid var(--line); }
+    .action-row { display: grid; grid-template-columns: 8.5rem 1fr; gap: 1rem; padding: .9rem 0; border-bottom: 1px solid var(--line); }
+    .action-row b { color: var(--forest); font-size: .84rem; letter-spacing: .04em; }
+    .action-row span { color: var(--muted); font-size: .88rem; }
+    .method-frame { padding: 1.2rem; background: var(--white); border: 1px solid var(--line); }
+    .method-frame svg { display: block; width: 100%; height: auto; }
+    .method-caption { margin: .8rem 0 0; color: var(--muted); font-size: .82rem; }
+    .results-wrap { overflow-x: auto; border-top: 3px solid var(--forest); background: var(--white); }
+    table { width: 100%; min-width: 48rem; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+    th, td { padding: .85rem .9rem; border-bottom: 1px solid #ded9ce; text-align: right; white-space: nowrap; }
+    th { color: var(--muted); font-size: .73rem; letter-spacing: .04em; text-transform: uppercase; font-weight: 700; }
+    th:first-child, td:first-child { text-align: left; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr.featured { background: var(--forest-light); }
+    tbody tr.featured td:first-child { color: var(--forest); font-weight: 750; }
+    .result-note { margin: 1rem 0 0; color: var(--muted); font-size: .85rem; }
+    .finding-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .finding { border-top: 2px solid var(--copper); padding-top: 1rem; }
+    .finding .number { display: block; margin-bottom: .8rem; color: var(--copper); font: 700 .76rem var(--mono); }
+    .finding h3 { margin-bottom: .6rem; font: 600 1.25rem var(--serif); }
+    .finding p { margin-bottom: 0; color: var(--muted); font-size: .9rem; }
+    .assumption-band { margin-top: 2.7rem; padding: 1.15rem 1.25rem; border-left: 3px solid var(--gold); background: #eee7d8; color: #38433e; font-size: .9rem; }
+    .scenario { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .scenario p { max-width: 52ch; color: var(--muted); }
+    .scenario-art { position: relative; min-height: 18rem; display: grid; place-items: center; background: var(--paper-deep); border: 1px solid var(--line); overflow: hidden; }
+    .scenario-art::before, .scenario-art::after { content: ""; position: absolute; width: 18rem; height: 18rem; border: 1px solid #173c344d; border-radius: 50%; }
+    .scenario-art::after { width: 12rem; height: 12rem; }
+    .scenario-center { position: relative; z-index: 1; display: grid; place-items: center; width: 7rem; height: 7rem; border-radius: 50%; background: var(--forest); color: var(--white); text-align: center; font: 600 .82rem/1.25 var(--serif); }
+    .scenario-node { position: absolute; z-index: 2; padding: .45rem .65rem; border: 1px solid var(--line); background: var(--white); color: var(--ink); font-size: .73rem; }
+    .n1 { top: 14%; left: 15%; } .n2 { top: 19%; right: 11%; } .n3 { bottom: 16%; left: 11%; } .n4 { bottom: 13%; right: 14%; }
+    .limits { display: grid; grid-template-columns: .7fr 1.3fr; gap: 3rem; }
+    .limits-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+    .limits-list li { padding: .85rem 0 .85rem 1.2rem; border-bottom: 1px solid var(--line); position: relative; color: #46534d; }
+    .limits-list li::before { content: "—"; position: absolute; left: 0; color: var(--copper); }
+    .qa-note { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed #a99f8d; color: var(--muted); font-size: .84rem; }
+    .resources { display: grid; grid-template-columns: 1fr 1fr; gap: 0 3rem; border-top: 1px solid var(--line); }
+    .resource { display: flex; justify-content: space-between; gap: 1.5rem; padding: 1.15rem 0; border-bottom: 1px solid var(--line); text-decoration: none; }
+    .resource strong { display: block; color: var(--forest); font: 600 1.1rem var(--serif); }
+    .resource span { display: block; margin-top: .2rem; color: var(--muted); font-size: .82rem; }
+    .resource .arrow { align-self: center; color: var(--copper); font-size: 1.2rem; }
+    footer { padding: 2rem 0 3rem; color: var(--muted); font-size: .8rem; }
+    footer .foot { display: flex; justify-content: space-between; gap: 2rem; }
+    .skip { position: absolute; left: -9999px; top: 1rem; padding: .5rem; background: var(--white); }
+    .skip:focus { left: 1rem; z-index: 10; }
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 2rem, var(--measure)); }
+      .topline-inner { align-items: flex-start; flex-direction: column; padding: 1rem 0; gap: .8rem; }
+      nav { max-width: 100%; overflow-x: auto; gap: 1.1rem; padding-bottom: .25rem; }
+      .hero { grid-template-columns: 1fr; padding: 4rem 0; gap: 2.5rem; }
+      .hero-side { max-width: 34rem; }
+      .proof-grid { grid-template-columns: 1fr 1fr; }
+      .proof { border-bottom: 1px solid #ffffff3d; padding: 1rem .7rem 1rem 0; }
+      .proof + .proof { padding-left: .8rem; }
+      .proof:nth-child(2) { border-right: 0; }
+      .proof:nth-child(3), .proof:nth-child(4) { border-bottom: 0; }
+      section { padding: 4rem 0; }
+      .section-head, .decision-layout, .scenario, .limits { grid-template-columns: 1fr; gap: 1rem; }
+      .section-head { margin-bottom: 1.7rem; }
+      .finding-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .resources { grid-template-columns: 1fr; }
+      footer .foot { flex-direction: column; gap: .5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to case study</a>
+  <div class="topline">
+    <div class="shell topline-inner">
+      <a class="brand" href="#top" aria-label="Quest of Trust home">
+        <span class="brand-mark" aria-hidden="true">Q</span>
+        <span class="brand-name">Quest of Trust</span>
+        <span class="brand-note">Portfolio case study</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#question">Decision</a>
+        <a href="#findings">Findings</a>
+        <a href="#method">Method</a>
+        <a href="#limits">Limits</a>
+        <a href="#resources">Resources</a>
+      </nav>
+    </div>
+  </div>
+  <main id="main">
+    <div class="shell hero" id="top">
+      <div>
+        <div class="eyebrow">Fraud strategy · synthetic payments lab</div>
+        <h1>Fraud is a decision problem.</h1>
+        <p class="hero-lede">Quest of Trust studies how a payments team can balance fraud loss, customer friction, review workload, and payment margin—then makes those trade-offs inspectable.</p>
+        <div class="actions">
+          <a class="button" href="dashboard.html">Explore the strategy dashboard <span aria-hidden="true">&nbsp;↗</span></a>
+          <a class="button secondary" href="#findings">Read the findings</a>
+        </div>
+      </div>
+      <aside class="hero-side" aria-label="Project summary">
+        <p><strong>TrustHold</strong> is the decision system inside the project.</p>
+        <p class="small">It generates fictional payment events, builds point-in-time signals, compares a transparent rules score with a logistic baseline, and evaluates actions under capacity and explicit economics.</p>
+        <p class="small"><strong>Evidence boundary:</strong> every customer, event, fraud label, cost, and result here is synthetic.</p>
+      </aside>
+    </div>
+    <div class="proof-strip" aria-label="Project scale and holdout summary">
+      <div class="shell proof-grid">
+        <div class="proof"><strong>22,903</strong><span>simulated payment events</span></div>
+        <div class="proof"><strong>6,923</strong><span>later-period holdout events</span></div>
+        <div class="proof"><strong>35</strong><span>planted fraud events in holdout</span></div>
+        <div class="proof"><strong>4</strong><span>documented synthetic attack patterns</span></div>
+      </div>
+    </div>
+    <section id="question">
+      <div class="shell">
+        <div class="section-head">
+          <div class="section-index">01 / THE DECISION</div>
+          <div><h2>One score. Four possible actions.</h2><p class="section-intro">A risk score is only an input. The operating policy chooses what happens next—and that choice affects both the payment and the customer relationship.</p></div>
+        </div>
+        <div class="decision-layout">
+          <div class="decision-copy">
+            <p>The project asks how strategies perform when investigators can only review a limited number of cases per day. It compares a familiar incumbent, readable rules, a logistic baseline, and a combined score under the same synthetic holdout.</p>
+            <p>Thresholds are selected on earlier dates. The later dates are held out for evaluation. Fraud truth stays separate until after features are built, so the answer key does not become a detection signal.</p>
+          </div>
+          <div class="action-list" aria-label="Available payment actions">
+            <div class="action-row"><b>APPROVE</b><span>Preserve convenience and margin; accept modeled loss if fraudulent.</span></div>
+            <div class="action-row"><b>CHALLENGE</b><span>Add verification friction and a modeled per-event cost.</span></div>
+            <div class="action-row"><b>REVIEW</b><span>Use a human queue with finite daily capacity.</span></div>
+            <div class="action-row"><b>DECLINE</b><span>Stop the event; risk losing a legitimate customer.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="findings">
+      <div class="shell">
+        <div class="section-head">
+          <div class="section-index">02 / THE FINDINGS</div>
+          <div><h2>In this run, the logistic strategy leads on modeled cost.</h2><p class="section-intro">The table reports the later-period holdout under the fictional base economics and a daily review capacity of 25.</p></div>
+        </div>
+        <div class="results-wrap">
+          <table>
+            <thead><tr><th scope="col">Strategy</th><th scope="col">Fraud value captured</th><th scope="col">False declines</th><th scope="col">Legitimate challenges</th><th scope="col">Legitimate reviews</th><th scope="col">Overflow</th><th scope="col">Modeled net cost</th></tr></thead>
+            <tbody>
+              <tr><td>Incumbent</td><td>0.00%</td><td>0</td><td>97</td><td>0</td><td>0</td><td>$385.41</td></tr>
+              <tr><td>Rules</td><td>78.52%</td><td>3</td><td>390</td><td>9</td><td>0</td><td>−$4,859.65</td></tr>
+              <tr class="featured"><td>Logistic</td><td>81.62%</td><td>3</td><td>143</td><td>23</td><td>0</td><td>−$5,847.42</td></tr>
+              <tr><td>Rules + logistic</td><td>81.08%</td><td>3</td><td>394</td><td>12</td><td>0</td><td>−$5,053.89</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="result-note">Lower modeled net cost is better under the selected assumptions. A negative value is not measured profit; approved legitimate payment margin is represented as a negative cost.</p>
+        <div class="finding-grid">
+          <article class="finding"><span class="number">OBSERVATION 01</span><h3>More captured value in this holdout</h3><p>Logistic captures an estimated 81.62% of fraud value versus 78.52% for rules, a 3.10-point difference under assumed action effectiveness.</p></article>
+          <article class="finding"><span class="number">OBSERVATION 02</span><h3>Less challenge friction than rules</h3><p>Logistic sends 143 legitimate events to challenge versus 390 for rules. It sends 14 more legitimate events to review in this run.</p></article>
+          <article class="finding"><span class="number">OBSERVATION 03</span><h3>Economics depend on assumptions</h3><p>The modeled cost advantage is conditional on challenge stop rates, review recovery, attrition, payment margin, and the small synthetic holdout.</p></article>
+        </div>
+        <div class="assumption-band"><strong>Read this carefully:</strong> these are simulated outcomes—not evidence about a real processor, customers, savings, fraud prevalence, or production performance. Only 35 fraud events appear in this holdout.</div>
+      </div>
+    </section>
+    <section id="method">
+      <div class="shell">
+        <div class="section-head">
+          <div class="section-index">03 / THE METHOD</div>
+          <div><h2>From fictional world to an operating choice.</h2><p class="section-intro">The stages preserve a clear boundary between observable event behavior and the simulator’s hidden answer key.</p></div>
+        </div>
+        <div class="method-frame">
+          <svg viewBox="0 0 1080 250" role="img" aria-labelledby="pipeline-title pipeline-desc">
+            <title id="pipeline-title">Quest of Trust analytical pipeline</title>
+            <desc id="pipeline-desc">Six stages: generate synthetic entities and transactions; inject fraud and keep truth separate; build point-in-time features; score with rules and logistic model; apply four actions under review capacity; evaluate costs, customer impact, and monitoring.</desc>
+            <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#a94d32"/></marker></defs>
+            <g fill="#fffdf8" stroke="#c9c4b8" stroke-width="1.5">
+              <rect x="10" y="55" width="155" height="105"/><rect x="190" y="55" width="155" height="105"/><rect x="370" y="55" width="155" height="105"/><rect x="550" y="55" width="155" height="105"/><rect x="730" y="55" width="155" height="105"/><rect x="910" y="55" width="155" height="105"/>
+            </g>
+            <g stroke="#a94d32" stroke-width="2" marker-end="url(#arrow)"><path d="M165 107h18"/><path d="M345 107h18"/><path d="M525 107h18"/><path d="M705 107h18"/><path d="M885 107h18"/></g>
+            <g fill="#173c34" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+              <text x="87" y="91">01 · GENERATE</text><text x="267" y="91">02 · INJECT</text><text x="447" y="91">03 · FEATURE</text><text x="627" y="91">04 · SCORE</text><text x="807" y="91">05 · DECIDE</text><text x="987" y="91">06 · EVALUATE</text>
+            </g>
+            <g fill="#5d6964" font-family="Segoe UI, sans-serif" font-size="12.5" text-anchor="middle">
+              <text x="87" y="117"><tspan x="87">customers · merchants</tspan><tspan x="87" dy="17">events · endpoints</tspan></text>
+              <text x="267" y="117"><tspan x="267">four planted patterns</tspan><tspan x="267" dy="17">truth stored separately</tspan></text>
+              <text x="447" y="117"><tspan x="447">12 observable signals</tspan><tspan x="447" dy="17">prior events only</tspan></text>
+              <text x="627" y="117"><tspan x="627">rules + logistic</tspan><tspan x="627" dy="17">trained on earlier dates</tspan></text>
+              <text x="807" y="117"><tspan x="807">four actions</tspan><tspan x="807" dy="17">daily queue limit</tspan></text>
+              <text x="987" y="117"><tspan x="987">loss · friction</tspan><tspan x="987" dy="17">capacity · caveats</tspan></text>
+            </g>
+            <path d="M267 171 v38 h720 v-39" fill="none" stroke="#c29542" stroke-width="1.5" stroke-dasharray="5 5"/>
+            <text x="627" y="231" fill="#795d28" font-family="Segoe UI, sans-serif" font-size="12" text-anchor="middle">Hidden truth joins only after feature construction for training and offline evaluation</text>
+          </svg>
+        </div>
+        <p class="method-caption">Default run: 200 customers, 80 merchants, 120 terminals, 60 days, and a later-date holdout. The synthetic seed and assumptions are documented in the repository.</p>
+      </div>
+    </section>
+    <section>
+      <div class="shell scenario">
+        <div>
+          <div class="eyebrow">Stress test, not just a headline</div>
+          <h2>What if capacity or assumptions change?</h2>
+          <p>The dashboard lets a reviewer compare precomputed holdout outcomes across daily review capacities and economic scenarios. It helps show where the recommendation is sensitive—and where it is not.</p>
+          <a class="button" href="dashboard.html">Open the strategy dashboard <span aria-hidden="true">&nbsp;↗</span></a>
+        </div>
+        <div class="scenario-art" role="img" aria-label="Four attack patterns connect into one risk decision, then separate into four payment actions">
+          <span class="scenario-node n1">Terminal burst</span><span class="scenario-node n2">Card testing</span><span class="scenario-node n3">Credential misuse</span><span class="scenario-node n4">Account takeover</span>
+          <div class="scenario-center">TrustHold<br>decision</div>
+        </div>
+      </div>
+    </section>
+    <section id="limits">
+      <div class="shell">
+        <div class="section-head">
+          <div class="section-index">04 / THE BOUNDARY</div>
+          <div><h2>What this portfolio can and cannot claim.</h2><p class="section-intro">A stronger case study makes its limits as visible as its findings.</p></div>
+        </div>
+        <div class="limits">
+          <div><p class="eyebrow">Built to demonstrate</p><p>Reproducible simulation, point-in-time feature engineering, temporal evaluation, policy capacity, explicit cost assumptions, and an inspectable analysis pipeline.</p></div>
+          <ul class="limits-list">
+            <li>The population, fraud patterns, labels, and unit economics are fictional.</li>
+            <li>The holdout is one simulated period with 35 planted fraud events.</li>
+            <li>One account per customer; no device, IP, login, or recovery-event graph.</li>
+            <li>Group rates are descriptive diagnostics, not a fairness certification.</li>
+            <li>The model is a portfolio baseline, not a production scoring service.</li>
+            <li>Dashboard controls select precomputed scenarios; they do not retrain or rescore events.</li>
+          </ul>
+        </div>
+        <p class="qa-note"><strong>Metric-quality note:</strong> the generated Markdown report currently repeats the Rules PR-AUC value in the scoreless Incumbent row. This portfolio page omits that invalid comparison; a strategy without a continuous risk score has no applicable PR-AUC.</p>
+      </div>
+    </section>
+    <section id="resources">
+      <div class="shell">
+        <div class="section-head">
+          <div class="section-index">05 / EXPLORE</div>
+          <div><h2>Follow the evidence.</h2><p class="section-intro">Start with the analysis, then inspect the methods, assumptions, code, and generated artifacts.</p></div>
+        </div>
+        <div class="resources">
+          <a class="resource" href="dashboard.html"><span><strong>Interactive strategy dashboard</strong><span>Compare capacity and economic scenarios.</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="resource" href="https://github.com/YvonneTsa/Quest-of-Trust/blob/main/docs/portfolio_case_study.md"><span><strong>Case study in Markdown</strong><span>Findings, interpretation, reproducibility, and caveats.</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="resource" href="https://github.com/YvonneTsa/Quest-of-Trust"><span><strong>Source repository</strong><span>Python pipeline, SQL investigations, and data snapshot.</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="resource" href="https://github.com/YvonneTsa/Quest-of-Trust/blob/main/docs/demo_talk_track.md"><span><strong>Three-minute walkthrough</strong><span>A concise portfolio presentation and reviewer Q&amp;A.</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="resource" href="https://github.com/YvonneTsa/Quest-of-Trust/blob/main/docs/roadmap.md"><span><strong>Project roadmap</strong><span>Implemented stages and known prototype limits.</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="resource" href="https://github.com/YvonneTsa/Quest-of-Trust/blob/main/docs/data_dictionary.md"><span><strong>Data dictionary</strong><span>Field names, table grains, and meanings.</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="resource" href="https://github.com/YvonneTsa/Quest-of-Trust/blob/main/docs/simulation_assumptions.md"><span><strong>Simulation assumptions</strong><span>Population, fraud, economics, and scenario settings.</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="resource" href="https://github.com/YvonneTsa/Quest-of-Trust/blob/main/docs/model_governance.md"><span><strong>Model governance notes</strong><span>Leakage boundaries and evaluation controls.</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="shell foot"><span>Quest of Trust · TrustHold synthetic fraud strategy project</span><span>All people, events, labels, costs, and findings shown here are fictional.</span></div></footer>
+</body>
+</html>
+
