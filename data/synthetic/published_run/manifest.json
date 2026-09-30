@@ -1,0 +1,184 @@
+{
+  "format": 1,
+  "source": "synthetic only",
+  "tables": {
+    "accounts": {
+      "parts": [
+        "accounts.part001.csv"
+      ],
+      "rows": 200,
+      "sha256": "ceb615147c8050b99fa04d653f4ce42f67a7712cbc3da1f321ecd4dd3ecbdaef",
+      "ground_truth": false
+    },
+    "action_counts": {
+      "parts": [
+        "action_counts.part001.csv"
+      ],
+      "rows": 16,
+      "sha256": "d781c2597cdad7d12f4d3da27d274a420e1a70d233335bd4c41854de972beaa7",
+      "ground_truth": false
+    },
+    "behavior_features": {
+      "parts": [
+        "behavior_features.part001.csv",
+        "behavior_features.part002.csv",
+        "behavior_features.part003.csv",
+        "behavior_features.part004.csv",
+        "behavior_features.part005.csv",
+        "behavior_features.part006.csv",
+        "behavior_features.part007.csv",
+        "behavior_features.part008.csv",
+        "behavior_features.part009.csv",
+        "behavior_features.part010.csv",
+        "behavior_features.part011.csv",
+        "behavior_features.part012.csv",
+        "behavior_features.part013.csv",
+        "behavior_features.part014.csv",
+        "behavior_features.part015.csv",
+        "behavior_features.part016.csv",
+        "behavior_features.part017.csv",
+        "behavior_features.part018.csv",
+        "behavior_features.part019.csv"
+      ],
+      "rows": 22903,
+      "sha256": "098f53daf7d3e8ffff2a4a9a331ffc570de81689047a8537e5eb0347ff46e9ae",
+      "ground_truth": false
+    },
+    "capacity_sensitivity": {
+      "parts": [
+        "capacity_sensitivity.part001.csv"
+      ],
+      "rows": 15,
+      "sha256": "64a06fb5f6bd31575fd908255527cc8a0d491d39eb657afc7c795f6b94af7bdd",
+      "ground_truth": false
+    },
+    "customers": {
+      "parts": [
+        "customers.part001.csv"
+      ],
+      "rows": 200,
+      "sha256": "ae7906322b833d3821762459b898d03d9d79b2953daff3f0c1767a0f536fa977",
+      "ground_truth": false
+    },
+    "daily_monitoring": {
+      "parts": [
+        "daily_monitoring.part001.csv"
+      ],
+      "rows": 60,
+      "sha256": "442d9b5aba710d73f694f1975367432883319ff2d6762551418b07a1193aa103",
+      "ground_truth": false
+    },
+    "economic_sensitivity": {
+      "parts": [
+        "economic_sensitivity.part001.csv"
+      ],
+      "rows": 24,
+      "sha256": "749feaa33c1e7ae9ad8951680ef0d93a6de501050d6d8223752ad276875342db",
+      "ground_truth": false
+    },
+    "impact_by_customer_group": {
+      "parts": [
+        "impact_by_customer_group.part001.csv"
+      ],
+      "rows": 40,
+      "sha256": "752641f5f55eee94a125093fd77e3c0c53a8e6567579b4099e1c7de33a571368",
+      "ground_truth": false
+    },
+    "merchants": {
+      "parts": [
+        "merchants.part001.csv"
+      ],
+      "rows": 80,
+      "sha256": "da8466172a9a726973797998190a5c2cc26f8330c4be0799a0bc4934836b82ef",
+      "ground_truth": false
+    },
+    "model_coefficients": {
+      "parts": [
+        "model_coefficients.part001.csv"
+      ],
+      "rows": 12,
+      "sha256": "89b77c51e059348f600d2c3e2933a02b52d9a4170516974babccb248df8bf90d",
+      "ground_truth": false
+    },
+    "scenario_surface": {
+      "parts": [
+        "scenario_surface.part001.csv"
+      ],
+      "rows": 120,
+      "sha256": "befbfc44b45a09fa5ad0682010373e0db1c4ed967b6cb924a05a08b8a77c60e8",
+      "ground_truth": false
+    },
+    "strategy_metrics": {
+      "parts": [
+        "strategy_metrics.part001.csv"
+      ],
+      "rows": 4,
+      "sha256": "58569d0347a5cdfb70029eaac512fc6bf10a1f0e2ea12c950fe0bee5bd2cb9e6",
+      "ground_truth": false
+    },
+    "terminal_network_summary": {
+      "parts": [
+        "terminal_network_summary.part001.csv"
+      ],
+      "rows": 120,
+      "sha256": "e4b42c62dce57278b199f0b89774c08215d85162bd4931849aba21290d99e441",
+      "ground_truth": false
+    },
+    "terminals": {
+      "parts": [
+        "terminals.part001.csv"
+      ],
+      "rows": 120,
+      "sha256": "4c79a0eacb6810595a55083f53e51ac77e5a8747a7cbfb303ac2ef5cd832916b",
+      "ground_truth": false
+    },
+    "test_decisions": {
+      "parts": [
+        "test_decisions.part001.csv",
+        "test_decisions.part002.csv",
+        "test_decisions.part003.csv",
+        "test_decisions.part004.csv",
+        "test_decisions.part005.csv",
+        "test_decisions.part006.csv",
+        "test_decisions.part007.csv"
+      ],
+      "rows": 27692,
+      "sha256": "5f35e749f1c2c28418f77e41712bbb96655593ede2800a3adaf90f63effedda6",
+      "ground_truth": false
+    },
+    "transactions": {
+      "parts": [
+        "transactions.part001.csv",
+        "transactions.part002.csv",
+        "transactions.part003.csv",
+        "transactions.part004.csv",
+        "transactions.part005.csv",
+        "transactions.part006.csv",
+        "transactions.part007.csv",
+        "transactions.part008.csv",
+        "transactions.part009.csv",
+        "transactions.part010.csv"
+      ],
+      "rows": 22903,
+      "sha256": "02ae7edd0117ab9749a0c584e9bb290f11c6ca632bd293255ee64286fbcf2b7b",
+      "ground_truth": false
+    },
+    "typology_metrics": {
+      "parts": [
+        "typology_metrics.part001.csv"
+      ],
+      "rows": 16,
+      "sha256": "05a7fcda3b2e8c093822fd56a4eadded212fc31a004703e01e7b1b7b1ec50d16",
+      "ground_truth": false
+    },
+    "fraud_ground_truth": {
+      "parts": [
+        "fraud_ground_truth.part001.csv"
+      ],
+      "rows": 70,
+      "sha256": "21921a46cdc666d4966551029b30f9ed439bd0d35f10ceef78483ab4abb496bd",
+      "ground_truth": true
+    }
+  }
+}
+
