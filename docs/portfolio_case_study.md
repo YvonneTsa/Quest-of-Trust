@@ -1,10 +1,10 @@
-# Quest of Trust — Portfolio Case Study
+# Quest of Trust — Fraud Strategy Case Study
 
 ## Executive summary
 
-Quest of Trust is a synthetic payments-risk portfolio project. Its TrustHold decision system compares four actions—approve, challenge, review, decline—while accounting for modeled fraud loss, customer friction, payment margin, and investigator capacity.
+Quest of Trust is a synthetic payments-fraud analytics project. Its TrustHold decision system compares four authorization actions—approve, challenge, review, and decline—against modeled fraud loss, legitimate-payment friction, payment contribution, and investigator capacity.
 
-The portfolio run contains 22,903 transactions over 60 simulated days. Its later holdout contains 6,923 transactions and 35 planted fraud events. Under the project's fictional base economics and a review limit of 25 cases per day, the logistic strategy captures an estimated 81.62% of holdout fraud value, records three false declines, and produces a modeled net economic cost of −$5,847.42. The rules strategy captures 78.52%, records three false declines, and produces a modeled cost of −$4,859.65.
+The simulation covers 22,903 payment transactions over 60 days. Its later holdout contains 6,923 transactions and 35 planted fraud events. Under the project's fictional base economics and a review limit of 25 cases per day, the logistic strategy captures an estimated 81.62% of holdout fraud value, records three false declines, and produces a modeled net economic cost of −$5,847.42. The rules strategy captures 78.52%, records three false declines, and produces a modeled cost of −$4,859.65.
 
 These are outputs of the simulator—not observed business savings, a real fraud rate, or evidence that the system is ready to make production decisions.
 
@@ -31,22 +31,22 @@ The project makes the decision explicit:
 6. Compare costs, fraud-value capture, false declines, workload, capacity sensitivity, and customer-group diagnostics.
 7. Save inspectable CSV tables and SQLite investigations; render a report and interactive standalone dashboard.
 
-## Selected held-out results
+## Holdout fraud and operating results
 
-| Strategy | Fraud value captured | False declines | Legitimate challenges | Legitimate reviews | Review overflow | Modeled net cost |
+| Strategy | Est. fraud value captured | False declines | Legitimate payments challenged | Legitimate payments reviewed | Cases over capacity | Modeled net cost |
 |---|---:|---:|---:|---:|---:|---:|
 | Incumbent | 0.00% | 0 | 97 | 0 | 0 | $385.41 |
 | Rules | 78.52% | 3 | 390 | 9 | 0 | −$4,859.65 |
 | Logistic | 81.62% | 3 | 143 | 23 | 0 | −$5,847.42 |
 | Rules + logistic | 81.08% | 3 | 394 | 12 | 0 | −$5,053.89 |
 
-At these assumptions, logistic improves estimated fraud-value capture by 3.10 percentage points versus rules and sends 247 fewer legitimate events to challenge. It uses 14 more legitimate reviews and produces the lowest modeled cost in this run. These differences are conditional on the simulator, the small holdout fraud count, and the stated unit economics.
+At the stated assumptions, logistic increases estimated fraud-value capture by 3.10 percentage points versus rules while challenging 247 fewer legitimate payments. It sends 14 more legitimate payments to manual review; both strategies produce three false declines. Logistic has the lowest modeled net cost in this run. These differences depend on the simulation, the small holdout fraud count, and the assumed unit economics.
 
 ## What the result means—and does not mean
 
-The analysis demonstrates how a payments team could compare detection strategies by operational outcomes rather than accuracy alone. It does not establish the expected performance or profitability of any real fraud policy. Challenge effectiveness, review recovery, customer lifetime value, chargeback costs, and the simulated population are fictional assumptions.
+The analysis demonstrates how a payments-fraud team can compare detection strategies using business outcomes: estimated fraud loss captured, legitimate-payment friction, false declines, investigator workload, and modeled net cost. It does not establish expected performance or profitability for a real authorization policy. Challenge effectiveness, review recovery, customer lifetime value, chargeback costs, and the simulated population are fictional assumptions.
 
-The case-study output currently contains a PR-AUC value in the scoreless Incumbent row due to a metric-mapping defect in the report pipeline. This portfolio comparison does not use that value; an incumbent with no continuous risk score has no applicable PR-AUC. The project should correct that reporting defect before treating its generated case-study table as final.
+The case-study output currently contains a PR-AUC value in the scoreless Incumbent row due to a metric-mapping defect in the report pipeline. This strategy comparison does not use that value; an incumbent with no continuous risk score has no applicable PR-AUC. The project should correct that reporting defect before treating its generated case-study table as final.
 
 ## Scope and limitations
 
