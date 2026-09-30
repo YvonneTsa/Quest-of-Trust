@@ -28,7 +28,7 @@ The generator rejects horizons too short to place fraud examples in both the tra
 ## Generated outputs
 
 - `data/synthetic/run/*.csv` — customer, account, merchant, terminal, transaction, feature, decision, monitoring, and result tables.
-- `data/synthetic/run/restricted/fraud_ground_truth.csv` — planted labels and typology metadata for offline evaluation only. It is generated locally, ignored by Git, and excluded from the SQLite database and public analysis tables.
+- `data/synthetic/run/restricted/fraud_ground_truth.csv` — planted labels and typology metadata for offline evaluation only. The restored local copy is ignored by Git and excluded from the SQLite database and model features; a separate, clearly marked version is included in the published synthetic snapshot for reproducible evaluation.
 - `data/synthetic/run/trusthold.sqlite` — local SQL investigation database containing observable transactions and derived features, strategy outputs, and aggregated metrics.
 - `data/synthetic/run/capacity_sensitivity.csv`, `economic_sensitivity.csv`, and `impact_by_customer_group.csv` — scenario and customer-impact diagnostics.
 - `reports/case_study.md` — generated held-out comparison plus capacity, economic, and group-impact tables, caveats, and interpretation.
