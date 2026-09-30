@@ -1,0 +1,18 @@
+Decision,Count,Strategy
+APPROVE,6826,Incumbent
+CHALLENGE,97,Incumbent
+REVIEW,0,Incumbent
+DECLINE,0,Incumbent
+APPROVE,6492,Rules
+CHALLENGE,403,Rules
+REVIEW,20,Rules
+DECLINE,8,Rules
+APPROVE,6724,Logistic
+CHALLENGE,154,Logistic
+REVIEW,33,Logistic
+DECLINE,12,Logistic
+APPROVE,6484,Rules + logistic
+CHALLENGE,408,Rules + logistic
+REVIEW,21,Rules + logistic
+DECLINE,10,Rules + logistic
+
