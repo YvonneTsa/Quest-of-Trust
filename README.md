@@ -1,6 +1,6 @@
-# TrustHold — The Cost of Fraud
+# Quest of Trust — The Cost of Fraud
 
-TrustHold is a reproducible synthetic payments-risk project about the cost of fraud decisions. It generates a digital-payments world, plants four documented fraud typologies, builds point-in-time behavioral signals, compares rules and a logistic-regression baseline, and evaluates **APPROVE / CHALLENGE / REVIEW / DECLINE** strategies under finite investigator capacity and explicit economics.
+Quest of Trust is a reproducible synthetic payments-risk project about the cost of fraud decisions. Its TrustHold decision system generates a digital-payments world, plants four documented fraud typologies, builds point-in-time behavioral signals, compares rules and a logistic-regression baseline, and evaluates **APPROVE / CHALLENGE / REVIEW / DECLINE** strategies under finite investigator capacity and explicit economics.
 
 The objective is the overall business outcome: fraud loss, good-customer friction, review workload, and payment margin. The project does not optimize for accuracy alone. All outputs are synthetic and fictional; they are not evidence about a real company or customers.
 
