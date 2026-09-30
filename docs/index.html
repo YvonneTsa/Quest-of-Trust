@@ -178,7 +178,78 @@
       .proof-strip { margin-top: .5rem; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
-  </style>
+  
+    /* Bright-inspired portfolio skin v2: soft color, rounded project canvases, restrained motion. */
+    :root {
+      --paper: #ffffff; --paper-deep: #f1f1f4; --ink: #232323; --muted: #707076;
+      --line: #e4e4e9; --forest: #2f67ba; --forest-light: #e8f1ff;
+      --copper: #ef8745; --copper-pale: #fff1e7; --gold: #f3ae52; --white: #ffffff;
+      --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --serif: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    body { background: #fff !important; color: #232323; font-family: var(--sans); }
+    h1, h2, h3, .brand-name, .work-meta h2 { font-family: var(--sans) !important; font-weight: 700 !important; letter-spacing: -.045em; }
+    .topline { background: #fff; border: 0; }
+    .brand-mark { border: 0; border-radius: 50%; background: #232323; color: #fff; transform: none; }
+    .brand-note { color: #85858b; }
+    .primary-nav { background: rgba(255,255,255,.94); border: 1px solid #eeeef1; box-shadow: 0 8px 26px rgba(28,32,38,.12); backdrop-filter: blur(12px); }
+    .primary-nav a { transition: background-color .18s ease-out, color .18s ease-out; }
+    .primary-nav a:hover, .primary-nav a[aria-current="page"] { background: #f1f1f4; color: #232323; }
+    .work-index { border: 0; }
+    .work-heading h1 { max-width: none; font-family: var(--sans) !important; font-size: clamp(3rem, 7vw, 5rem); font-weight: 750 !important; letter-spacing: -.065em; }
+    .work-heading p { color: #68686f; }
+    .eyebrow, .art-kicker { color: #6d7077; }
+    .work-filters { gap: .45rem; }
+    .filter-button { border-radius: 22px; color: #232323; font-family: var(--sans); transition: background-color .18s ease-out, transform .18s ease-out; }
+    .filter-button:hover, .filter-button[aria-pressed="true"] { border-color: transparent; background: #f5f5f7; }
+    .filter-dot { position: relative; flex: 0 0 3.35rem; width: 3.35rem; height: 3.35rem; overflow: hidden; border-radius: 1rem; background: linear-gradient(145deg, #3b3b40, #17171a); box-shadow: inset 0 2px 3px #ffffff55, 0 7px 14px #16161a20; transition: transform .24s cubic-bezier(.22,1,.36,1); }
+    .filter-dot::before { content: ""; position: absolute; top: .4rem; left: .92rem; width: 1.5rem; height: 1.9rem; border-radius: .35rem .35rem .2rem .2rem; background: linear-gradient(#fff, #e9e9ed); box-shadow: inset 0 1px 2px #fff; }
+    .filter-dot::after { content: ""; position: absolute; left: .46rem; right: .46rem; bottom: .42rem; height: 1.05rem; border-radius: .35rem .35rem .58rem .58rem; background: linear-gradient(160deg, #66666b, #27272a); box-shadow: inset 0 2px 3px #ffffff55; }
+    .filter-button:hover .filter-dot { transform: translateY(-4px) rotate(-3deg); }
+    .filter-button[data-filter="strategy"] .filter-dot { background: linear-gradient(145deg, #80baff, #347fe0); }
+    .filter-button[data-filter="strategy"] .filter-dot::after { background: linear-gradient(160deg, #a7d0ff, #438bea); }
+    .filter-button[data-filter="analytics"] .filter-dot { background: linear-gradient(145deg, #ffc17c, #f47f27); }
+    .filter-button[data-filter="analytics"] .filter-dot::after { background: linear-gradient(160deg, #ffd5a3, #fb8c36); }
+    .filter-button[data-filter="tools"] .filter-dot { background: linear-gradient(145deg, #ff9fa4, #e95061); }
+    .filter-button[data-filter="tools"] .filter-dot::after { background: linear-gradient(160deg, #ffc2c4, #f06a77); }
+    .work-art { border-radius: 26px; background: #f5f5f7; transition: background-color .25s ease-out; }
+    .work-card:nth-child(2) .work-art { background: #fff5ec; }
+    .work-card:nth-child(3) .work-art { background: #eef8fa; }
+    .work-card:nth-child(4) .work-art { background: #fff0f0; }
+    .work-card { border-radius: 26px; transition: box-shadow .4s cubic-bezier(.22,1,.36,1); }
+    .work-card:hover { box-shadow: 0 0 0 8px #f5f5f7; }
+    .work-card:nth-child(2):hover { box-shadow: 0 0 0 8px #fff5ec; }
+    .work-card:nth-child(3):hover { box-shadow: 0 0 0 8px #eef8fa; }
+    .work-card:nth-child(4):hover { box-shadow: 0 0 0 8px #fff0f0; }
+    .work-art svg { transform-origin: center; transition: transform .45s cubic-bezier(.22,1,.36,1); }
+    .work-card:hover .work-art svg { transform: translateY(-5px) scale(1.015); }
+    .work-card:nth-child(1) .work-art svg { animation: portfolio-float 7s ease-in-out infinite; }
+    .work-card:nth-child(2) .work-art svg { animation: portfolio-float 8s ease-in-out -2s infinite; }
+    .work-card:nth-child(3) .work-art svg { animation: portfolio-float 7.5s ease-in-out -4s infinite; }
+    .work-card:nth-child(4) .work-art svg { animation: portfolio-float 8.5s ease-in-out -1s infinite; }
+    @keyframes portfolio-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -6px; } }
+    .proof-strip { border-radius: 24px; background: #f5f5f7; color: #232323; }
+    .proof { border-color: #dedee3; }
+    .proof span { color: #6f7077; }
+    .proof-grid { padding-inline: 1.5rem; }
+    .button { border-radius: 14px; }
+    .button:hover { background: #2058a9; }
+    .method-frame, .results-wrap { border-radius: 18px; overflow: hidden; }
+    .scenario-art { border-radius: 26px; background: #eef8fa; }
+    .scenario-node, .scenario-center { border-radius: 14px; }
+    .work-status { color: #77777e; }
+    @media (max-width: 760px) {
+      .filter-button { padding: .45rem .6rem; gap: .4rem; }
+      .filter-dot { flex-basis: 2.7rem; width: 2.7rem; height: 2.7rem; border-radius: .85rem; }
+      .filter-dot::before { left: .75rem; width: 1.2rem; height: 1.5rem; }
+      .filter-dot::after { left: .35rem; right: .35rem; bottom: .34rem; height: .85rem; }
+      .work-art { border-radius: 22px; }
+      .primary-nav { bottom: .65rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+    }
+</style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to case study</a>
