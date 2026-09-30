@@ -1,0 +1,42 @@
+Strategy,Group_Type,Group,Transactions,Fraud_Rate,Challenge_Rate,Review_Rate,Decline_Rate,False_Declines
+Incumbent,Segment,Business,1030,0.001,0.0184,0.0,0.0,0
+Incumbent,Segment,Premium,1811,0.0017,0.0138,0.0,0.0,0
+Incumbent,Segment,Standard,4082,0.0076,0.013,0.0,0.0,0
+Incumbent,KYC risk band,High,379,0.0106,0.0079,0.0,0.0,0
+Incumbent,KYC risk band,Low,4450,0.0034,0.0151,0.0,0.0,0
+Incumbent,KYC risk band,Medium,2094,0.0076,0.0129,0.0,0.0,0
+Incumbent,Home region,Midwest,1393,0.0029,0.0122,0.0,0.0,0
+Incumbent,Home region,Northeast,1305,0.0046,0.013,0.0,0.0,0
+Incumbent,Home region,South,3074,0.0059,0.012,0.0,0.0,0
+Incumbent,Home region,West,1151,0.0061,0.0226,0.0,0.0,0
+Rules,Segment,Business,1030,0.001,0.1456,0.0029,0.0019,2
+Rules,Segment,Premium,1811,0.0017,0.0823,0.0017,0.0006,1
+Rules,Segment,Standard,4082,0.0076,0.0255,0.0034,0.0012,0
+Rules,KYC risk band,High,379,0.0106,0.0237,0.0053,0.0053,0
+Rules,KYC risk band,Low,4450,0.0034,0.0548,0.0027,0.0004,2
+Rules,KYC risk band,Medium,2094,0.0076,0.0716,0.0029,0.0019,1
+Rules,Home region,Midwest,1393,0.0029,0.0725,0.0022,0.0,0
+Rules,Home region,Northeast,1305,0.0046,0.0245,0.0015,0.0,0
+Rules,Home region,South,3074,0.0059,0.0716,0.0033,0.002,3
+Rules,Home region,West,1151,0.0061,0.0434,0.0043,0.0017,0
+Logistic,Segment,Business,1030,0.001,0.0165,0.0039,0.0019,2
+Logistic,Segment,Premium,1811,0.0017,0.0226,0.0028,0.0,0
+Logistic,Segment,Standard,4082,0.0076,0.0235,0.0059,0.0024,1
+Logistic,KYC risk band,High,379,0.0106,0.0211,0.0079,0.0026,0
+Logistic,KYC risk band,Low,4450,0.0034,0.0193,0.0052,0.0009,2
+Logistic,KYC risk band,Medium,2094,0.0076,0.0287,0.0033,0.0033,1
+Logistic,Home region,Midwest,1393,0.0029,0.0208,0.0014,0.0,0
+Logistic,Home region,Northeast,1305,0.0046,0.0207,0.0077,0.0,0
+Logistic,Home region,South,3074,0.0059,0.0234,0.0042,0.002,3
+Logistic,Home region,West,1151,0.0061,0.0226,0.007,0.0052,0
+Rules + logistic,Segment,Business,1030,0.001,0.1456,0.0049,0.0019,2
+Rules + logistic,Segment,Premium,1811,0.0017,0.0834,0.0017,0.0006,1
+Rules + logistic,Segment,Standard,4082,0.0076,0.0262,0.0032,0.0017,0
+Rules + logistic,KYC risk band,High,379,0.0106,0.0237,0.0053,0.0053,0
+Rules + logistic,KYC risk band,Low,4450,0.0034,0.0555,0.0031,0.0004,2
+Rules + logistic,KYC risk band,Medium,2094,0.0076,0.0726,0.0024,0.0029,1
+Rules + logistic,Home region,Midwest,1393,0.0029,0.0725,0.0022,0.0,0
+Rules + logistic,Home region,Northeast,1305,0.0046,0.0268,0.0015,0.0,0
+Rules + logistic,Home region,South,3074,0.0059,0.0716,0.0042,0.002,3
+Rules + logistic,Home region,West,1151,0.0061,0.0452,0.0026,0.0035,0
+
