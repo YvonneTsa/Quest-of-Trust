@@ -34,6 +34,18 @@ The generator rejects horizons too short to place fraud examples in both the tra
 - `reports/case_study.md` — generated held-out comparison plus capacity, economic, and group-impact tables, caveats, and interpretation.
 - `reports/dashboard.html` — self-contained visual comparison of economic outcomes and daily observable volume.
 
+## Complete generated data snapshot
+
+The repository includes the complete synthetic run snapshot under `data/synthetic/published_run/`. CSVs are split into GitHub-friendly parts; `manifest.json` records row counts and SHA-256 checksums. This includes every entity, transaction, behavioral feature, decision, monitoring and analysis table, plus `fraud_ground_truth` in a distinct evaluation file. The labels are synthetic and must never be used as an input feature or joined before feature construction.
+
+Restore and verify the CSV tables with:
+
+```powershell
+python -m scripts.assemble_dataset
+```
+
+This writes the observable tables to `data/synthetic/run/` and puts the labels under `data/synthetic/run/restricted/`. The local SQLite database is rebuilt by the full project command below; it is not required to investigate the published CSVs. To repackage a new run for sharing, use `python -m scripts.package_dataset`.
+
 ## SQL investigation
 
 After the full run, inspect the generated SQLite tables with:
@@ -54,6 +66,8 @@ The `.sql` files explore daily volume, terminal concentration, rapid low-value e
 - `src/evaluation/` — PR-AUC and economic/customer-impact measures.
 - `src/network_intelligence.py` — label-free customer-terminal graph connectivity summaries.
 - `src/monitoring.py`, `src/storage.py`, `src/reporting.py` — rolling three-sigma monitoring, SQLite/CSV persistence, case study and dashboard.
+- `scripts/` — checksum-verified dataset packaging and assembly tools.
+- `data/synthetic/published_run/` — complete, versioned CSV snapshot, including a separate synthetic evaluation-label table.
 - `docs/` — assumptions, data dictionary, fraud scenarios, governance, and teaching walkthrough.
 - `sql/` — reproducible SQLite investigations.
 
