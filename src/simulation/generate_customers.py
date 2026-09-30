@@ -18,7 +18,6 @@ OUTPUT_PATH = PROJECT_ROOT / "data" / "synthetic" / "customers.csv"
 # A seed makes every random draw repeatable while these settings stay fixed.
 SEED = 20260915
 N_CUSTOMERS = 20  # Continues the count in the recovered local script.
-rng = np.random.default_rng(SEED)
 
 # Each segment is paired by position with its fictional sampling probability.
 SEGMENTS = ["Standard", "Premium", "Business"]
@@ -113,3 +112,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
