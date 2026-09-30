@@ -131,6 +131,55 @@
       .resources { grid-template-columns: 1fr; }
       footer .foot { flex-direction: column; gap: .5rem; }
     }
+    /* Selected-work portfolio layer, inspired by the reference gallery. */
+    body { background: #f7f6f3; }
+    .topline { border: 0; }
+    .topline-inner { min-height: 5.4rem; }
+    .brand-mark { border-radius: 50%; transform: none; background: var(--forest); color: var(--white); }
+    .primary-nav { position: fixed; z-index: 20; left: 50%; bottom: 1.2rem; transform: translateX(-50%); display: flex; gap: .2rem; padding: .35rem; border: 1px solid #dfddd7; border-radius: 99px; background: #fffdf8ed; box-shadow: 0 8px 30px #202b2a1c; backdrop-filter: blur(12px); }
+    .primary-nav a { min-height: 2.8rem; display: inline-flex; align-items: center; padding: .45rem 1.05rem; border-radius: 99px; color: var(--ink); font-size: .85rem; }
+    .primary-nav a:hover, .primary-nav a[aria-current="page"] { background: #e9e8e2; color: var(--forest); }
+    .work-index { padding: clamp(3.6rem, 8vw, 7rem) 0 2.8rem; }
+    .work-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2.5rem; }
+    .work-heading h1 { max-width: none; margin: .3rem 0 0; font-size: clamp(3.4rem, 7vw, 6rem); }
+    .work-heading p { max-width: 35ch; margin-bottom: .4rem; color: var(--muted); }
+    .work-filters { display: flex; flex-wrap: wrap; gap: .75rem; margin: 0 0 1rem; padding: 0; border: 0; }
+    .work-filters legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+    .filter-button { display: inline-flex; align-items: center; gap: .55rem; padding: .55rem .9rem; border: 1px solid transparent; border-radius: 999px; background: transparent; color: #34403c; font: 600 .84rem var(--sans); cursor: pointer; }
+    .filter-button:hover, .filter-button[aria-pressed="true"] { border-color: #e2e0dc; background: #eeede9; }
+    .filter-dot { width: .72rem; height: .72rem; border-radius: 50%; background: var(--forest); }
+    .filter-button[data-filter="strategy"] .filter-dot { background: #254f45; }
+    .filter-button[data-filter="analytics"] .filter-dot { background: #c4784d; }
+    .filter-button[data-filter="tools"] .filter-dot { background: #738875; }
+    .work-status { margin: .1rem 0 1rem; color: var(--muted); font-size: .78rem; }
+    .work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 2.4vw, 2rem); }
+    .work-card { min-width: 0; color: var(--ink); text-decoration: none; }
+    .work-card[hidden] { display: none; }
+    .work-art { position: relative; display: grid; place-items: center; aspect-ratio: 1.56; overflow: hidden; background: #ecebe7; transition: background-color .25s ease; }
+    .work-card:hover .work-art { background: #e5e6df; }
+    .work-art svg { width: min(88%, 38rem); height: auto; overflow: visible; }
+    .art-kicker { position: absolute; top: 1rem; left: 1.1rem; color: #53615b; font: 700 .67rem var(--mono); letter-spacing: .12em; }
+    .work-meta { display: flex; align-items: start; justify-content: space-between; gap: 1rem; padding: .85rem .1rem 0; }
+    .work-meta h2 { margin: 0; font: 600 clamp(1.1rem, 1.7vw, 1.45rem)/1.2 var(--serif); letter-spacing: -.02em; }
+    .work-meta p { margin: .35rem 0 0; color: var(--muted); font-size: .84rem; }
+    .work-type { padding-top: .2rem; color: var(--muted); font-size: .72rem; white-space: nowrap; }
+    .card-arrow { display: inline-block; margin-left: .25rem; color: var(--copper); transition: transform .2s ease; }
+    .work-card:hover .card-arrow { transform: translate(3px,-3px); }
+    .work-note { display: flex; justify-content: space-between; gap: 1.5rem; margin-top: 2rem; padding: 1rem 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
+    .work-note strong { color: var(--ink); }
+    .proof-strip { margin-top: 1.5rem; }
+    @media (max-width: 760px) {
+      .work-heading { display: block; margin-bottom: 1.7rem; }
+      .work-heading h1 { font-size: clamp(3.4rem, 16vw, 5rem); }
+      .work-heading p { margin-top: 1rem; }
+      .work-grid { grid-template-columns: 1fr; gap: 1.7rem; }
+      .work-art { aspect-ratio: 1.25; }
+      .work-note { flex-direction: column; gap: .35rem; }
+      .primary-nav { bottom: .65rem; }
+      .primary-nav a { padding-inline: .9rem; }
+      .proof-strip { margin-top: .5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { .work-art, .card-arrow { transition: none; } }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
   </style>
 </head>
@@ -143,32 +192,80 @@
         <span class="brand-name">Quest of Trust</span>
         <span class="brand-note">Portfolio case study</span>
       </a>
-      <nav aria-label="Main navigation">
-        <a href="#question">Decision</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a href="#work" aria-current="page">Work</a>
         <a href="#findings">Findings</a>
-        <a href="#method">Method</a>
-        <a href="#limits">Limits</a>
-        <a href="#resources">Resources</a>
+        <a href="#resources">About</a>
       </nav>
     </div>
   </div>
   <main id="main">
-    <div class="shell hero" id="top">
-      <div>
-        <div class="eyebrow">Fraud strategy · synthetic payments lab</div>
-        <h1>Fraud is a decision problem.</h1>
-        <p class="hero-lede">Quest of Trust studies how a payments team can balance fraud loss, customer friction, review workload, and payment margin—then makes those trade-offs inspectable.</p>
-        <div class="actions">
-          <a class="button" href="dashboard.html">Explore the strategy dashboard <span aria-hidden="true">&nbsp;↗</span></a>
-          <a class="button secondary" href="#findings">Read the findings</a>
-        </div>
+    <section class="shell work-index" id="work" aria-labelledby="work-title">
+      <div class="work-heading">
+        <div><div class="eyebrow">Quest of Trust · selected work</div><h1 id="work-title">Selected work</h1></div>
+        <p>A fraud strategy case study about the choices behind a risk score: what to approve, challenge, review, or decline.</p>
       </div>
-      <aside class="hero-side" aria-label="Project summary">
-        <p><strong>TrustHold</strong> is the decision system inside the project.</p>
-        <p class="small">It generates fictional payment events, builds point-in-time signals, compares a transparent rules score with a logistic baseline, and evaluates actions under capacity and explicit economics.</p>
-        <p class="small"><strong>Evidence boundary:</strong> every customer, event, fraud label, cost, and result here is synthetic.</p>
-      </aside>
-    </div>
+      <fieldset class="work-filters" aria-label="Filter portfolio views">
+        <legend>Filter work by discipline</legend>
+        <button class="filter-button" type="button" data-filter="all" aria-pressed="true"><span class="filter-dot" aria-hidden="true"></span>All work</button>
+        <button class="filter-button" type="button" data-filter="strategy" aria-pressed="false"><span class="filter-dot" aria-hidden="true"></span>Strategy</button>
+        <button class="filter-button" type="button" data-filter="analytics" aria-pressed="false"><span class="filter-dot" aria-hidden="true"></span>Analytics</button>
+        <button class="filter-button" type="button" data-filter="tools" aria-pressed="false"><span class="filter-dot" aria-hidden="true"></span>Tools & methods</button>
+      </fieldset>
+      <p class="work-status" aria-live="polite">4 project views</p>
+      <div class="work-grid">
+        <a class="work-card" href="#findings" data-tags="strategy analytics" aria-label="View the holdout findings">
+          <div class="work-art"><span class="art-kicker">01 / DECISION ANALYSIS</span>
+            <svg viewBox="0 0 720 390" role="img" aria-label="Comparison of fraud value captured by two strategies">
+              <rect x="42" y="48" width="636" height="294" fill="#f7f6f3"/>
+              <text x="76" y="104" fill="#26332e" font-family="Georgia,serif" font-size="25">Fraud value captured</text>
+              <text x="76" y="135" fill="#68746e" font-family="Segoe UI,sans-serif" font-size="13">Later-period holdout · synthetic base case</text>
+              <text x="76" y="204" fill="#44514b" font-family="Segoe UI,sans-serif" font-size="15">Rules</text>
+              <rect x="166" y="180" width="365" height="32" fill="#d8ddd6"/><rect x="166" y="180" width="287" height="32" fill="#738875"/>
+              <text x="548" y="203" fill="#26332e" font-family="Segoe UI,sans-serif" font-size="18" font-weight="700">78.52%</text>
+              <text x="76" y="265" fill="#44514b" font-family="Segoe UI,sans-serif" font-size="15">Logistic</text>
+              <rect x="166" y="241" width="365" height="32" fill="#d8ddd6"/><rect x="166" y="241" width="298" height="32" fill="#254f45"/>
+              <text x="548" y="264" fill="#26332e" font-family="Segoe UI,sans-serif" font-size="18" font-weight="700">81.62%</text>
+              <text x="166" y="310" fill="#68746e" font-family="Segoe UI,sans-serif" font-size="12">0</text><text x="507" y="310" fill="#68746e" font-family="Segoe UI,sans-serif" font-size="12">100%</text>
+            </svg>
+          </div><div class="work-meta"><div><h2>When risk becomes an action <span class="card-arrow" aria-hidden="true">↗</span></h2><p>Decision policy · findings · business trade-offs</p></div><span class="work-type">Strategy</span></div>
+        </a>
+        <a class="work-card" href="dashboard.html" data-tags="analytics tools" aria-label="Open the interactive scenario dashboard">
+          <div class="work-art"><span class="art-kicker">02 / SCENARIO EXPLORER</span>
+            <svg viewBox="0 0 720 390" role="img" aria-label="Scenario dashboard mock-up with review capacity and outcomes">
+              <rect x="50" y="54" width="620" height="282" fill="#fbfaf7" stroke="#d5d3cc"/>
+              <text x="82" y="96" fill="#26332e" font-family="Georgia,serif" font-size="24">Scenario explorer</text>
+              <rect x="82" y="119" width="175" height="38" rx="19" fill="#eeede9"/><text x="101" y="143" fill="#44514b" font-family="Segoe UI,sans-serif" font-size="13">Daily capacity: 25</text>
+              <rect x="270" y="119" width="173" height="38" rx="19" fill="#eeede9"/><text x="289" y="143" fill="#44514b" font-family="Segoe UI,sans-serif" font-size="13">Economics: base case</text>
+              <line x1="104" y1="292" x2="620" y2="292" stroke="#c9c4b8"/><line x1="104" y1="182" x2="104" y2="292" stroke="#c9c4b8"/>
+              <rect x="154" y="219" width="70" height="73" fill="#738875"/><rect x="276" y="197" width="70" height="95" fill="#254f45"/><rect x="398" y="207" width="70" height="85" fill="#c4784d"/><rect x="520" y="263" width="70" height="29" fill="#aaa79e"/>
+              <text x="160" y="316" fill="#53615b" font-family="Segoe UI,sans-serif" font-size="12">Rules</text><text x="277" y="316" fill="#53615b" font-family="Segoe UI,sans-serif" font-size="12">Logistic</text><text x="393" y="316" fill="#53615b" font-family="Segoe UI,sans-serif" font-size="12">Combined</text><text x="524" y="316" fill="#53615b" font-family="Segoe UI,sans-serif" font-size="12">Incumbent</text>
+            </svg>
+          </div><div class="work-meta"><div><h2>Stress-test the operating choice <span class="card-arrow" aria-hidden="true">↗</span></h2><p>Explore capacity and fictional cost assumptions</p></div><span class="work-type">Interactive</span></div>
+        </a>
+        <a class="work-card" href="#method" data-tags="analytics tools" aria-label="Read about the analytical pipeline">
+          <div class="work-art"><span class="art-kicker">03 / REPRODUCIBLE PIPELINE</span>
+            <svg viewBox="0 0 720 390" role="img" aria-label="Six-stage analysis pipeline from simulation through evaluation">
+              <rect x="34" y="76" width="652" height="238" fill="#f7f6f3"/>
+              <g font-family="Segoe UI,sans-serif" text-anchor="middle"><g fill="#254f45" font-size="13" font-weight="700"><text x="105" y="139">GENERATE</text><text x="207" y="139">INJECT</text><text x="309" y="139">FEATURE</text><text x="411" y="139">SCORE</text><text x="513" y="139">DECIDE</text><text x="615" y="139">EVALUATE</text></g><g fill="#68746e" font-size="11"><text x="105" y="166">synthetic events</text><text x="207" y="166">truth separate</text><text x="309" y="166">prior signals</text><text x="411" y="166">rules + model</text><text x="513" y="166">four actions</text><text x="615" y="166">cost + impact</text></g></g>
+              <g stroke="#c4784d" stroke-width="2" fill="none"><path d="M140 220h65m0 0 10-7m-10 7 10 7M242 220h55m0 0 10-7m-10 7 10 7M344 220h55m0 0 10-7m-10 7 10 7M446 220h55m0 0 10-7m-10 7 10 7M548 220h54m0 0 10-7m-10 7 10 7"/></g>
+              <path d="M206 258v25h410v-25" fill="none" stroke="#a9b59f" stroke-width="2" stroke-dasharray="6 6"/><text x="411" y="305" fill="#53615b" font-family="Segoe UI,sans-serif" font-size="12" text-anchor="middle">Hidden labels join only after feature construction</text>
+            </svg>
+          </div><div class="work-meta"><div><h2>Build the evidence trail <span class="card-arrow" aria-hidden="true">↗</span></h2><p>Simulation · point-in-time features · temporal evaluation</p></div><span class="work-type">Methods</span></div>
+        </a>
+        <a class="work-card" href="#limits" data-tags="strategy analytics" aria-label="Read limitations and model governance">
+          <div class="work-art"><span class="art-kicker">04 / RESPONSIBLE INTERPRETATION</span>
+            <svg viewBox="0 0 720 390" role="img" aria-label="Trade-off map connecting fraud loss, customer friction, review capacity, and margin">
+              <rect x="40" y="46" width="640" height="298" fill="#f7f6f3"/>
+              <circle cx="360" cy="195" r="83" fill="#254f45"/><text x="360" y="190" fill="#fffdf8" font-family="Georgia,serif" font-size="21" text-anchor="middle">TrustHold</text><text x="360" y="216" fill="#dce8df" font-family="Segoe UI,sans-serif" font-size="12" text-anchor="middle">decision policy</text>
+              <g stroke="#b7b8ad" stroke-width="2"><path d="M300 138 201 88M420 138 519 88M300 252 201 302M420 252 519 302"/></g>
+              <g font-family="Segoe UI,sans-serif" text-anchor="middle"><g fill="#a94d32" font-size="14" font-weight="700"><text x="167" y="78">FRAUD LOSS</text><text x="553" y="78">CUSTOMER FRICTION</text><text x="165" y="326">REVIEW CAPACITY</text><text x="556" y="326">PAYMENT MARGIN</text></g><g fill="#68746e" font-size="11"><text x="167" y="99">capture and recovery</text><text x="553" y="99">challenge and decline</text><text x="165" y="346">finite human queue</text><text x="556" y="346">legitimate approvals</text></g></g>
+            </svg>
+          </div><div class="work-meta"><div><h2>Make assumptions visible <span class="card-arrow" aria-hidden="true">↗</span></h2><p>Limits · governance · responsible business meaning</p></div><span class="work-type">Governance</span></div>
+        </a>
+      </div>
+      <div class="work-note"><span><strong>One project, four views.</strong> Each tile opens a deeper part of the same case study.</span><span>All people, data, economics, and outcomes are synthetic.</span></div>
+    </section>
     <div class="proof-strip" aria-label="Project scale and holdout summary">
       <div class="shell proof-grid">
         <div class="proof"><strong>22,903</strong><span>simulated payment events</span></div>
@@ -310,6 +407,26 @@
     </section>
   </main>
   <footer><div class="shell foot"><span>Quest of Trust · TrustHold synthetic fraud strategy project</span><span>All people, events, labels, costs, and findings shown here are fictional.</span></div></footer>
+  <script>
+    (() => {
+      const controls = Array.from(document.querySelectorAll(".filter-button"));
+      const cards = Array.from(document.querySelectorAll(".work-card"));
+      const status = document.querySelector(".work-status");
+      controls.forEach((control) => {
+        control.addEventListener("click", () => {
+          const selected = control.dataset.filter;
+          controls.forEach((item) => item.setAttribute("aria-pressed", String(item === control)));
+          let visible = 0;
+          cards.forEach((card) => {
+            const matches = selected === "all" || card.dataset.tags.split(" ").includes(selected);
+            card.hidden = !matches;
+            if (matches) visible += 1;
+          });
+          status.textContent = `${visible} project ${visible === 1 ? "view" : "views"}`;
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
 
