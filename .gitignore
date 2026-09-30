@@ -1,0 +1,15 @@
+# Python bytecode and environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Keep generated synthetic CSV/Parquet files under version control while small.
+# Ignore large generated datasets if the simulation is later scaled up.
+data/synthetic/*.parquet
