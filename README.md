@@ -67,5 +67,6 @@ The `.sql` files explore daily volume, terminal concentration, rapid low-value e
 - An anomaly is a signal to investigate, not proof that an event is fraudulent.
 - No headline project results are prewritten: the case study is generated from each actual run and labels every result synthetic.
 
-See [`docs/learning_build_guide.md`](docs/learning_build_guide.md) for the teaching sequence, [`docs/simulation_assumptions.md`](docs/simulation_assumptions.md) for parameter values, and [`docs/model_governance.md`](docs/model_governance.md) for leakage and evaluation controls. Power BI remains an optional portfolio presentation layer; the delivered HTML dashboard works locally without it.
+See [`docs/learning_build_guide.md`](docs/learning_build_guide.md) for the teaching sequence and [`docs/implementation_walkthrough.md`](docs/implementation_walkthrough.md) for module-by-module syntax and reasoning. Parameter values are in [`docs/simulation_assumptions.md`](docs/simulation_assumptions.md), with leakage and evaluation controls in [`docs/model_governance.md`](docs/model_governance.md). Power BI remains an optional portfolio presentation layer; the delivered HTML dashboard works locally without it.
 The status of each original roadmap stage and the remaining prototype limits are recorded in [`docs/roadmap.md`](docs/roadmap.md).
+
