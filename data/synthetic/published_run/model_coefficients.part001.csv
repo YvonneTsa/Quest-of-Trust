@@ -1,0 +1,14 @@
+Feature,Coefficient
+Amount_To_Typical_Spend,0.2913761006023268
+Tx_Count_Prior_24h,0.04204121721645401
+Terminal_Prior_Tx_Count,0.13668928705259115
+Terminal_Prior_Distinct_Customers,0.31028334315754486
+Customer_Terminal_Prior_Count,-0.29104891818302486
+Is_Night,0.1687445696496841
+Is_Weekend,-0.278128780822663
+Auth_Soft_Decline,0.29753868413017265
+Is_Ecommerce,-0.025423128315346134
+Is_Magstripe,0.31363091062253207
+Is_Mobile_Wallet,0.2806424035454562
+Region_Mismatch,0.6122195759033114
+
