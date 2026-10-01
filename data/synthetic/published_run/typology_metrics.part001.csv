@@ -1,18 +1,17 @@
 Strategy,Typology,Fraud_Transactions,Fraud_Value,Fraud_Value_Captured_Pct
-Incumbent,account_takeover,3,1555.39,0.0
-Incumbent,card_testing,12,31.73,0.0
-Incumbent,credential_compromise,4,2059.96,0.0
-Incumbent,terminal_compromise,16,3547.09,0.0
-Rules,account_takeover,3,1555.39,80.0
-Rules,card_testing,12,31.73,79.32
-Rules,credential_compromise,4,2059.96,95.3
-Rules,terminal_compromise,16,3547.09,68.13
-Logistic,account_takeover,3,1555.39,46.28
-Logistic,card_testing,12,31.73,67.74
-Logistic,credential_compromise,4,2059.96,92.15
-Logistic,terminal_compromise,16,3547.09,91.12
-Rules + logistic,account_takeover,3,1555.39,80.0
-Rules + logistic,card_testing,12,31.73,79.32
-Rules + logistic,credential_compromise,4,2059.96,95.3
-Rules + logistic,terminal_compromise,16,3547.09,73.31
-
+Incumbent,account_takeover,30,12544.75,0.0
+Incumbent,card_testing,120,325.19,0.0
+Incumbent,credential_compromise,40,19417.36,0.0
+Incumbent,terminal_compromise,160,34945.88,0.0
+Rules,account_takeover,30,12544.75,77.99
+Rules,card_testing,120,325.19,65.71
+Rules,credential_compromise,40,19417.36,84.98
+Rules,terminal_compromise,160,34945.88,64.79
+Logistic,account_takeover,30,12544.75,92.37
+Logistic,card_testing,120,325.19,65.66
+Logistic,credential_compromise,40,19417.36,96.2
+Logistic,terminal_compromise,160,34945.88,88.65
+Rules + logistic,account_takeover,30,12544.75,83.73
+Rules + logistic,card_testing,120,325.19,70.15
+Rules + logistic,credential_compromise,40,19417.36,87.85
+Rules + logistic,terminal_compromise,160,34945.88,78.76

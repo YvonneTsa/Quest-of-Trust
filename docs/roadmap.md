@@ -21,8 +21,8 @@ This table marks what the current repository actually implements. “Prototype c
 | 14. Monitoring and governance | Daily observable metrics, lagged 14-day z-scores/3-sigma alerts, group diagnostics | Prototype complete; no production drift or fairness certification |
 | 15. Executive simulator | Interactive browser dashboard for capacity/economic assumptions | Complete as a standalone HTML dashboard; Power BI packaging remains optional |
 | 16. Case study | Context, method, holdout outcomes, sensitivity, limitations | Generated from the actual run |
-| 17. Portfolio polish | GitHub README, reproducible run instructions, code/docs, dashboard and sample outputs | Complete for initial public repository publication |
+| 17. Project presentation | GitHub README, reproducible run instructions, code/docs, dashboard and sample outputs | Complete for initial public repository publication |
 
 ## Known limits of this version
 
-The simulated business economics and customer population are not calibrated to a real processor. Only a logistic model is included because the goal is a clear baseline; compare tree-based models later if they improve the decision outcome. The baseline has one account per customer and no device/IP/login events. The dashboard uses precomputed test outcomes rather than evaluating arbitrary live thresholds in the browser. The simulator is a portfolio artifact, not a production fraud control.
+The simulated business economics and customer population are not calibrated to a real processor. Only a logistic model is included because the goal is a clear baseline; compare tree-based models later if they improve the decision outcome. The baseline has one account per customer and no device/IP/login events. The dashboard uses precomputed test outcomes rather than evaluating arbitrary live thresholds in the browser. The simulator is an educational project prototype, not a production fraud control.

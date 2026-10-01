@@ -9,9 +9,14 @@ DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "data" / "synthetic" / "run"
 SEED = 20260915
 START_DATE = "2026-01-01"
 SIMULATION_DAYS = 60
-N_CUSTOMERS = 200
-N_MERCHANTS = 80
-N_TERMINALS = 120
+# The published-scale book is 10x the original learning run. The fraud campaign
+# count and daily review capacity are scaled with it to preserve event prevalence
+# and the review-to-volume assumption used in the original scenario.
+N_CUSTOMERS = 2_000
+N_MERCHANTS = 800
+N_TERMINALS = 1_200
+FRAUD_CAMPAIGNS_PER_TYPOLOGY = 10
+REVIEW_CAPACITY_PER_DAY = 250
 
 
 @dataclass(frozen=True)
@@ -26,7 +31,7 @@ class Economics:
     customer_lifetime_value: float = 500.0
     review_cost: float = 4.50
     review_fraud_recovery_probability: float = 0.90
-    review_capacity_per_day: int = 25
+    review_capacity_per_day: int = REVIEW_CAPACITY_PER_DAY
 
 
 ECONOMICS = Economics()

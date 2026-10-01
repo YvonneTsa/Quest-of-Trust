@@ -2,14 +2,14 @@
 
 ### A payments fraud strategy case study about loss, customer friction, and review capacity
 
-**Quest of Trust** is a reproducible synthetic analytics portfolio project. Its **TrustHold** decision system simulates payment events, builds point-in-time risk signals, compares transparent rules with a logistic baseline, and evaluates four operating actions under fictional economics and limited review capacity.
+**Quest of Trust** is a reproducible synthetic fraud analytics project. Its **TrustHold** decision system simulates payment events, builds point-in-time risk signals, compares transparent rules with a logistic baseline, and evaluates four operating actions under fictional economics and limited review capacity.
 
 > **Evidence boundary:** every customer, transaction, fraud label, dollar assumption, and reported outcome is synthetic. This project is an educational portfolio prototype, not a real-world performance claim or production control.
 
 | Explore | What you will find |
 |---|---|
-| [Open the portfolio case study](https://yvonntsa.github.io/Quest-of-Trust/) | Findings, business meaning, methods, limitations, and the dashboard. |
-| [Run the scenario dashboard](https://yvonntsa.github.io/Quest-of-Trust/dashboard.html) | Compare precomputed holdout outcomes across capacity and cost assumptions. |
+| [Open the project site](https://yvonnetsa.github.io/Quest-of-Trust/) | Findings, business meaning, methods, limitations, and the dashboard. |
+| [Run the scenario dashboard](https://yvonnetsa.github.io/Quest-of-Trust/dashboard.html) | Compare precomputed holdout outcomes across capacity and cost assumptions. |
 | [Read the detailed case study](docs/portfolio_case_study.md) | Method, selected results, assumptions, caveats, and reproducibility. |
 | [Use the three-minute walkthrough](docs/demo_talk_track.md) | Presentation script and answers to likely reviewer questions. |
 
@@ -24,18 +24,18 @@ TrustHold maps a risk score into four possible actions:
 - **REVIEW** — use investigator capacity and an assumed recovery rate.
 - **DECLINE** — stop the payment; risk losing a legitimate customer.
 
-## Selected result from the published synthetic run
+## Results across synthetic seeds
 
-The portfolio run contains **22,903** events over 60 simulated days. The later holdout contains **6,923** events and **35 planted fraud events**. At the base assumptions and 25 reviews per day:
+The default book contains **246,314** synthetic events over 60 days. Each of the 10 reproducible seeds has **350 planted fraud events** in its later-period holdout (about 72,000–75,000 total holdout events). Logistic had lower modeled net cost than Rules in **10 of 10** runs. The observed ranges below describe variation inside this simulator; they are not confidence intervals for real payment populations.
 
-| Strategy | Fraud value captured | False declines | Legitimate challenges | Legitimate reviews | Modeled net cost |
+| Strategy | Fraud value captured, mean (range) | False declines, median (range) | Legitimate challenges, median (range) | Legitimate reviews, median (range) | Modeled net cost, median (range) |
 |---|---:|---:|---:|---:|---:|
-| Rules | 78.52% | 3 | 390 | 9 | −$4,859.65 |
-| Logistic | 81.62% | 3 | 143 | 23 | −$5,847.42 |
+| Rules | 73.15% (68.29–76.44%) | 32.5 (24–45) | 5,210 (4,552–5,764) | 138 (109–155) | −$53,583 (−$56,249 to −$48,112) |
+| Logistic | 90.43% (85.86–94.26%) | 19.5 (15–33) | 1,787.5 (1,568–1,838) | 328 (248–418) | −$75,244 (−$79,151 to −$68,812) |
 
-In this run, Logistic captures an estimated 3.10 percentage points more fraud value than Rules and sends 247 fewer legitimate events to challenge. Its modeled net cost is lower under the project’s assumptions. **These figures are simulated, conditional results—not observed savings or a forecast.**
+Across paired runs, Logistic captured a median **16.90 percentage points** more fraud value (range 14.49–21.36 points) and challenged a median **3,462 fewer legitimate events** (range 2,852–4,059 fewer). It also sent a median **214 more legitimate events to investigator review** (range 93–273 more). Its median modeled-cost difference versus Rules was **−$22,635** (range −$25,345 to −$19,903). A negative modeled cost includes assumed margin from approved legitimate payments; it is not observed profit or savings.
 
-The generated Markdown report currently repeats the Rules PR-AUC in the scoreless Incumbent row. This README and portfolio page omit that invalid comparison; an incumbent with no continuous risk score has no applicable PR-AUC. See the case study for the reporting note.
+The paired result is stable under these 10 generated seeds, while the dollar amounts still vary meaningfully between runs. This shows consistency within the documented simulator, not real-world validity. The per-seed rows, summary, and paired differences are committed as CSVs in `data/synthetic/run/`. Full event-level CSVs and SQLite are reproducible local outputs generated by the run command rather than checked in separately.
 
 ## How it works
 
@@ -69,12 +69,12 @@ python -m src.run_project
 python sql/run_investigation.py
 ```
 
-The default run creates 200 customers, 80 merchants, 120 terminals, and 60 days of activity. It writes inspectable CSV tables and a local SQLite database under `data/synthetic/run/`. SQLite is used as a simple, serverless analytical store for this local project.
+The default run creates 2,000 customers, 800 merchants, 1,200 terminals, 60 days of activity, and 10 sampled campaigns for each of four fraud typologies. It evaluates the base seed plus nine following seeds and writes the paired seed outcomes, summary, CSV tables, and local SQLite database under `data/synthetic/run/`. The review limit is 250 cases per day, scaled with the larger payment volume. SQLite is a local serverless analytical store.
 
-To restore and verify the versioned synthetic CSV snapshot:
+To rebuild the versioned synthetic CSV snapshot after the run:
 
 ```powershell
-python -m scripts.assemble_dataset
+python -m scripts.package_dataset
 ```
 
 ## Repository guide
@@ -84,17 +84,18 @@ python -m scripts.assemble_dataset
 - `src/rules/` and `src/models/` — readable rules and a NumPy logistic baseline.
 - `src/decisions/` and `src/evaluation/` — actions, review capacity, economics, and metrics.
 - `sql/` — six reproducible, label-free investigation queries.
-- `data/synthetic/published_run/` — checksum-listed synthetic snapshot; truth labels are separate.
+- `data/synthetic/published_run/` — checksum-listed synthetic event, feature, and decision tables with planted labels stored separately.
+- `data/synthetic/run/seed_stability_*.csv` — per-seed metrics, summary ranges, and paired strategy comparisons supporting the findings above.
 - `reports/` — generated case study and standalone interactive HTML dashboard.
 - `docs/` — [roadmap](docs/roadmap.md), [data dictionary](docs/data_dictionary.md), [assumptions](docs/simulation_assumptions.md), [fraud scenarios](docs/fraud_scenarios.md), [governance](docs/model_governance.md), and [implementation walkthrough](docs/implementation_walkthrough.md).
 
 ## Limitations
 
 - The data, prevalence, fraud scenarios, and unit economics are fictional.
-- One holdout contains only 35 planted fraud events; results can change across seeds and scenarios.
+- Ten seeds show variation under the same simulator assumptions; they do not measure uncertainty in a real customer or transaction population.
+- Each seed has 350 planted fraud events in the holdout, but the attack patterns remain hand-designed and simplified.
 - The simulator has one account per customer and no device, IP, login, or recovery-event network.
 - Group diagnostics are descriptive, not fairness certification.
 - Monitoring is a prototype; no real-time model service or payment control is deployed.
 
 For a full interpretation of results and assumptions, start with the [portfolio case study](docs/portfolio_case_study.md). For a short presentation, use the [three-minute walkthrough](docs/demo_talk_track.md).
-

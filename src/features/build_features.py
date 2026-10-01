@@ -1,7 +1,5 @@
 """Build behavioral features using only information known by each event time."""
 
-from collections import defaultdict, deque
-
 import numpy as np
 import pandas as pd
 
@@ -37,31 +35,35 @@ def build_features(transactions: pd.DataFrame, customers: pd.DataFrame) -> pd.Da
     frame["Is_Mobile_Wallet"] = (frame["Channel"] == "mobile_wallet").astype(int)
     frame["Region_Mismatch"] = (frame["Customer_Region"] != frame["Merchant_Region"]).astype(int)
 
-    # Histories are updated only after the current row's features are calculated.
-    customer_times = defaultdict(deque)
-    terminal_counts = defaultdict(int)
-    terminal_customers = defaultdict(set)
-    pair_counts = defaultdict(int)
-    prior_24h, terminal_prior, terminal_customer_prior, pair_prior = [], [], [], []
-    for row in frame.itertuples(index=False):
-        now = pd.Timestamp(row.Timestamp)
-        customer_history = customer_times[row.Customer_ID]
-        cutoff = now - pd.Timedelta(hours=24)
-        while customer_history and customer_history[0] < cutoff:
-            customer_history.popleft()
-        prior_24h.append(len(customer_history))
-        terminal_prior.append(terminal_counts[row.Terminal_ID])
-        terminal_customer_prior.append(len(terminal_customers[row.Terminal_ID]))
-        pair_key = (row.Customer_ID, row.Terminal_ID)
-        pair_prior.append(pair_counts[pair_key])
-        customer_history.append(now)
-        terminal_counts[row.Terminal_ID] += 1
-        terminal_customers[row.Terminal_ID].add(row.Customer_ID)
-        pair_counts[pair_key] += 1
-
+    # Histories are computed from the sorted event order. For the rolling
+    # customer count, searchsorted finds the inclusive 24-hour lower bound and
+    # the event's position excludes the current event while including earlier
+    # events at the same timestamp, matching the original streaming logic.
+    timestamp_values = timestamps.to_numpy(dtype="datetime64[ns]")
+    prior_24h = np.zeros(len(frame), dtype=np.int64)
+    for positions in frame.groupby("Customer_ID", sort=False).indices.values():
+        customer_times = timestamp_values[positions]
+        left_edge = np.searchsorted(
+            customer_times,
+            customer_times - np.timedelta64(24, "h"),
+            side="left",
+        )
+        prior_24h[positions] = np.arange(len(positions)) - left_edge
     frame["Tx_Count_Prior_24h"] = prior_24h
-    frame["Terminal_Prior_Tx_Count"] = terminal_prior
-    frame["Terminal_Prior_Distinct_Customers"] = terminal_customer_prior
-    frame["Customer_Terminal_Prior_Count"] = pair_prior
+
+    frame["Terminal_Prior_Tx_Count"] = frame.groupby(
+        "Terminal_ID", sort=False
+    ).cumcount()
+    first_customer_at_terminal = ~frame.duplicated(
+        ["Terminal_ID", "Customer_ID"], keep="first"
+    )
+    first_customer_indicator = first_customer_at_terminal.astype("int64")
+    frame["Terminal_Prior_Distinct_Customers"] = (
+        first_customer_indicator.groupby(frame["Terminal_ID"], sort=False).cumsum()
+        - first_customer_indicator
+    )
+    frame["Customer_Terminal_Prior_Count"] = frame.groupby(
+        ["Customer_ID", "Terminal_ID"], sort=False
+    ).cumcount()
     frame[FEATURE_COLUMNS] = frame[FEATURE_COLUMNS].replace([np.inf, -np.inf], np.nan).fillna(0)
     return frame

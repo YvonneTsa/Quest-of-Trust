@@ -35,7 +35,16 @@ The synthetic generator emits separate tables so the business entities and event
 | `restricted/fraud_ground_truth.Transaction_ID` | Injected event key, stored separately for offline evaluation. | **No** |
 | `restricted/fraud_ground_truth.Typology` | Planted scenario label. | **No** |
 | `test_decisions.Decision` | Strategy output: APPROVE, CHALLENGE, REVIEW, DECLINE. | Produced by the simulation |
+| `strategy_metrics` | One row per strategy for the default seed's later-date holdout, including capture, false declines, customer friction, review overflow, modeled cost, and PR-AUC where a continuous score exists. | Offline evaluation output |
+| `seed_stability_by_run` | One row per seed and strategy (Rules or Logistic), with the same holdout outcome metrics. | Offline evaluation output |
+| `seed_stability_summary` | Per-strategy means, medians, and observed minimum/maximum across the configured seeds. | Offline summary; ranges are not confidence intervals |
+| `seed_stability_comparison` | Paired Logistic-minus-Rules differences on each shared seed, including lower-cost win count and observed ranges. | Offline paired comparison |
+| `scenario_surface` | Precomputed outcomes for strategy, daily review-capacity, and fictional economics combinations for the default seed. | Scenario analysis; no live decisions |
 
 ## Leakage boundary
 
 `fraud_ground_truth.csv` is not written into the public SQLite database. The risk features are built before the hidden transaction IDs are joined to create the temporary training/evaluation label. The saved model coefficients, monitoring table, strategy outputs, and public decision rows do not contain the label. KYC band is excluded from model inputs to prevent an onboarding descriptor from becoming a concealed fraud shortcut.
+
+## Seed stability outputs
+
+The default run compares ten seeds and plants 350 fraud events in the later-date holdout for every seed. The `seed_stability_*` tables show the output spread observed in this specific synthetic design. They do not encode sampling uncertainty for real customers, confidence intervals, or evidence that the fictional population represents an actual payments book. `seed_stability_by_run` is the row-level source for the summary and paired comparison.

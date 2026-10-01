@@ -10,9 +10,14 @@ venv/
 .DS_Store
 Thumbs.db
 
-# Keep generated synthetic CSV/Parquet files under version control while small.
-# Ignore large generated datasets if the simulation is later scaled up.
+# Keep compact analysis tables and the checksummed published snapshot versioned.
+# Rebuild the large assembled event-level tables from the run or published snapshot.
 data/synthetic/*.parquet
 data/synthetic/run/trusthold.sqlite
 data/synthetic/run/trusthold.sqlite-*
+data/synthetic/run/behavior_features.csv
+data/synthetic/run/transactions.csv
+data/synthetic/run/test_decisions.csv
 data/synthetic/run/restricted/
+# Optional local bundle duplicates the versioned CSV snapshot and is not committed.
+data/synthetic/TrustHold_full_run.zip

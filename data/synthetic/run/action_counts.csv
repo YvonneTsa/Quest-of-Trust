@@ -1,17 +1,17 @@
 Decision,Count,Strategy
-APPROVE,6826,Incumbent
-CHALLENGE,97,Incumbent
+APPROVE,73127,Incumbent
+CHALLENGE,1110,Incumbent
 REVIEW,0,Incumbent
 DECLINE,0,Incumbent
-APPROVE,6492,Rules
-CHALLENGE,403,Rules
-REVIEW,20,Rules
-DECLINE,8,Rules
-APPROVE,6724,Logistic
-CHALLENGE,154,Logistic
-REVIEW,33,Logistic
-DECLINE,12,Logistic
-APPROVE,6484,Rules + logistic
-CHALLENGE,408,Rules + logistic
-REVIEW,21,Rules + logistic
-DECLINE,10,Rules + logistic
+APPROVE,68500,Rules
+CHALLENGE,5447,Rules
+REVIEW,228,Rules
+DECLINE,62,Rules
+APPROVE,71647,Logistic
+CHALLENGE,1917,Logistic
+REVIEW,497,Logistic
+DECLINE,176,Logistic
+APPROVE,68289,Rules + logistic
+CHALLENGE,5571,Rules + logistic
+REVIEW,298,Rules + logistic
+DECLINE,79,Rules + logistic

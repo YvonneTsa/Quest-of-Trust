@@ -46,13 +46,13 @@ KYC_RISK_BANDS = ["Low", "Medium", "High"]
 KYC_RISK_PROBABILITIES = [0.70, 0.25, 0.05]
 
 
-def generate_customers(n_customers: int = N_CUSTOMERS) -> pd.DataFrame:
+def generate_customers(n_customers: int = N_CUSTOMERS, seed: int = SEED) -> pd.DataFrame:
     """Create customer attributes without generating transactions or fraud."""
     if n_customers < 1:
         raise ValueError("n_customers must be at least 1")
 
     # Use a fresh generator for each call, so repeated calls are identical.
-    customer_rng = np.random.default_rng(SEED)
+    customer_rng = np.random.default_rng(seed)
     customer_ids = [f"C{i:06d}" for i in range(1, n_customers + 1)]
     segments = customer_rng.choice(
         SEGMENTS, size=n_customers, p=SEGMENT_PROBABILITIES

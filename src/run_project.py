@@ -9,10 +9,13 @@ import pandas as pd
 from src.config import (
     DEFAULT_OUTPUT_DIR,
     ECONOMICS,
+    FRAUD_CAMPAIGNS_PER_TYPOLOGY,
     N_CUSTOMERS,
     N_MERCHANTS,
     N_TERMINALS,
     PROJECT_ROOT,
+    REVIEW_CAPACITY_PER_DAY,
+    SEED,
     SIMULATION_DAYS,
 )
 from src.decisions.policies import (
@@ -38,7 +41,15 @@ def parse_args():
     parser.add_argument("--days", type=int, default=SIMULATION_DAYS)
     parser.add_argument("--merchants", type=int, default=N_MERCHANTS)
     parser.add_argument("--terminals", type=int, default=N_TERMINALS)
-    parser.add_argument("--review-capacity", type=int, default=25)
+    parser.add_argument("--review-capacity", type=int, default=REVIEW_CAPACITY_PER_DAY)
+    parser.add_argument("--seed", type=int, default=SEED)
+    parser.add_argument("--fraud-campaigns", type=int, default=FRAUD_CAMPAIGNS_PER_TYPOLOGY)
+    parser.add_argument(
+        "--stability-runs",
+        type=int,
+        default=10,
+        help="Number of consecutive deterministic seeds used for the robustness summary.",
+    )
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     return parser.parse_args()
 
@@ -51,30 +62,43 @@ def choose_thresholds(train, score_column, capacity):
     return min(results, key=lambda item: item[0])[1]
 
 
-def main():
-    args = parse_args()
-    if min(args.customers, args.days, args.merchants, args.terminals, args.review_capacity) < 1:
-        raise SystemExit("All counts and capacities must be positive integers.")
-
-    print("[1/7] Generating customers, accounts, merchants, terminals, and legitimate activity...")
+def prepare_seed(seed, args, progress=False, keep_data=False):
+    """Run the shared train/holdout pipeline once for a reproducible seed."""
+    if progress:
+        print("[1/7] Generating customers, accounts, merchants, terminals, and legitimate activity...")
     customers, accounts, merchants, terminals = generate_entities(
-        args.customers, args.merchants, args.terminals
+        args.customers, args.merchants, args.terminals, seed=seed
     )
     legitimate = generate_legitimate_transactions(
-        customers, accounts, merchants, terminals, args.days
+        customers, accounts, merchants, terminals, args.days, seed=seed
     )
-    print(f"       Baseline events: {len(legitimate):,}")
+    if progress:
+        print(f"       Baseline events: {len(legitimate):,}")
 
-    print("[2/7] Injecting documented fraud scenarios; truth stays in a separate file...")
-    transactions, truth = inject_fraud(legitimate, customers, terminals, args.days)
-    print(f"       Injected fraud events: {len(truth):,} across {truth['Typology'].nunique()} typologies")
+    if progress:
+        print("[2/7] Injecting documented fraud scenarios; truth stays in a separate file...")
+    transactions, truth = inject_fraud(
+        legitimate,
+        customers,
+        terminals,
+        args.days,
+        seed=seed,
+        campaigns_per_typology=args.fraud_campaigns,
+    )
+    if progress:
+        print(
+            f"       Injected fraud events: {len(truth):,} across "
+            f"{truth['Typology'].nunique()} typologies"
+        )
 
-    print("[3/7] Building point-in-time behavior features...")
+    if progress:
+        print("[3/7] Building point-in-time behavior features...")
     features = build_features(transactions, customers)
     scored = score_rules(features)
     scored["Rule_Risk"] = scored["Rule_Score"] / 100.0
 
-    # Only the modeling/evaluation frame joins the hidden label, after feature construction.
+    # Labels join after point-in-time feature construction and remain outside
+    # the public feature and monitoring artifacts.
     truth_ids = set(truth["Transaction_ID"])
     labeled = scored.copy()
     labeled["Fraud_Label"] = labeled["Transaction_ID"].isin(truth_ids).astype(int)
@@ -88,7 +112,8 @@ def main():
             "The temporal split needs fraud examples in both periods. Increase --days or change the documented crisis timing."
         )
 
-    print("[4/7] Fitting the temporal logistic-regression baseline...")
+    if progress:
+        print("[4/7] Fitting the temporal logistic-regression baseline...")
     model = LogisticBaseline().fit(train)
     scored["Model_Score"] = model.predict_proba(scored)
     scored["Hybrid_Score"] = scored[["Rule_Risk", "Model_Score"]].max(axis=1)
@@ -97,26 +122,188 @@ def main():
     train = labeled.loc[pd.to_datetime(labeled["Timestamp"]) < split_date].copy()
     test = labeled.loc[pd.to_datetime(labeled["Timestamp"]) >= split_date].copy()
 
-    print("[5/7] Selecting thresholds on training history and evaluating the future holdout...")
-    score_specs = [("Rules", "Rule_Risk"), ("Logistic", "Model_Score"), ("Rules + logistic", "Hybrid_Score")]
+    if progress:
+        print("[5/7] Selecting thresholds on training history and evaluating the future holdout...")
+    score_specs = [
+        ("Rules", "Rule_Risk"),
+        ("Logistic", "Model_Score"),
+        ("Rules + logistic", "Hybrid_Score"),
+    ]
     selected_thresholds = {
         name: choose_thresholds(train, column, args.review_capacity)
         for name, column in score_specs
     }
-    strategies = []
     incumbent = test.copy()
     incumbent["Decision"] = incumbent["Incumbent_Decision"]
     incumbent["Capacity_Overflow"] = 0
-    strategies.append(("Incumbent", incumbent))
-
+    strategies = [("Incumbent", incumbent)]
     for name, score_column in score_specs:
         decided = apply_policy(test, score_column, selected_thresholds[name], args.review_capacity)
         strategies.append((name, decided))
 
-    result_rows = []
+    metrics = pd.DataFrame(
+        [evaluate_policy(decided, name) for name, decided in strategies]
+    )
+    score_column_by_strategy = dict(score_specs)
+    metrics["PR_AUC"] = [
+        (
+            average_precision(test["Fraud_Label"], test[score_column_by_strategy[name]])
+            if name in score_column_by_strategy
+            else None
+        )
+        for name in metrics["Strategy"]
+    ]
+    metrics["PR_AUC"] = metrics["PR_AUC"].round(4)
+    metrics.insert(0, "Seed", seed)
+
+    result = {"seed": seed, "metrics": metrics}
+    if keep_data:
+        result.update(
+            {
+                "customers": customers,
+                "accounts": accounts,
+                "merchants": merchants,
+                "terminals": terminals,
+                "transactions": transactions,
+                "truth": truth,
+                "features": features,
+                "scored": scored,
+                "labeled": labeled,
+                "train_count": len(train),
+                "test": test,
+                "model": model,
+                "split_date": split_date,
+                "score_specs": score_specs,
+                "selected_thresholds": selected_thresholds,
+                "strategies": strategies,
+            }
+        )
+    return result
+
+
+def seed_metric_rows(seed_run):
+    """Return the rule and logistic rows used in the multi-seed comparison."""
+    rows = seed_run["metrics"].loc[
+        seed_run["metrics"]["Strategy"].isin(["Rules", "Logistic"])
+    ].copy()
+    if "Seed" not in rows.columns:
+        rows.insert(0, "Seed", seed_run["seed"])
+    return rows
+
+
+def summarize_seed_stability(per_seed):
+    """Summarize observed run-to-run ranges; these are not confidence intervals."""
+    rows = []
+    summary_fields = {
+        "Transactions": ("Holdout_Events", ["mean", "min", "max"]),
+        "Fraud_Transactions": ("Holdout_Fraud_Events", ["mean", "min", "max"]),
+        "Fraud_Value_Captured_Pct": ("Fraud_Value_Captured_Pct", ["mean", "median", "min", "max"]),
+        "Net_Economic_Cost": ("Net_Economic_Cost", ["mean", "median", "min", "max"]),
+        "False_Declines": ("False_Declines", ["mean", "median", "min", "max"]),
+        "Legitimate_Challenge_Count": ("Legitimate_Challenges", ["mean", "median", "min", "max"]),
+        "Legitimate_Review_Count": ("Legitimate_Reviews", ["mean", "median", "min", "max"]),
+        "Review_Overflow_Count": ("Cases_Over_Daily_Review_Limit", ["mean", "median", "min", "max"]),
+    }
+    for strategy, group in per_seed.groupby("Strategy", sort=False):
+        row = {"Strategy": strategy, "Seeds": int(group["Seed"].nunique())}
+        for field, (prefix, methods) in summary_fields.items():
+            values = group[field]
+            for method in methods:
+                row[f"{prefix}_{method.title()}"] = round(float(getattr(values, method)()), 2)
+        rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def compare_seed_strategies(per_seed):
+    """Calculate paired Logistic-versus-Rules outcomes on the same seeds."""
+    wide = per_seed.pivot(index="Seed", columns="Strategy")
+    net_delta = wide["Net_Economic_Cost"]["Logistic"] - wide["Net_Economic_Cost"]["Rules"]
+    capture_delta = (
+        wide["Fraud_Value_Captured_Pct"]["Logistic"]
+        - wide["Fraud_Value_Captured_Pct"]["Rules"]
+    )
+    challenge_delta = (
+        wide["Legitimate_Challenge_Count"]["Logistic"]
+        - wide["Legitimate_Challenge_Count"]["Rules"]
+    )
+    review_delta = (
+        wide["Legitimate_Review_Count"]["Logistic"]
+        - wide["Legitimate_Review_Count"]["Rules"]
+    )
+    false_decline_delta = (
+        wide["False_Declines"]["Logistic"] - wide["False_Declines"]["Rules"]
+    )
+    return pd.DataFrame(
+        [
+            {
+                "Seeds": int(len(wide)),
+                "Logistic_Lower_Cost_Wins": int((net_delta < 0).sum()),
+                "Logistic_Lower_Cost_Win_Rate_Pct": round(100 * float((net_delta < 0).mean()), 1),
+                "Net_Cost_Delta_Logistic_Minus_Rules_Median": round(float(net_delta.median()), 2),
+                "Net_Cost_Delta_Logistic_Minus_Rules_Min": round(float(net_delta.min()), 2),
+                "Net_Cost_Delta_Logistic_Minus_Rules_Max": round(float(net_delta.max()), 2),
+                "Fraud_Capture_Delta_Pct_Points_Median": round(float(capture_delta.median()), 2),
+                "Fraud_Capture_Delta_Pct_Points_Min": round(float(capture_delta.min()), 2),
+                "Fraud_Capture_Delta_Pct_Points_Max": round(float(capture_delta.max()), 2),
+                "Legitimate_Challenge_Delta_Median": round(float(challenge_delta.median()), 2),
+                "Legitimate_Challenge_Delta_Min": int(challenge_delta.min()),
+                "Legitimate_Challenge_Delta_Max": int(challenge_delta.max()),
+                "Legitimate_Review_Delta_Median": round(float(review_delta.median()), 2),
+                "Legitimate_Review_Delta_Min": int(review_delta.min()),
+                "Legitimate_Review_Delta_Max": int(review_delta.max()),
+                "False_Decline_Delta_Median": round(float(false_decline_delta.median()), 2),
+                "False_Decline_Delta_Min": int(false_decline_delta.min()),
+                "False_Decline_Delta_Max": int(false_decline_delta.max()),
+            }
+        ]
+    )
+
+
+def main():
+    args = parse_args()
+    if min(
+        args.customers,
+        args.days,
+        args.merchants,
+        args.terminals,
+        args.review_capacity,
+        args.fraud_campaigns,
+    ) < 1 or args.stability_runs < 1:
+        raise SystemExit("Counts, capacities, campaigns, and stability runs must be positive integers.")
+
+    baseline = prepare_seed(args.seed, args, progress=True, keep_data=True)
+    customers = baseline["customers"]
+    accounts = baseline["accounts"]
+    merchants = baseline["merchants"]
+    terminals = baseline["terminals"]
+    transactions = baseline["transactions"]
+    truth = baseline["truth"]
+    features = baseline["features"]
+    scored = baseline["scored"]
+    train_count = baseline["train_count"]
+    test = baseline["test"]
+    model = baseline["model"]
+    split_date = baseline["split_date"]
+    score_specs = baseline["score_specs"]
+    selected_thresholds = baseline["selected_thresholds"]
+    strategies = baseline["strategies"]
+    incumbent = strategies[0][1]
+    metrics = baseline["metrics"]
+
+    print(f"[6/7] Calculating results across {args.stability_runs} synthetic seeds...")
+    stability_parts = [seed_metric_rows(baseline)]
+    for offset in range(1, args.stability_runs):
+        seed = args.seed + offset
+        print(f"       Seed {offset + 1}/{args.stability_runs}: {seed}")
+        seed_run = prepare_seed(seed, args)
+        stability_parts.append(seed_metric_rows(seed_run))
+        del seed_run
+    stability_by_seed = pd.concat(stability_parts, ignore_index=True)
+    stability_summary = summarize_seed_stability(stability_by_seed)
+    stability_comparison = compare_seed_strategies(stability_by_seed)
+
     output_decisions = []
     for name, decided in strategies:
-        result_rows.append(evaluate_policy(decided, name))
         safe = decided[["Transaction_ID", "Timestamp", "Customer_ID", "Terminal_ID", "Amount", "Decision", "Capacity_Overflow"]].copy()
         safe["Strategy"] = name
         output_decisions.append(safe)
@@ -169,14 +356,6 @@ def main():
                 }
             )
     typology_metrics = pd.DataFrame(typology_rows)
-    metrics = pd.DataFrame(result_rows)
-    metrics["PR_AUC"] = [
-        average_precision(test["Fraud_Label"], test["Rule_Risk"]),
-        average_precision(test["Fraud_Label"], test["Rule_Risk"]),
-        average_precision(test["Fraud_Label"], test["Model_Score"]),
-        average_precision(test["Fraud_Label"], test["Hybrid_Score"]),
-    ]
-    metrics["PR_AUC"] = metrics["PR_AUC"].round(4)
 
     capacity_rows = []
     economic_rows = []
@@ -189,7 +368,8 @@ def main():
         "Lower review recovery": replace(ECONOMICS, review_fraud_recovery_probability=0.70),
     }
     scenario_surface_rows = []
-    for capacity in [1, 5, 15, 25, 50]:
+    capacity_levels = sorted({max(1, int(args.review_capacity * factor)) for factor in [0.04, 0.20, 0.60, 1.0, 2.0]})
+    for capacity in capacity_levels:
         for name, column in score_specs:
             scenario = apply_policy(test, column, selected_thresholds[name], capacity)
             row = evaluate_policy(scenario, name)
@@ -200,7 +380,7 @@ def main():
             row = evaluate_policy(frame, name, assumptions)
             row["Economic_Scenario"] = scenario_name
             economic_rows.append(row)
-    for capacity in [1, 5, 15, 25, 50]:
+    for capacity in capacity_levels:
         for economic_name, assumptions in stress_economics.items():
             for name, score_column in score_specs:
                 scenario = apply_policy(test, score_column, selected_thresholds[name], capacity)
@@ -216,7 +396,7 @@ def main():
     economic_sensitivity = pd.DataFrame(economic_rows)
     scenario_surface = pd.DataFrame(scenario_surface_rows)
 
-    print("[6/7] Saving CSV, SQLite, monitoring, and reporting artifacts...")
+    print("[7/7] Saving CSV, SQLite, monitoring, and reporting artifacts...")
     decisions = pd.concat(output_decisions, ignore_index=True)
     monitoring = daily_monitoring(features, scored)
     observable_features = scored.drop(columns=["Fraud_Label"], errors="ignore")
@@ -229,6 +409,9 @@ def main():
         "behavior_features": observable_features,
         "test_decisions": decisions,
         "strategy_metrics": metrics,
+        "seed_stability_by_run": stability_by_seed,
+        "seed_stability_summary": stability_summary,
+        "seed_stability_comparison": stability_comparison,
         "capacity_sensitivity": capacity_sensitivity,
         "economic_sensitivity": economic_sensitivity,
         "scenario_surface": scenario_surface,
@@ -256,12 +439,31 @@ def main():
         economic_sensitivity,
         impact_by_group,
         typology_metrics,
+        stability_by_seed,
+        stability_summary,
+        stability_comparison,
     )
-    write_dashboard(report_dir / "dashboard.html", metrics, monitoring, scenario_surface)
-    print("[7/7] Complete.")
+    write_dashboard(
+        report_dir / "dashboard.html",
+        metrics,
+        monitoring,
+        scenario_surface,
+        stability_summary,
+        stability_comparison,
+    )
+    write_dashboard(
+        PROJECT_ROOT / "docs" / "dashboard.html",
+        metrics,
+        monitoring,
+        scenario_surface,
+        stability_summary,
+        stability_comparison,
+    )
+    print("[complete] Artifacts saved.")
     print(metrics[["Strategy", "Fraud_Value_Captured_Pct", "False_Declines", "Review_Overflow_Count", "PR_AUC", "Net_Economic_Cost"]].to_string(index=False))
     print(f"SQLite database: {database_path}")
-    print(f"Held-out start: {split_date.date()} | Train: {len(train):,} | Test: {len(test):,}")
+    print(f"Held-out start: {split_date.date()} | Train: {train_count:,} | Test: {len(test):,}")
+    print(f"Robustness: Logistic lower modeled cost in {int(stability_comparison.iloc[0]['Logistic_Lower_Cost_Wins'])}/{args.stability_runs} seeds.")
     print("Hidden labels were excluded from public transaction, feature, database, and decision tables.")
 
 

@@ -1,4 +1,4 @@
-# Quest of Trust — 3-minute portfolio walkthrough
+# Quest of Trust — 3-minute project walkthrough
 
 ## 0:00–0:30 — The business problem
 
@@ -6,15 +6,15 @@
 
 ## 0:30–1:00 — The data and safeguards
 
-“I generated a fictional 60-day payments world and planted four documented attack patterns. The answer key stays separate from event features. Behavioral history is computed in timestamp order before the current event is added, and the latest dates are held out to mimic future evaluation.”
+“I generated a fictional 60-day payments world with 2,000 customers and planted four documented attack patterns. Each seed has 350 planted fraud events in its later-date holdout. The answer key stays separate from event features. Behavioral history is computed in timestamp order before the current event is added.”
 
 ## 1:00–1:45 — The comparison
 
-“I compared transparent rules with a logistic baseline, then mapped their scores into four actions under a daily review cap. In the 6,923-event holdout, 35 events are planted fraud. Under the simulator’s base assumptions, logistic captures an estimated 81.62% of fraud value versus 78.52% for rules. It also produces 247 fewer legitimate challenges, with the same three false declines.”
+“I compared transparent rules with a logistic baseline, then mapped their scores into approve, challenge, review, or decline actions under a daily review cap. Across 10 synthetic seeds, logistic captured 90.43% of fraud value on average versus 73.15% for rules. It had lower modeled net cost in all 10 runs.”
 
 ## 1:45–2:20 — The business interpretation
 
-“The logistic strategy has the lowest modeled net cost in this run: −$5,847.42. That is a conditional simulation output, not observed savings. It depends on fictional challenge stop rates, review recovery, customer value, and cost assumptions. The point is the decision framework: model ranking, customer friction, operations, and economics need to be considered together.”
+“The median paired cost difference was −$22,635 per holdout, with a range from −$25,345 to −$19,903. Logistic challenged a median 3,462 fewer legitimate payments, while sending 214 more legitimate payments to investigator review. Those are synthetic scenario outputs, not observed savings. The result depends on fictional challenge stop rates, recovery, customer value, and unit costs.”
 
 ## 2:20–2:45 — Show the interactive artifact
 
@@ -22,7 +22,7 @@ Open the live dashboard. Change daily review capacity and economic assumptions. 
 
 ## 2:45–3:00 — Close with limits and next step
 
-“This is a reproducible portfolio prototype, not a production fraud control. The next validation step would be to correct a PR-AUC reporting defect, test across multiple temporal windows and simulation seeds, and only then assess representative governed data. I’ve documented the assumptions and kept the full code and data artifacts inspectable.”
+“This is a reproducible project prototype, not a production fraud control. Ten seeds show how this simulator behaves under repeated random draws; they do not prove a real-world ranking or quantify statistical uncertainty for real customers. The next step would be validating the assumptions and thresholds against representative governed payment data.”
 
 ## Likely reviewer questions
 
@@ -32,7 +32,6 @@ Open the live dashboard. Change daily review capacity and economic assumptions. 
 
 **Why is the modeled cost negative?** Approved legitimate payment margin is represented as a negative cost. The total is an assumption-driven net-cost calculation, not realized profit.
 
-**What is the biggest limitation?** The data, fraud scenarios, intervention probabilities, and unit economics are synthetic; the holdout also contains only 35 planted fraud events.
+**What is the biggest limitation?** The data, fraud scenarios, intervention probabilities, and unit economics are synthetic. More planted events and repeated seeds reduce simulation noise, but they do not make the scenarios representative of actual fraud.
 
 **Why is SQLite used?** It keeps the local analytical project self-contained. The current workload does not justify operating a database server.
-
