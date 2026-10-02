@@ -28,6 +28,8 @@ Within the earlier training window, campaign identities are assigned to fit, val
 
 The validation sample therefore contains fraud from complete campaign identities plus legitimate events. The fit and validation row indexes do not overlap. The model is trained only on the fit group. Candidate threshold sets are scored on validation rows using the modeled net-cost formula; the selected thresholds are then frozen before the later-date test is evaluated.
 
+Fraud from the campaign-holdout group is excluded from both fit and validation, including its early phase. In the published default seed, those 175 early-phase fraud events are not in any fit, validation, or later-date test count. This is why the three displayed row counts sum to 175 fewer than the 246,314 generated events; the rows are intentionally reserved for the campaign-identity evaluation design, not missing from the dataset.
+
 This is a campaign-stratified validation sample from the historical window, not a second later-date validation period. It prevents the same fraud campaign and the same transaction rows from being used both to fit and tune the policy. The later-date holdout measures time-forward performance under a model whose fit and validation fraud campaigns were kept separate.
 
 ## 4. Run a stricter unseen-campaign evaluation
@@ -99,3 +101,4 @@ Important outputs include:
 The analysis is intended to compare operating choices, not to maximize a classification score in isolation. A lower modeled cost can coexist with a larger investigation queue or additional false declines. Read cost, captured fraud value, challenges, reviews, false declines, and capacity together.
 
 The simulator's fraud patterns, intervention effectiveness, attrition rate, review recovery, fees, and payment margin are all design inputs. Before using the workflow for a real decision, the same split discipline and cost model would need to be recalibrated and evaluated with approved, representative, labeled payment data.
+
