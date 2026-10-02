@@ -97,13 +97,12 @@ def split_validation_rows(training_window, validation_campaign_ids, excluded_cam
 
 
 def campaign_numbers_for_split(truth):
-    """Create reproducible stratified campaign partitions for each typology."""
+    """Create reproducible validation and campaign-holdout groups per typology."""
     numbers = sorted(int(value) for value in truth["Campaign_Number"].dropna().unique())
-    temporal_validation_numbers = set(numbers[4::5])
     campaign_holdout_numbers = set(numbers[1::2])
     campaign_pool_numbers = [value for value in numbers if value not in campaign_holdout_numbers]
     campaign_validation_numbers = set(campaign_pool_numbers[1::2])
-    return temporal_validation_numbers, campaign_holdout_numbers, campaign_validation_numbers
+    return campaign_holdout_numbers, campaign_validation_numbers
 
 
 def campaign_ids_for_numbers(truth, numbers):
@@ -170,11 +169,7 @@ def prepare_seed(seed, args, progress=False, keep_data=False):
     # Fit, validation, and campaign-holdout groups are disjoint. The primary
     # test is the later-date period; its campaign-only subset provides a second
     # view of fraud identities absent from both fitting and threshold tuning.
-    (
-        _,
-        campaign_holdout_numbers,
-        campaign_validation_numbers,
-    ) = campaign_numbers_for_split(truth)
+    campaign_holdout_numbers, campaign_validation_numbers = campaign_numbers_for_split(truth)
     campaign_holdout_ids = campaign_ids_for_numbers(truth, campaign_holdout_numbers)
     campaign_validation_ids = campaign_ids_for_numbers(truth, campaign_validation_numbers)
     model_fit, validation = split_validation_rows(
@@ -870,3 +865,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
