@@ -14,7 +14,7 @@
 
 ## 1:45–2:20 — The business interpretation
 
-"The median paired cost difference was −$15,502 per test period, ranging from −$22,482 to −$11,208. Logistic challenged a median 4,464 fewer good payments and sent 108 fewer good payments to review. Those are synthetic scenario outputs, not observed savings. The comparison depends on fictional challenge effectiveness, review recovery, customer value, and unit costs."
+"The median paired cost difference was −$15,502 per test period, ranging from −$22,482 to −$11,208. Logistic challenged a median 4,463.5 fewer good payments and sent 108 fewer good payments to review. Those are synthetic scenario outputs, not observed savings. The comparison depends on fictional challenge effectiveness, review recovery, customer value, and unit costs."
 
 ## 2:20–2:45 — Show the interactive artifact
 
@@ -35,3 +35,4 @@ Open the live dashboard. Change daily review capacity and economic assumptions. 
 **What is the biggest limitation?** The data, fraud scenarios, intervention probabilities, and unit economics are synthetic. More simulated events and repeated seeds reduce run-to-run noise inside the simulator, but they do not make the scenarios representative of actual fraud.
 
 **Why is SQLite used?** It keeps the local analytical project self-contained. The current workload does not justify operating a database server.
+
