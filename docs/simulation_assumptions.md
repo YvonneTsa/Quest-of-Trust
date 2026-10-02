@@ -33,8 +33,9 @@ Spend and latent transaction rate use log-normal distributions because they are 
 
 Each full simulation creates about 246,000 events, including 700 simulated fraud events across 60 days. The later 30% of dates contains 350 fraud cases. Thresholds are selected on a campaign-stratified validation sample that is separate from model fitting; the later-date test stays untouched until final evaluation. A second, nested campaign-level check excludes half of campaign identities from both fitting and threshold selection and evaluates 175 later-phase fraud cases in the default seed. The primary later-date comparison uses 30 consecutive seeds. Attack count and daily review capacity are configured with the larger payment book.
 
-The seed comparisons report observed min-to-max variation, medians, and paired win rates for both the later-date and unseen-campaign holdouts. Those ranges describe random variation under this synthetic design; they are **not** confidence intervals for real payment customers, a significance test, or evidence of external validity. The same four designed typologies and shared economics still govern every seed.
+The 30-seed comparison reports observed min-to-max variation, medians, and paired win rates for the later-date holdout. The nested unseen-campaign result is reported for the default seed only; it has no multi-seed range or win rate. The later-date ranges describe random variation under this synthetic design; they are **not** confidence intervals for real payment customers, a significance test, or evidence of external validity. The same four designed typologies and shared economics still govern every seed.
 
 ## Sensitivity
 
 Every run exports review-capacity sensitivity and economic scenarios. The business break-even view varies challenge success, review recovery and cost, false-decline attrition, chargeback fee, legitimate-payment margin, and daily capacity. Cost assumptions are varied with decisions held fixed; capacity changes recalculate routing with fixed thresholds. Any crossover is conditional on the fictional assumptions and is not a forecast or confidence interval.
+
