@@ -224,6 +224,8 @@
     .proof-strip { border-radius: 24px; background: #f5f5f7; color: #232323; }
     .proof { border-color: #dedee3; }
     .proof span { color: #55565c; }
+    .proof-context { padding: 1rem 1.5rem 0; color: #55565c; font-size: .78rem; }
+    .proof-context strong { color: #232323; }
     .proof-grid { padding-inline: 1.5rem; }
     .button { border-radius: 14px; }
     .button:hover { background: #2058a9; }
@@ -265,7 +267,7 @@
     <section class="shell work-index" id="work" aria-labelledby="work-title">
       <div class="work-heading">
         <div><div class="eyebrow">Quest of Trust · a payments fraud business case</div><h1 id="work-title">Fraud decisions shape customer experience and cost.</h1></div>
-        <!-- GENERATED:HERO:START --><p id="hero-finding">In 30 simulated runs, the logistic policy had a lower modeled net-cost measure every time and sent 4,463.5 fewer legitimate payments per test period to extra verification at the median. It captured more fraud value on average, but results varied. All customers, transactions, and dollars are synthetic.</p><!-- GENERATED:HERO:END -->
+        <!-- GENERATED:HERO:START --><p id="hero-finding">The simulation points to a useful business trade-off: Logistic lowered the modeled net-cost measure and sent fewer legitimate payments to extra verification, while fraud-value capture improved on average but varied by run. All figures are synthetic, not measured business results.</p><!-- GENERATED:HERO:END -->
       </div>
       <fieldset class="work-filters" aria-label="Filter project views">
         <legend>Browse project views</legend>
@@ -281,7 +283,7 @@
             <svg viewBox="0 0 720 390" role="img" aria-label="Comparison of fraud value captured by two strategies">
               <!-- GENERATED:CAPTURE-CHART:START --><rect x="42" y="48" width="636" height="294" fill="#f7f6f3"/>
               <text x="76" y="104" fill="#26332e" font-family="Georgia,serif" font-size="25">Fraud value captured</text>
-              <text x="76" y="135" fill="#4e5953" font-family="Segoe UI,sans-serif" font-size="13">Mean across 30 seeds · 350 simulated fraud cases per test period</text>
+              <text x="76" y="135" fill="#4e5953" font-family="Segoe UI,sans-serif" font-size="13">Mean across 30 runs · 350 simulated fraud cases per test period</text>
               <text x="76" y="204" fill="#44514b" font-family="Segoe UI,sans-serif" font-size="15">Rules</text>
               <rect x="166" y="180" width="365" height="32" fill="#d8ddd6"/><rect x="166" y="180" width="269" height="32" fill="#738875"/>
               <text x="548" y="203" fill="#26332e" font-family="Segoe UI,sans-serif" font-size="18" font-weight="700">73.73%</text>
@@ -292,7 +294,7 @@
             </svg>
           </div><div class="work-meta"><div><h2>When risk changes a payment <span class="card-arrow" aria-hidden="true">↗</span></h2><p>Fraud captured · customer friction · modeled cost</p></div><span class="work-type">Business case</span></div>
         </a>
-        <a class="work-card" href="dashboard.html" data-tags="results tools" aria-label="Open the interactive scenario dashboard">
+        <a class="work-card" href="dashboard.html" data-tags="impact results tools" aria-label="Open the interactive scenario dashboard">
           <div class="work-art"><span class="art-kicker">02 / SCENARIO EXPLORER</span>
             <svg viewBox="0 0 720 390" role="img" aria-label="Scenario dashboard mock-up with review capacity and outcomes">
               <rect x="50" y="54" width="620" height="282" fill="#fbfaf7" stroke="#d5d3cc"/>
@@ -306,7 +308,7 @@
           </div><div class="work-meta"><div><h2>Explore the operating trade-off <span class="card-arrow" aria-hidden="true">↗</span></h2><p>See how review capacity and assumed costs change outcomes</p></div><span class="work-type">Scenario tool</span></div>
         </a>
         <a class="work-card" href="#method" data-tags="tools" aria-label="Read how the project was built and checked">
-          <div class="work-art"><span class="art-kicker">03 / REPRODUCIBLE PIPELINE</span>
+          <div class="work-art"><span class="art-kicker">03 / HOW THE TEST WORKS</span>
             <svg viewBox="0 0 720 390" role="img" aria-label="Six steps from a simulated payment scenario to business outcomes">
               <rect x="34" y="76" width="652" height="238" fill="#f7f6f3"/>
               <g font-family="Segoe UI,sans-serif" text-anchor="middle"><g fill="#254f45" font-size="12.5" font-weight="700"><text x="105" y="139">CREATE</text><text x="207" y="139">PLANT FRAUD</text><text x="309" y="139">BUILD SIGNALS</text><text x="411" y="139">COMPARE RULES</text><text x="513" y="139">ROUTE PAYMENT</text><text x="615" y="139">MEASURE COST</text></g><g fill="#58645e" font-size="11"><text x="105" y="166">simulated activity</text><text x="207" y="166">labels held back</text><text x="309" y="166">past behavior</text><text x="411" y="166">written rules + model</text><text x="513" y="166">approve · verify</text><text x="615" y="166">fraud · service</text></g></g>
@@ -316,7 +318,7 @@
           </div><div class="work-meta"><div><h2>How the evidence was built <span class="card-arrow" aria-hidden="true">↗</span></h2><p>Simulated activity · risk signals · decisions · measurement</p></div><span class="work-type">How it works</span></div>
         </a>
         <a class="work-card" href="#limits" data-tags="impact" aria-label="Read what the findings do and do not support">
-          <div class="work-art"><span class="art-kicker">04 / RESPONSIBLE INTERPRETATION</span>
+          <div class="work-art"><span class="art-kicker">04 / WHAT THIS DOES AND DOES NOT SHOW</span>
             <svg viewBox="0 0 720 390" role="img" aria-label="Trade-off map connecting fraud loss, customer friction, review capacity, and margin">
               <rect x="40" y="46" width="640" height="298" fill="#f7f6f3"/>
               <circle cx="360" cy="195" r="83" fill="#254f45"/><text x="360" y="190" fill="#fffdf8" font-family="Georgia,serif" font-size="21" text-anchor="middle">TrustHold</text><text x="360" y="216" fill="#dce8df" font-family="Segoe UI,sans-serif" font-size="12" text-anchor="middle">decision policy</text>
@@ -329,10 +331,11 @@
       <div class="work-note"><span><strong>One project, four views.</strong> Choose a category to narrow the tiles, then open a view for its detail.</span><span>All people, data, economics, and outcomes are synthetic.</span></div>
     </section>
     <div class="proof-strip" aria-label="Business outcomes from the synthetic comparison of Logistic and Rules">
+      <div class="shell proof-context"><strong>Logistic compared with Rules.</strong> Median differences per test period unless noted; all results are synthetic.</div>
       <div class="shell proof-grid"><!-- GENERATED:PROOF:START --><div class="proof"><strong>30 / 30</strong><span>runs had a lower modeled net-cost measure with Logistic</span></div>
-        <div class="proof"><strong>−4,463.5</strong><span>fewer legitimate payments per test period asked to verify (median)</span></div>
-        <div class="proof"><strong>−108</strong><span>fewer legitimate payments per test period sent to manual review (median)</span></div>
-        <div class="proof"><strong>+3.66</strong><span>percentage points of median fraud-value capture lift; range −1.86 to +14.31</span></div><!-- GENERATED:PROOF:END -->
+        <div class="proof"><strong>4,463.5</strong><span>fewer legitimate payments per test period asked to verify (median)</span></div>
+        <div class="proof"><strong>108</strong><span>fewer legitimate payments per test period sent to manual review (median)</span></div>
+        <div class="proof"><strong>3.66</strong><span>percentage points higher median fraud-value capture</span></div><!-- GENERATED:PROOF:END -->
       </div>
     </div>
     <section id="question">
@@ -368,11 +371,11 @@
         </div>
         <p class="result-note">“Legitimate” means the simulator labels the payment as non-fraud. The modeled net-cost measure includes fictional contribution from approved legitimate payments; a negative value is not measured profit or proven savings. Counts exclude simulated fraud payments.</p>
         <div class="finding-grid">
-          <article class="finding"><span class="number">FRAUD EXPOSURE</span><h3>More value captured on average; not in every run</h3><p>Logistic captured 77.51% of simulated fraud value versus 73.73% for Rules, a 3.78-point mean lift. The paired difference ranged from −1.86 to +14.31 points. A business should weigh the range, not just the average.</p></article>
-          <article class="finding"><span class="number">CUSTOMER &amp; TEAM IMPACT</span><h3>Fewer legitimate payments interrupted</h3><p>At the median, Logistic sent 4,463.5 fewer legitimate payments per test period to extra verification (range 3,988–5,342 fewer) and 108 fewer to manual review (range 65–138 fewer). That suggests less avoidable customer effort and a lighter queue in this simulation; it does not measure abandonment, complaints, or staff time saved.</p></article>
-          <article class="finding"><span class="number">MODELED ECONOMICS</span><h3>A consistent result under the stated assumptions</h3><p>Logistic had a lower modeled net-cost measure in 30 of 30 runs. The median paired difference was −$15,501.82 per test period, with an observed range from −$22,482.27 to −$11,207.82. These are simulated dollars, not realized savings.</p></article>
+          <article class="finding"><span class="number">FRAUD EXPOSURE</span><h3>More value captured on average; not in every run</h3><p>On average, Logistic captured a greater share of simulated fraud value than Rules, but in some runs the rules captured more. A business should consider how a policy holds up under less favorable conditions, not just its average result.</p></article>
+          <article class="finding"><span class="number">CUSTOMER &amp; TEAM IMPACT</span><h3>Fewer legitimate payments interrupted</h3><p>The simulation sent fewer legitimate payments to extra verification and manual review. That suggests less avoidable customer effort and a lighter queue; it does not measure abandonment, complaints, or staff time saved.</p></article>
+          <article class="finding"><span class="number">MODELED ECONOMICS</span><h3>A consistent result under the stated assumptions</h3><p>The model favored Logistic under the chosen assumptions. Its net-cost measure credits approved legitimate payments with fictional contribution, so the comparison is not an estimate of realized savings or profit.</p></article>
         </div>
-        <div class="assumption-band"><strong>How to read this evidence:</strong> The modeled net-cost result favored Logistic in 30/30 seeds, with a paired median difference of −$15,501.82 and an observed range of −$22,482.27 to −$11,207.82. Fraud-capture lift ranged from −1.86 to +14.31 percentage points. These ranges describe variation among simulator runs; they are not confidence intervals or proof of real-world performance. Data, labels, interventions, and dollars are synthetic.</div><!-- GENERATED:FINDINGS:END --></div>
+        <div class="assumption-band"><strong>How to read this evidence:</strong> Across the 30 runs, the paired Logistic-minus-Rules net-cost difference had a median of −$15,501.82 per test period and an observed range of −$22,482.27 to −$11,207.82. Fraud-capture lift ranged from −1.86 to +14.31 percentage points. These ranges describe variation among simulator runs; they are not confidence intervals or proof of real-world performance. Data, labels, interventions, and dollars are synthetic.</div><!-- GENERATED:FINDINGS:END --></div>
     </section>
     <section id="method">
       <div class="shell">
