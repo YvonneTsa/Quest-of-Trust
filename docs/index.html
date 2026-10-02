@@ -148,9 +148,6 @@
     .filter-button { display: inline-flex; align-items: center; gap: .55rem; padding: .55rem .9rem; border: 1px solid transparent; border-radius: 999px; background: transparent; color: #34403c; font: 600 .84rem var(--sans); cursor: pointer; }
     .filter-button:hover, .filter-button[aria-pressed="true"] { border-color: #e2e0dc; background: #eeede9; }
     .filter-dot { width: .72rem; height: .72rem; border-radius: 50%; background: var(--forest); }
-    .filter-button[data-filter="strategy"] .filter-dot { background: #254f45; }
-    .filter-button[data-filter="analytics"] .filter-dot { background: #c4784d; }
-    .filter-button[data-filter="tools"] .filter-dot { background: #738875; }
     .work-status { margin: .1rem 0 1rem; color: var(--muted); font-size: .78rem; }
     .work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 2.4vw, 2rem); }
     .work-card { min-width: 0; color: var(--ink); text-decoration: none; }
@@ -200,18 +197,14 @@
     .work-heading p { color: #55555c; }
     .eyebrow, .art-kicker { color: #555960; }
     .work-filters { gap: .45rem; }
-    .filter-button { border-radius: 22px; color: #232323; font-family: var(--sans); transition: background-color .18s ease-out, transform .18s ease-out; }
-    .filter-button:hover, .filter-button[aria-pressed="true"] { border-color: transparent; background: #f5f5f7; }
-    .filter-dot { position: relative; flex: 0 0 3.35rem; width: 3.35rem; height: 3.35rem; overflow: hidden; border-radius: 1rem; background: linear-gradient(145deg, #3b3b40, #17171a); box-shadow: inset 0 2px 3px #ffffff55, 0 7px 14px #16161a20; transition: transform .24s cubic-bezier(.22,1,.36,1); }
-    .filter-dot::before { content: ""; position: absolute; top: .4rem; left: .92rem; width: 1.5rem; height: 1.9rem; border-radius: .35rem .35rem .2rem .2rem; background: linear-gradient(#fff, #e9e9ed); box-shadow: inset 0 1px 2px #fff; }
-    .filter-dot::after { content: ""; position: absolute; left: .46rem; right: .46rem; bottom: .42rem; height: 1.05rem; border-radius: .35rem .35rem .58rem .58rem; background: linear-gradient(160deg, #66666b, #27272a); box-shadow: inset 0 2px 3px #ffffff55; }
-    .filter-button:hover .filter-dot { transform: translateY(-4px) rotate(-3deg); }
-    .filter-button[data-filter="strategy"] .filter-dot { background: linear-gradient(145deg, #80baff, #347fe0); }
-    .filter-button[data-filter="strategy"] .filter-dot::after { background: linear-gradient(160deg, #a7d0ff, #438bea); }
-    .filter-button[data-filter="analytics"] .filter-dot { background: linear-gradient(145deg, #ffc17c, #f47f27); }
-    .filter-button[data-filter="analytics"] .filter-dot::after { background: linear-gradient(160deg, #ffd5a3, #fb8c36); }
-    .filter-button[data-filter="tools"] .filter-dot { background: linear-gradient(145deg, #ff9fa4, #e95061); }
-    .filter-button[data-filter="tools"] .filter-dot::after { background: linear-gradient(160deg, #ffc2c4, #f06a77); }
+    .filter-button { min-height: 2.7rem; border: 1px solid transparent; border-radius: 999px; color: #232323; font-family: var(--sans); transition: background-color .18s ease-out, border-color .18s ease-out; }
+    .filter-button:hover, .filter-button[aria-pressed="true"] { border-color: #dedee3; background: #f5f5f7; }
+    .filter-dot { position: relative; flex: 0 0 .58rem; width: .58rem; height: .58rem; overflow: visible; border-radius: 50%; background: #5c786a; box-shadow: none; transition: transform .18s ease-out; }
+    .filter-dot::before, .filter-dot::after { content: none; }
+    .filter-button:hover .filter-dot { transform: scale(1.12); }
+    .filter-button[data-filter="impact"] .filter-dot { background: #2f67ba; }
+    .filter-button[data-filter="results"] .filter-dot { background: #ef8745; }
+    .filter-button[data-filter="tools"] .filter-dot { background: #5c786a; }
     .work-art { border-radius: 26px; background: #f5f5f7; transition: background-color .25s ease-out; }
     .work-card:nth-child(2) .work-art { background: #fff5ec; }
     .work-card:nth-child(3) .work-art { background: #eef8fa; }
@@ -243,9 +236,7 @@
     .work-status { color: #595a61; }
     @media (max-width: 760px) {
       .filter-button { padding: .45rem .6rem; gap: .4rem; }
-      .filter-dot { flex-basis: 2.7rem; width: 2.7rem; height: 2.7rem; border-radius: .85rem; }
-      .filter-dot::before { left: .75rem; width: 1.2rem; height: 1.5rem; }
-      .filter-dot::after { left: .35rem; right: .35rem; bottom: .34rem; height: .85rem; }
+      .filter-dot { flex-basis: .58rem; width: .58rem; height: .58rem; }
       .work-art { border-radius: 22px; }
       .primary-nav { bottom: .65rem; }
     }
@@ -273,19 +264,19 @@
   <main id="main">
     <section class="shell work-index" id="work" aria-labelledby="work-title">
       <div class="work-heading">
-        <div><div class="eyebrow">Quest of Trust · fraud decision analysis</div><h1 id="work-title">Lower modeled cost repeated. Fraud capture varied.</h1></div>
-        <!-- GENERATED:HERO:START --><p id="hero-finding">Logistic had lower modeled cost in 30/30 synthetic runs. Its average fraud-value capture was 77.51%, while the capture lift ranged from -1.86 to +14.31 percentage points.</p><!-- GENERATED:HERO:END -->
+        <div><div class="eyebrow">Quest of Trust · a payments fraud business case</div><h1 id="work-title">Fraud decisions shape customer experience and cost.</h1></div>
+        <!-- GENERATED:HERO:START --><p id="hero-finding">In 30 simulated runs, the logistic policy had a lower modeled net-cost measure every time and sent 4,463.5 fewer legitimate payments per test period to extra verification at the median. It captured more fraud value on average, but results varied. All customers, transactions, and dollars are synthetic.</p><!-- GENERATED:HERO:END -->
       </div>
       <fieldset class="work-filters" aria-label="Filter project views">
         <legend>Browse project views</legend>
         <button class="filter-button" type="button" data-filter="all" aria-pressed="true"><span class="filter-dot" aria-hidden="true"></span>All views</button>
-        <button class="filter-button" type="button" data-filter="strategy" aria-pressed="false"><span class="filter-dot" aria-hidden="true"></span>Strategy</button>
-        <button class="filter-button" type="button" data-filter="analytics" aria-pressed="false"><span class="filter-dot" aria-hidden="true"></span>Fraud analytics</button>
+        <button class="filter-button" type="button" data-filter="impact" aria-pressed="false"><span class="filter-dot" aria-hidden="true"></span>Business impact</button>
+        <button class="filter-button" type="button" data-filter="results" aria-pressed="false"><span class="filter-dot" aria-hidden="true"></span>Results</button>
         <button class="filter-button" type="button" data-filter="tools" aria-pressed="false"><span class="filter-dot" aria-hidden="true"></span>Tools & methods</button>
       </fieldset>
-      <p class="work-status" aria-live="polite">4 project views</p>
+      <p class="work-status" aria-live="polite">Showing all 4 project views.</p>
       <div class="work-grid">
-        <a class="work-card" href="#findings" data-tags="strategy analytics" aria-label="View the holdout findings">
+        <a class="work-card" href="#findings" data-tags="impact results" aria-label="View the fraud and business findings">
           <div class="work-art"><span class="art-kicker">01 / DECISION ANALYSIS</span>
             <svg viewBox="0 0 720 390" role="img" aria-label="Comparison of fraud value captured by two strategies">
               <!-- GENERATED:CAPTURE-CHART:START --><rect x="42" y="48" width="636" height="294" fill="#f7f6f3"/>
@@ -299,9 +290,9 @@
               <text x="548" y="264" fill="#26332e" font-family="Segoe UI,sans-serif" font-size="18" font-weight="700">77.51%</text>
               <text x="166" y="310" fill="#4e5953" font-family="Segoe UI,sans-serif" font-size="12">0</text><text x="507" y="310" fill="#4e5953" font-family="Segoe UI,sans-serif" font-size="12">100%</text><!-- GENERATED:CAPTURE-CHART:END -->
             </svg>
-          </div><div class="work-meta"><div><h2>When risk becomes an action <span class="card-arrow" aria-hidden="true">↗</span></h2><p>Decision policy · findings · business trade-offs</p></div><span class="work-type">Strategy</span></div>
+          </div><div class="work-meta"><div><h2>When risk changes a payment <span class="card-arrow" aria-hidden="true">↗</span></h2><p>Fraud captured · customer friction · modeled cost</p></div><span class="work-type">Business case</span></div>
         </a>
-        <a class="work-card" href="dashboard.html" data-tags="analytics tools" aria-label="Open the interactive scenario dashboard">
+        <a class="work-card" href="dashboard.html" data-tags="results tools" aria-label="Open the interactive scenario dashboard">
           <div class="work-art"><span class="art-kicker">02 / SCENARIO EXPLORER</span>
             <svg viewBox="0 0 720 390" role="img" aria-label="Scenario dashboard mock-up with review capacity and outcomes">
               <rect x="50" y="54" width="620" height="282" fill="#fbfaf7" stroke="#d5d3cc"/>
@@ -312,19 +303,19 @@
               <rect x="154" y="219" width="70" height="73" fill="#738875"/><rect x="276" y="197" width="70" height="95" fill="#254f45"/><rect x="398" y="207" width="70" height="85" fill="#c4784d"/><rect x="520" y="263" width="70" height="29" fill="#aaa79e"/>
               <text x="160" y="316" fill="#53615b" font-family="Segoe UI,sans-serif" font-size="12">Rules</text><text x="277" y="316" fill="#53615b" font-family="Segoe UI,sans-serif" font-size="12">Logistic</text><text x="393" y="316" fill="#53615b" font-family="Segoe UI,sans-serif" font-size="12">Combined</text><text x="524" y="316" fill="#53615b" font-family="Segoe UI,sans-serif" font-size="12">Incumbent</text>
             </svg>
-          </div><div class="work-meta"><div><h2>Stress-test the operating choice <span class="card-arrow" aria-hidden="true">↗</span></h2><p>Explore capacity and fictional cost assumptions</p></div><span class="work-type">Interactive</span></div>
+          </div><div class="work-meta"><div><h2>Explore the operating trade-off <span class="card-arrow" aria-hidden="true">↗</span></h2><p>See how review capacity and assumed costs change outcomes</p></div><span class="work-type">Scenario tool</span></div>
         </a>
-        <a class="work-card" href="#method" data-tags="analytics tools" aria-label="Read about the analytical pipeline">
+        <a class="work-card" href="#method" data-tags="tools" aria-label="Read how the project was built and checked">
           <div class="work-art"><span class="art-kicker">03 / REPRODUCIBLE PIPELINE</span>
-            <svg viewBox="0 0 720 390" role="img" aria-label="Six-stage analysis pipeline from simulation through evaluation">
+            <svg viewBox="0 0 720 390" role="img" aria-label="Six steps from a simulated payment scenario to business outcomes">
               <rect x="34" y="76" width="652" height="238" fill="#f7f6f3"/>
-              <g font-family="Segoe UI,sans-serif" text-anchor="middle"><g fill="#254f45" font-size="13" font-weight="700"><text x="105" y="139">GENERATE</text><text x="207" y="139">INJECT</text><text x="309" y="139">FEATURE</text><text x="411" y="139">SCORE</text><text x="513" y="139">DECIDE</text><text x="615" y="139">EVALUATE</text></g><g fill="#58645e" font-size="11"><text x="105" y="166">synthetic events</text><text x="207" y="166">truth separate</text><text x="309" y="166">prior signals</text><text x="411" y="166">rules + model</text><text x="513" y="166">four actions</text><text x="615" y="166">cost + impact</text></g></g>
+              <g font-family="Segoe UI,sans-serif" text-anchor="middle"><g fill="#254f45" font-size="12.5" font-weight="700"><text x="105" y="139">CREATE</text><text x="207" y="139">PLANT FRAUD</text><text x="309" y="139">BUILD SIGNALS</text><text x="411" y="139">COMPARE RULES</text><text x="513" y="139">ROUTE PAYMENT</text><text x="615" y="139">MEASURE COST</text></g><g fill="#58645e" font-size="11"><text x="105" y="166">simulated activity</text><text x="207" y="166">labels held back</text><text x="309" y="166">past behavior</text><text x="411" y="166">written rules + model</text><text x="513" y="166">approve · verify</text><text x="615" y="166">fraud · service</text></g></g>
               <g stroke="#c4784d" stroke-width="2" fill="none"><path d="M140 220h65m0 0 10-7m-10 7 10 7M242 220h55m0 0 10-7m-10 7 10 7M344 220h55m0 0 10-7m-10 7 10 7M446 220h55m0 0 10-7m-10 7 10 7M548 220h54m0 0 10-7m-10 7 10 7"/></g>
-              <path d="M206 258v25h410v-25" fill="none" stroke="#a9b59f" stroke-width="2" stroke-dasharray="6 6"/><text x="411" y="305" fill="#53615b" font-family="Segoe UI,sans-serif" font-size="12" text-anchor="middle">Hidden labels join only after feature construction</text>
+              <path d="M206 258v25h410v-25" fill="none" stroke="#a9b59f" stroke-width="2" stroke-dasharray="6 6"/><text x="411" y="305" fill="#53615b" font-family="Segoe UI,sans-serif" font-size="12" text-anchor="middle">Fraud labels are used only after decisions are made</text>
             </svg>
-          </div><div class="work-meta"><div><h2>Build the evidence trail <span class="card-arrow" aria-hidden="true">↗</span></h2><p>Simulation · point-in-time features · temporal evaluation</p></div><span class="work-type">Methods</span></div>
+          </div><div class="work-meta"><div><h2>How the evidence was built <span class="card-arrow" aria-hidden="true">↗</span></h2><p>Simulated activity · risk signals · decisions · measurement</p></div><span class="work-type">How it works</span></div>
         </a>
-        <a class="work-card" href="#limits" data-tags="strategy analytics" aria-label="Read limitations and model governance">
+        <a class="work-card" href="#limits" data-tags="impact" aria-label="Read what the findings do and do not support">
           <div class="work-art"><span class="art-kicker">04 / RESPONSIBLE INTERPRETATION</span>
             <svg viewBox="0 0 720 390" role="img" aria-label="Trade-off map connecting fraud loss, customer friction, review capacity, and margin">
               <rect x="40" y="46" width="640" height="298" fill="#f7f6f3"/>
@@ -332,115 +323,115 @@
               <g stroke="#b7b8ad" stroke-width="2"><path d="M300 138 201 88M420 138 519 88M300 252 201 302M420 252 519 302"/></g>
               <g font-family="Segoe UI,sans-serif" text-anchor="middle"><g fill="#a94d32" font-size="14" font-weight="700"><text x="167" y="78">FRAUD LOSS</text><text x="553" y="78">CUSTOMER FRICTION</text><text x="165" y="326">REVIEW CAPACITY</text><text x="556" y="326">PAYMENT MARGIN</text></g><g fill="#58645e" font-size="11"><text x="167" y="99">capture and recovery</text><text x="553" y="99">challenge and decline</text><text x="165" y="346">finite human queue</text><text x="556" y="346">legitimate approvals</text></g></g>
             </svg>
-          </div><div class="work-meta"><div><h2>Make assumptions visible <span class="card-arrow" aria-hidden="true">↗</span></h2><p>Limits · governance · responsible business meaning</p></div><span class="work-type">Governance</span></div>
+          </div><div class="work-meta"><div><h2>What the findings can support <span class="card-arrow" aria-hidden="true">↗</span></h2><p>Assumptions · caveats · responsible business meaning</p></div><span class="work-type">Limits &amp; safeguards</span></div>
         </a>
       </div>
-      <div class="work-note"><span><strong>One project, four views.</strong> Each tile opens a deeper part of the same case study.</span><span>All people, data, economics, and outcomes are synthetic.</span></div>
+      <div class="work-note"><span><strong>One project, four views.</strong> Choose a category to narrow the tiles, then open a view for its detail.</span><span>All people, data, economics, and outcomes are synthetic.</span></div>
     </section>
-    <div class="proof-strip" aria-label="Project scale and holdout summary">
-      <div class="shell proof-grid"><!-- GENERATED:PROOF:START --><div class="proof"><strong>246,314</strong><span>synthetic events in the default run</span></div>
-        <div class="proof"><strong>74,237</strong><span>events in the default seed test period</span></div>
-        <div class="proof"><strong>350</strong><span>simulated fraud cases per test period</span></div>
-        <div class="proof"><strong>30</strong><span>seeds compared · four attack patterns</span></div><!-- GENERATED:PROOF:END -->
+    <div class="proof-strip" aria-label="Business outcomes from the synthetic comparison of Logistic and Rules">
+      <div class="shell proof-grid"><!-- GENERATED:PROOF:START --><div class="proof"><strong>30 / 30</strong><span>runs had a lower modeled net-cost measure with Logistic</span></div>
+        <div class="proof"><strong>−4,463.5</strong><span>fewer legitimate payments per test period asked to verify (median)</span></div>
+        <div class="proof"><strong>−108</strong><span>fewer legitimate payments per test period sent to manual review (median)</span></div>
+        <div class="proof"><strong>+3.66</strong><span>percentage points of median fraud-value capture lift; range −1.86 to +14.31</span></div><!-- GENERATED:PROOF:END -->
       </div>
     </div>
     <section id="question">
       <div class="shell">
         <div class="section-head">
-          <div class="section-index">01 / THE DECISION</div>
-          <div><h2>One score. Four possible actions.</h2><p class="section-intro">A risk score is only an input. The operating policy chooses what happens next—and that choice affects both the payment and the customer relationship.</p></div>
+          <div class="section-index">01 / THE BUSINESS DECISION</div>
+          <div><h2>Every flagged payment creates a business choice.</h2><p class="section-intro">A risk score is only a signal. The policy decides whether to complete, verify, investigate, or stop a payment—balancing fraud exposure, customer effort, payment value, and team capacity.</p></div>
         </div>
         <div class="decision-layout">
           <div class="decision-copy">
-            <p>The project asks how strategies perform when investigators can only review a limited number of cases per day. It compares a familiar incumbent, readable rules, a logistic baseline, and a combined score under the same synthetic holdout.</p>
-            <p>Thresholds are selected on earlier dates. The later dates are held out for evaluation. Fraud truth stays separate until after features are built, so the answer key does not become a detection signal.</p>
+            <p>The business question is simple: when a team cannot investigate every suspicious payment, which approach best balances fraud losses with unnecessary customer interruptions and limited staff time? The comparison uses the same simulated payment activity to assess a simple reference policy, written rules, a logistic regression model, and a combined approach.</p>
+            <p>Each approach is set using earlier simulated dates and checked on later dates it has not seen. The simulator keeps the fraud labels out of the signals used to make decisions, then reveals those labels only to measure the results.</p>
           </div>
           <div class="action-list" aria-label="Available payment actions">
-            <div class="action-row"><b>APPROVE</b><span>Preserve convenience and margin; accept modeled loss if fraudulent.</span></div>
-            <div class="action-row"><b>CHALLENGE</b><span>Add verification friction and a modeled per-event cost.</span></div>
-            <div class="action-row"><b>REVIEW</b><span>Use a human queue with finite daily capacity.</span></div>
-            <div class="action-row"><b>DECLINE</b><span>Stop the event; risk losing a legitimate customer.</span></div>
+            <div class="action-row"><b>APPROVE</b><span>Complete the payment and preserve a smooth checkout; absorb modeled fraud cost if it is fraudulent.</span></div>
+            <div class="action-row"><b>CHALLENGE</b><span>Ask for extra verification; this may stop fraud but adds effort and cost for legitimate customers too.</span></div>
+            <div class="action-row"><b>REVIEW</b><span>Send the payment to an investigator; each case uses limited team capacity.</span></div>
+            <div class="action-row"><b>DECLINE</b><span>Stop the payment; a false decline can lose a genuine sale and carries an assumed customer-value cost.</span></div>
           </div>
         </div>
       </div>
     </section>
     <section id="findings">
       <div class="shell"><!-- GENERATED:FINDINGS:START --><div class="section-head">
-          <div class="section-index">02 / THE FINDINGS</div>
-          <div><h2>Lower modeled cost repeated; fraud-capture lift varied.</h2><p class="section-intro">The comparison covers 30 paired later-date test periods, each with 350 simulated fraud cases. Both strategies use the same fictional economics and 250-case daily review capacity.</p></div>
+          <div class="section-index">02 / THE BUSINESS FINDINGS</div>
+          <div><h2>What changed for customers and the business?</h2><p class="section-intro">Across 30 paired simulated runs, each later-date test period contained 350 planted fraud cases. The strategies share the same fictional costs and a 250-case daily investigator limit, so this is a like-for-like scenario comparison—not a forecast of actual results.</p></div>
         </div>
         <div class="results-wrap">
           <table>
-            <thead><tr><th scope="col">Strategy</th><th scope="col">Fraud value captured · mean (range)</th><th scope="col">Good payments declined · median (range)</th><th scope="col">Good payments challenged · median (range)</th><th scope="col">Good payments reviewed · median (range)</th><th scope="col">Modeled net cost · mean / median (range)</th></tr></thead>
+            <thead><tr><th scope="col">Approach</th><th scope="col">Fraud value captured · mean (range)</th><th scope="col">Legitimate payments stopped · median (range)</th><th scope="col">Legitimate payments asked to verify · median (range)</th><th scope="col">Legitimate payments sent to review · median (range)</th><th scope="col">Modeled net cost · mean / median (range)</th></tr></thead>
             <tbody><tr><td>Rules</td><td>73.73% (68.29–81.25%)</td><td>31 (19–52)</td><td>5,139 (4,552–5,764)</td><td>126 (88–155)</td><td>−$52,629 mean; −$52,948 median (−$58,036 to −$47,036)</td></tr><tr class="featured"><td>Logistic</td><td>77.51% (69.76–87.21%)</td><td>0 (0–2)</td><td>598.5 (181–930)</td><td>19 (7–37)</td><td>−$67,853 mean; −$68,082 median (−$73,730 to −$60,293)</td></tr></tbody>
           </table>
         </div>
-        <p class="result-note">A negative modeled net cost includes assumed contribution from approved legitimate payments; it is not measured profit. Good-payment counts exclude simulated fraud cases.</p>
+        <p class="result-note">“Legitimate” means the simulator labels the payment as non-fraud. The modeled net-cost measure includes fictional contribution from approved legitimate payments; a negative value is not measured profit or proven savings. Counts exclude simulated fraud payments.</p>
         <div class="finding-grid">
-          <article class="finding"><span class="number">OBSERVATION 01</span><h3>Fraud capture improved on average</h3><p>Logistic captured 77.51% of simulated fraud value versus 73.73% for Rules. Its paired capture lift ranged from -1.86 to +14.31 percentage points, so the lift was not present in every run.</p></article>
-          <article class="finding"><span class="number">OBSERVATION 02</span><h3>Less challenge friction in this model</h3><p>Logistic challenged a median 4,463.5 fewer good payments (observed range 3,988–5,342 fewer) and sent a median 108 fewer to review. The queue difference matters operationally, even in this fictional book.</p></article>
-          <article class="finding"><span class="number">OBSERVATION 03</span><h3>The modeled cost ranking repeated</h3><p>Logistic had lower modeled net cost in 30/30 seed pairs. The median paired difference was −$15,502 per test period; the observed range was −$22,482 to −$11,208.</p></article>
+          <article class="finding"><span class="number">FRAUD EXPOSURE</span><h3>More value captured on average; not in every run</h3><p>Logistic captured 77.51% of simulated fraud value versus 73.73% for Rules, a 3.78-point mean lift. The paired difference ranged from −1.86 to +14.31 points. A business should weigh the range, not just the average.</p></article>
+          <article class="finding"><span class="number">CUSTOMER &amp; TEAM IMPACT</span><h3>Fewer legitimate payments interrupted</h3><p>At the median, Logistic sent 4,463.5 fewer legitimate payments per test period to extra verification (range 3,988–5,342 fewer) and 108 fewer to manual review (range 65–138 fewer). That suggests less avoidable customer effort and a lighter queue in this simulation; it does not measure abandonment, complaints, or staff time saved.</p></article>
+          <article class="finding"><span class="number">MODELED ECONOMICS</span><h3>A consistent result under the stated assumptions</h3><p>Logistic had a lower modeled net-cost measure in 30 of 30 runs. The median paired difference was −$15,501.82 per test period, with an observed range from −$22,482.27 to −$11,207.82. These are simulated dollars, not realized savings.</p></article>
         </div>
-        <div class="assumption-band"><strong>Uncertainty note:</strong> lower modeled cost occurred in 30/30 seeds; the paired Logistic-minus-Rules difference had a median of −$15,502 and an observed range of −$22,482 to −$11,208. Fraud-capture lift ranged from -1.86 to +14.31 percentage points. These simulator ranges are not confidence intervals or proof of real-world performance; the data, labels, interventions, and dollars are synthetic.</div><!-- GENERATED:FINDINGS:END --></div>
+        <div class="assumption-band"><strong>How to read this evidence:</strong> The modeled net-cost result favored Logistic in 30/30 seeds, with a paired median difference of −$15,501.82 and an observed range of −$22,482.27 to −$11,207.82. Fraud-capture lift ranged from −1.86 to +14.31 percentage points. These ranges describe variation among simulator runs; they are not confidence intervals or proof of real-world performance. Data, labels, interventions, and dollars are synthetic.</div><!-- GENERATED:FINDINGS:END --></div>
     </section>
     <section id="method">
       <div class="shell">
         <div class="section-head">
-          <div class="section-index">03 / THE METHOD</div>
-          <div><h2>From fictional world to an operating choice.</h2><p class="section-intro">The stages preserve a clear boundary between observable event behavior and the simulator’s hidden answer key.</p></div>
+          <div class="section-index">03 / HOW THE TEST WORKS</div>
+          <div><h2>From simulated payments to a business comparison.</h2><p class="section-intro">The sequence separates the activity a fraud team could observe from the hidden answer key used only to measure whether the policy caught fraud.</p></div>
         </div>
         <div class="method-frame">
           <svg viewBox="0 0 1080 250" role="img" aria-labelledby="pipeline-title pipeline-desc">
-            <title id="pipeline-title">Quest of Trust analytical pipeline</title>
-            <desc id="pipeline-desc">Six stages: generate synthetic entities and transactions; inject fraud and keep truth separate; build point-in-time features; score with rules and logistic model; apply four actions under review capacity; evaluate costs, customer impact, and monitoring.</desc>
+            <title id="pipeline-title">How the Quest of Trust business comparison was built</title>
+            <desc id="pipeline-desc">Six stages: create simulated payments; plant fraud cases and keep their labels hidden; build signals from prior behavior; compare rules and a logistic model; choose a payment action within review capacity; measure fraud, customer, and cost outcomes.</desc>
             <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#a94d32"/></marker></defs>
             <g fill="#fffdf8" stroke="#c9c4b8" stroke-width="1.5">
               <rect x="10" y="55" width="155" height="105"/><rect x="190" y="55" width="155" height="105"/><rect x="370" y="55" width="155" height="105"/><rect x="550" y="55" width="155" height="105"/><rect x="730" y="55" width="155" height="105"/><rect x="910" y="55" width="155" height="105"/>
             </g>
             <g stroke="#a94d32" stroke-width="2" marker-end="url(#arrow)"><path d="M165 107h18"/><path d="M345 107h18"/><path d="M525 107h18"/><path d="M705 107h18"/><path d="M885 107h18"/></g>
             <g fill="#173c34" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
-              <text x="87" y="91">01 · GENERATE</text><text x="267" y="91">02 · INJECT</text><text x="447" y="91">03 · FEATURE</text><text x="627" y="91">04 · SCORE</text><text x="807" y="91">05 · DECIDE</text><text x="987" y="91">06 · EVALUATE</text>
+              <text x="87" y="91">01 · CREATE</text><text x="267" y="91">02 · PLANT</text><text x="447" y="91">03 · SIGNALS</text><text x="627" y="91">04 · COMPARE</text><text x="807" y="91">05 · ROUTE</text><text x="987" y="91">06 · MEASURE</text>
             </g>
             <g fill="#5d6964" font-family="Segoe UI, sans-serif" font-size="12.5" text-anchor="middle">
-              <text x="87" y="117"><tspan x="87">customers · merchants</tspan><tspan x="87" dy="17">events · endpoints</tspan></text>
-              <text x="267" y="117"><tspan x="267">four planted patterns</tspan><tspan x="267" dy="17">truth stored separately</tspan></text>
-              <text x="447" y="117"><tspan x="447">12 observable signals</tspan><tspan x="447" dy="17">prior events only</tspan></text>
-              <text x="627" y="117"><tspan x="627">rules + logistic</tspan><tspan x="627" dy="17">trained on earlier dates</tspan></text>
-              <text x="807" y="117"><tspan x="807">four actions</tspan><tspan x="807" dy="17">daily queue limit</tspan></text>
-              <text x="987" y="117"><tspan x="987">loss · friction</tspan><tspan x="987" dy="17">capacity · caveats</tspan></text>
+              <text x="87" y="117"><tspan x="87">customers · shops</tspan><tspan x="87" dy="17">simulated payments</tspan></text>
+              <text x="267" y="117"><tspan x="267">four fraud patterns</tspan><tspan x="267" dy="17">labels kept hidden</tspan></text>
+              <text x="447" y="117"><tspan x="447">12 behavior signals</tspan><tspan x="447" dy="17">prior activity only</tspan></text>
+              <text x="627" y="117"><tspan x="627">written rules + model</tspan><tspan x="627" dy="17">same test conditions</tspan></text>
+              <text x="807" y="117"><tspan x="807">four payment choices</tspan><tspan x="807" dy="17">limited staff queue</tspan></text>
+              <text x="987" y="117"><tspan x="987">fraud · customers</tspan><tspan x="987" dy="17">team · modeled cost</tspan></text>
             </g>
             <path d="M267 171 v38 h720 v-39" fill="none" stroke="#c29542" stroke-width="1.5" stroke-dasharray="5 5"/>
-            <text x="627" y="231" fill="#795d28" font-family="Segoe UI, sans-serif" font-size="12" text-anchor="middle">Hidden truth joins only after feature construction for training and offline evaluation</text>
+            <text x="627" y="231" fill="#795d28" font-family="Segoe UI, sans-serif" font-size="12" text-anchor="middle">Fraud labels stay out of the decision signals and are used only to measure results</text>
           </svg>
         </div>
-        <p class="method-caption">Default run: 2,000 customers, 800 merchants, 1,200 terminals, and 60 days. Ten sampled attack campaigns are generated for each of four patterns. Each later-date holdout has 350 simulated fraud cases; the default review limit is 250 cases per day. Seeds and assumptions are documented in the repository.</p>
+        <p class="method-caption">The default scenario represents 2,000 customers, 800 merchants, and 1,200 payment terminals across 60 simulated days—246,314 events in total. It includes ten sampled attack campaigns for each of four patterns. Each later-date test set contains 74,237 events, including 350 simulated fraud cases; the default investigator limit is 250 cases per day. The data and assumptions are documented in the repository.</p>
       </div>
     </section>
     <section>
       <div class="shell scenario">
         <div>
-          <div class="eyebrow">Stress test, not just a headline</div>
-          <h2>What if capacity or assumptions change?</h2>
-          <p>The dashboard compares precomputed holdout outcomes across daily review limits and fictional cost assumptions. It shows the operating trade-off: cases within the 250-case limit can reach investigators; cases above the limit are sent to challenge.</p>
-          <a class="button" href="dashboard.html">Open the strategy dashboard <span aria-hidden="true">&nbsp;↗</span></a>
+          <div class="eyebrow">Explore the business trade-offs</div>
+          <h2>What if the team or costs change?</h2>
+          <p>The dashboard lets you compare saved test results under different daily investigator limits and fictional cost assumptions. Payments that fit within the queue limit go to review; the rest are routed to extra verification. These controls explore scenarios—they do not make live payment decisions or retrain the model.</p>
+          <a class="button" href="dashboard.html">Explore the scenarios <span aria-hidden="true">&nbsp;↗</span></a>
         </div>
         <div class="scenario-art capacity-art">
           <svg viewBox="0 0 720 390" role="img" aria-labelledby="capacity-title capacity-desc">
-            <title id="capacity-title">Daily review capacity routes flagged payments</title>
-            <desc id="capacity-desc">Flagged payments are ranked by risk. Up to 250 cases per day go to human review. Cases beyond that daily limit go to challenge.</desc>
+            <title id="capacity-title">A daily team limit changes how suspicious payments are handled</title>
+            <desc id="capacity-desc">Suspicious payments are ranked by risk. Up to 250 cases per day go to an investigator. Cases beyond that daily limit are sent for extra verification.</desc>
             <defs><marker id="capacity-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2f67ba"/></marker></defs>
             <g fill="#fff" stroke="#c8cbd2" stroke-width="2">
               <rect x="36" y="142" width="176" height="98" rx="18"/><rect x="270" y="142" width="180" height="98" rx="18"/>
               <rect x="510" y="62" width="174" height="98" rx="18"/><rect x="510" y="230" width="174" height="98" rx="18"/>
             </g>
             <g fill="#232323" font-family="Segoe UI,sans-serif" text-anchor="middle">
-              <text x="124" y="181" font-size="17" font-weight="700">Flagged payments</text><text x="124" y="207" fill="#555960" font-size="13">risk signals found</text>
-              <text x="360" y="181" font-size="17" font-weight="700">Rank by risk</text><text x="360" y="207" fill="#555960" font-size="13">highest priority first</text>
-              <text x="597" y="101" font-size="16" font-weight="700">Within daily limit</text><text x="597" y="128" fill="#555960" font-size="13">up to 250 → review</text>
-              <text x="597" y="269" font-size="16" font-weight="700">Above daily limit</text><text x="597" y="296" fill="#555960" font-size="13">overflow → challenge</text>
+              <text x="124" y="181" font-size="17" font-weight="700">Suspicious payments</text><text x="124" y="207" fill="#555960" font-size="13">behavior signals found</text>
+              <text x="360" y="181" font-size="17" font-weight="700">Set the priority</text><text x="360" y="207" fill="#555960" font-size="13">highest risk first</text>
+              <text x="597" y="101" font-size="16" font-weight="700">Room in the queue</text><text x="597" y="128" fill="#555960" font-size="13">up to 250 → review</text>
+              <text x="597" y="269" font-size="16" font-weight="700">Queue is full</text><text x="597" y="296" fill="#555960" font-size="13">remaining → verify</text>
             </g>
             <g fill="none" stroke="#2f67ba" stroke-width="3" marker-end="url(#capacity-arrow)"><path d="M212 191h48"/><path d="M450 191h24v-80h28"/><path d="M474 191v88h28"/></g>
-            <text x="360" y="355" fill="#555960" font-family="Segoe UI,sans-serif" font-size="13" text-anchor="middle">A queue limit changes the action taken when investigator capacity is full.</text>
+            <text x="360" y="355" fill="#555960" font-family="Segoe UI,sans-serif" font-size="13" text-anchor="middle">A staffing limit changes what happens to the next suspicious payment.</text>
           </svg>
         </div>
       </div>
@@ -452,28 +443,28 @@
           <div><h2>What this project can and cannot claim.</h2><p class="section-intro">The limits matter as much as the findings.</p></div>
         </div>
         <div class="limits">
-          <div><p class="eyebrow">Built to demonstrate</p><p>Reproducible simulation, point-in-time feature engineering, temporal evaluation, policy capacity, explicit cost assumptions, and an inspectable analysis pipeline.</p></div>
+          <div><p class="eyebrow">What the project demonstrates</p><p>A repeatable way to create a controlled fraud scenario, compare payment policies, make staffing and cost assumptions visible, and explain the trade-offs to decision-makers.</p></div>
           <ul class="limits-list">
-            <li>The population, fraud patterns, labels, and unit economics are fictional.</li>
-            <li>Each later-date test period has 350 simulated fraud cases; the 30 seeds are repeated draws from the same synthetic design.</li>
-            <li>Observed seed ranges are not confidence intervals, significance tests, or evidence about real payment customers.</li>
-            <li>One account per customer; no device, IP, login, or recovery-event graph.</li>
-            <li>Group rates are descriptive diagnostics, not a fairness certification.</li>
-            <li>The model is an educational baseline, not a production scoring service.</li>
-            <li>Dashboard controls select precomputed scenarios; they do not retrain or rescore events.</li>
+            <li>No transaction, person, fraud event, cost, or outcome represents a real customer or company.</li>
+            <li>Each later-date test set has 350 simulated fraud cases; the 30 runs use repeated draws from the same fictional setup.</li>
+            <li>The observed ranges show variation across those runs. They are not statistical error bars or evidence of performance on real payments.</li>
+            <li>The simulation does not include linked device, IP address, login, or account-recovery behavior.</li>
+            <li>Differences across fictional groups are descriptive checks, not proof that a real system is fair.</li>
+            <li>The logistic model is an educational comparison, not a production fraud service.</li>
+            <li>Dashboard controls switch among saved scenarios; they do not retrain the model or score live payments.</li>
           </ul>
         </div>
-        <p class="qa-note"><strong>Metric note:</strong> PR-AUC applies only to strategies with a continuous risk score. The scoreless incumbent is reported as not applicable.</p>
+        <p class="qa-note"><strong>Business interpretation:</strong> The results point to a promising trade-off under the chosen assumptions. A real decision would need representative payment data and validated estimates for fraud losses, verification success, customer abandonment, payment margin, and investigator capacity.</p>
       </div>
     </section>
     <section id="resources">
       <div class="shell">
         <div class="section-head">
           <div class="section-index">05 / EXPLORE</div>
-          <div><h2>Follow the evidence.</h2><p class="section-intro">Start with the analysis, then inspect the methods, assumptions, code, and generated artifacts.</p></div>
+          <div><h2>Follow the evidence.</h2><p class="section-intro">Start with the business findings, then inspect the test design, assumptions, code, and generated files that support them.</p></div>
         </div>
         <div class="resources">
-          <a class="resource" href="dashboard.html"><span><strong>Interactive strategy dashboard</strong><span>Compare capacity and economic scenarios.</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="resource" href="dashboard.html"><span><strong>Business scenario dashboard</strong><span>Compare fraud outcomes as team capacity and assumed costs change.</span></span><span class="arrow" aria-hidden="true">↗</span></a>
           <a class="resource" href="https://github.com/YvonneTsa/Quest-of-Trust/blob/main/docs/portfolio_case_study.md"><span><strong>Case study in Markdown</strong><span>Findings, interpretation, reproducibility, and caveats.</span></span><span class="arrow" aria-hidden="true">↗</span></a>
           <a class="resource" href="https://github.com/YvonneTsa/Quest-of-Trust"><span><strong>Source repository</strong><span>Python pipeline, SQL investigations, and data snapshot.</span></span><span class="arrow" aria-hidden="true">↗</span></a>
           <a class="resource" href="https://github.com/YvonneTsa/Quest-of-Trust/blob/main/docs/demo_talk_track.md"><span><strong>Three-minute walkthrough</strong><span>A concise portfolio presentation and reviewer Q&amp;A.</span></span><span class="arrow" aria-hidden="true">↗</span></a>
@@ -485,24 +476,33 @@
       </div>
     </section>
   </main>
-  <footer><div class="shell foot"><span>Quest of Trust · TrustHold synthetic fraud strategy project</span><span>All people, events, labels, costs, and findings shown here are fictional.</span></div></footer>
+  <footer><div class="shell foot"><span>Quest of Trust · synthetic payments fraud strategy analysis</span><span>All people, events, labels, costs, and findings shown here are fictional.</span></div></footer>
   <script>
     (() => {
-      const controls = Array.from(document.querySelectorAll(".filter-button"));
+      const filters = document.querySelector(".work-filters");
       const cards = Array.from(document.querySelectorAll(".work-card"));
       const status = document.querySelector(".work-status");
-      controls.forEach((control) => {
-        control.addEventListener("click", () => {
-          const selected = control.dataset.filter;
-          controls.forEach((item) => item.setAttribute("aria-pressed", String(item === control)));
-          let visible = 0;
-          cards.forEach((card) => {
-            const matches = selected === "all" || card.dataset.tags.split(" ").includes(selected);
-            card.hidden = !matches;
-            if (matches) visible += 1;
-          });
-          status.textContent = `${visible} project ${visible === 1 ? "view" : "views"}`;
+      const labels = { all: "all views", impact: "business impact", results: "results", tools: "tools and methods" };
+      if (!filters || !status || cards.length === 0) return;
+
+      filters.addEventListener("click", (event) => {
+        const control = event.target.closest("button[data-filter]");
+        if (!control || !filters.contains(control)) return;
+
+        const selected = labels[control.dataset.filter] ? control.dataset.filter : "all";
+        filters.querySelectorAll(".filter-button").forEach((button) => {
+          button.setAttribute("aria-pressed", String(button === control));
         });
+
+        let visible = 0;
+        cards.forEach((card) => {
+          const tags = (card.dataset.tags || "").split(/\s+/).filter(Boolean);
+          const matches = selected === "all" || tags.includes(selected);
+          card.hidden = !matches;
+          if (matches) visible += 1;
+        });
+
+        status.textContent = `Showing ${visible} ${visible === 1 ? "project view" : "project views"}: ${labels[selected]}.`;
       });
     })();
   </script>
