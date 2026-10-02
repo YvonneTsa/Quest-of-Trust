@@ -31,9 +31,9 @@ The default book contains **246,314** synthetic events over 60 days. The primary
 | Strategy | Fraud value captured, mean (range) | False declines, median (range) | Good payments challenged, median (range) | Good payments reviewed, median (range) | Modeled net cost, mean / median (range) |
 |---|---:|---:|---:|---:|---:|
 | Rules | 73.73% (68.29–81.25%) | 31 (19–52) | 5,139 (4,552–5,764) | 126 (88–155) | −$52,629 mean; −$52,948 median (−$58,036 to −$47,036) |
-| Logistic | 77.51% (69.76–87.21%) | 0 (0–2) | 599 (181–930) | 19 (7–37) | −$67,853 mean; −$68,082 median (−$73,730 to −$60,293) |
+| Logistic | 77.51% (69.76–87.21%) | 0 (0–2) | 598.5 (181–930) | 19 (7–37) | −$67,853 mean; −$68,082 median (−$73,730 to −$60,293) |
 
-Across paired runs, Logistic captured a median **3.66 percentage points** more fraud value (range **−1.86 to +14.31** points), challenged a median **4,464 fewer good payments** (3,988–5,342 fewer), and sent a median **108 fewer good payments to review** (65–138 fewer). Its median modeled-cost difference versus Rules was **−$15,502** per test period (range −$22,482 to −$11,208). The cost ranking repeated in 30/30 runs, while fraud-capture lift varied and was negative in some seeds. A negative modeled cost includes assumed margin from approved legitimate payments; it is not observed profit or savings.
+Across paired runs, Logistic captured a median **3.66 percentage points** more fraud value (range **−1.86 to +14.31** points), challenged a median **4,463.5 fewer good payments** (3,988–5,342 fewer), and sent a median **108 fewer good payments to review** (65–138 fewer). Its median modeled-cost difference versus Rules was **−$15,502** per test period (range −$22,482 to −$11,208). The cost ranking repeated in 30/30 runs, while fraud-capture lift varied and was negative in some seeds. A negative modeled cost includes assumed margin from approved legitimate payments; it is not observed profit or savings.
 
 The 30 paired runs show a consistent modeled-cost ranking inside this simulator, not real-world validity. The observed fraud-capture range also shows why the cost result should not be read as a guaranteed improvement in every outcome. Per-seed rows, summaries, paired differences, and full synthetic CSV table parts are included under `data/synthetic/published_run/`; the local SQLite database is rebuilt by the run command. The nested unseen-campaign check is reported separately for the default seed only and contains 175 fraud events; it is not a second 30-seed result.
 
@@ -103,3 +103,4 @@ python -m scripts.package_dataset
 - Monitoring is a prototype; no real-time model service or payment control is deployed.
 
 For a full interpretation of results and assumptions, start with the [portfolio case study](docs/portfolio_case_study.md). For a short presentation, use the [three-minute walkthrough](docs/demo_talk_track.md).
+
