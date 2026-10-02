@@ -320,7 +320,7 @@ python -c "import pandas as pd; p='data/synthetic/tutorial_run/behavior_features
     add_text(document, "Inspect `Rule_Score`, `Rule_Reasons`, `Model_Score` and `Hybrid_Score` together for a few rows. A score is not a decision: thresholds and a capacity-aware queue determine the eventual action. A coefficient sign describes direction conditional on the model's correlated inputs; it is not proof of causation.")
     add_heading(document, "Lesson 8 — Turn a score into actions and a queue", 2)
     add_text(document, "The chosen tuple supplies challenge, review and decline cutoffs. The code assigns APPROVE first, then overwrites with successively higher-severity bands. Each date's REVIEW cases are sorted from highest score downward; rows after daily capacity spill into CHALLENGE. This represents a real operational constraint: a policy cannot promise a human review to more cases than staff can handle.")
-    add_text(document, "Threshold search compares a short, predeclared candidate list on training history using the fictional cost function. The future holdout is not used to select thresholds. This distinction protects the holdout from tuning leakage, though the candidate list and synthetic assumptions still constrain what conclusions can be drawn.")
+    add_text(document, "Threshold search compares a short, predeclared candidate list on a separate campaign-stratified validation sample from the earlier time window. These validation rows are excluded from model fitting, and the future holdout is not used to select thresholds. This distinction protects both fit/validation separation and the holdout from tuning leakage, though the candidate list and synthetic assumptions still constrain what conclusions can be drawn.")
     add_heading(document, "Lesson 9 — Translate the outcome into business language", 2)
     add_table(document, ["Metric", "Meaning", "Decision implication"], [
         ("Fraud value captured %", "Estimated fraction stopped/recovered under action-effectiveness assumptions.", "Higher may reduce loss, but depends on challenge/review success assumptions."),
@@ -770,10 +770,10 @@ history.append(now)
             "Fit the model using training rows. The model extracts only the named `FEATURE_COLUMNS` and the temporary `Fraud_Label` outcome.",
             "Inspect training-only means and standard deviations, then follow the standardization and gradient updates in `fit()`.",
             "Predict scores for the full frame using coefficients learned from training rows. Evaluate model ranking and actions on the later holdout.",
-            "Compare logistic, rule, and hybrid scores. Keep threshold selection on training data and final outcome evaluation on the future period.",
+            "Compare logistic, rule, and hybrid scores. Select thresholds on the separate validation sample and evaluate final outcomes on the future period.",
         ],
         ["Logistic regression maps a weighted sum through the sigmoid function `1 / (1 + exp(-x))`, returning a value between zero and one.", "Standardization subtracts each training feature's mean and divides by its standard deviation, so features with different units can be optimized together.", "A zero standard deviation is changed to one to avoid division by zero.", "Gradient descent repeatedly moves coefficients in the direction that lowers weighted logistic loss; the L2 term discourages very large weights.", "The positive-class weight compensates for rare planted fraud, capped at 12 to avoid letting a few examples dominate.", "PR-AUC (average precision here) summarizes ranking precision as recall increases and is more informative than accuracy when positive cases are rare."],
-        ["Training dates precede the holdout dates; the holdout begins 2026-02-12 in the published case study.", "The default seed's held-out period has 74,237 transactions and 350 planted fraud events.", "The selected threshold set is chosen by training-period economic cost, not by searching the holdout for the best answer.", "The list of features excludes fraud labels, typology names, event IDs, and KYC band."],
+        ["Training dates precede the holdout dates; the holdout begins 2026-02-12 in the published case study.", "The default seed's held-out period has 74,237 transactions and 350 planted fraud events.", "The selected threshold set is chosen by modeled cost on the separate validation sample, not by searching the holdout for the best answer.", "The list of features excludes fraud labels, typology names, event IDs, and KYC band."],
         "The time split is closer to the real operating problem: build a strategy using past events and ask how it behaves on future events. That makes the holdout a more useful stress test than randomly mixing past and future rows.",
     )
     add_heading(document, "Follow the sigmoid calculation", 2)
@@ -798,7 +798,7 @@ self.weights_ -= self.learning_rate * (
             "Apply the cutoffs in ascending order. Later assignments overwrite earlier ones, so a very high score ends as DECLINE.",
             "Group review decisions by calendar day, sort each day's candidates by score, and keep only the highest-risk cases up to the daily capacity.",
             "Route the remaining review candidates to CHALLENGE and set `Capacity_Overflow=1` for those cases.",
-            "For each score type, apply each candidate threshold set to training data, calculate net modeled cost, and keep the lowest-cost set.",
+            "For each score type, apply each candidate threshold set to validation data, calculate net modeled cost, and keep the lowest-cost set.",
             "Use the selected thresholds on the later holdout and inspect action counts and overflow.",
         ],
         ["A threshold is a policy choice that maps score bands to actions; it is not a universal definition of fraud.", "`groupby('Decision_Date')` enforces a per-day queue limit rather than a total-run limit.", "Stable descending sort makes ties deterministic when the same input and seed are used.", "Overflow routing is explicit: these candidates become CHALLENGE, which models a fallback step-up action."],
@@ -897,7 +897,7 @@ out.loc[spill, "Capacity_Overflow"] = 1
     add_heading(document, "Finding 4: operations and economics are assumption-sensitive", 2)
     add_text(document, "Lower review capacity increases overflow. Lower challenge effectiveness or review recovery changes modeled losses. Higher assumed attrition makes false declines more expensive. The comparison therefore supports conditional planning: identify which assumptions matter, measure them in a real setting, and revisit thresholds when operating constraints or risk appetite change.")
     add_heading(document, "Finding 5: the simulation is designed for method learning", 2)
-    add_text(document, "Each seed has 246,314 synthetic transactions and 700 injected fraud events; its 74,000-event holdout contains 350 planted fraud events. This larger design reduces small-count instability inside the simulator, but does not make the population representative or prove real-world performance. The ten-seed ranges are observed simulator variation, not confidence intervals or statistical significance tests.")
+    add_text(document, "The published default seed has 246,314 synthetic transactions and 700 injected fraud events; its 74,237-event holdout contains 350 planted fraud events. The primary results compare 30 deterministic seeds. This larger design reduces small-count instability inside the simulator, but does not make the population representative or prove real-world performance. The observed 30-seed ranges are simulator variation, not confidence intervals or statistical significance tests.")
     add_heading(document, "Executive explanation in one paragraph", 2)
     add_text(document, "TrustHold simulates a payments business and compares a rules score with a logistic baseline on a future holdout. Across 30 seeds, Logistic captures 77.51% of simulated fraud value on average versus 73.73% for Rules and has lower modeled cost in all 30 runs. It challenges fewer legitimate payments and also sends fewer to human review in this simulation. Those are scenario outputs under fictional economics, not real savings or a performance guarantee. The median paired cost difference is −$15,501.82, with an observed range from −$22,482.27 to −$11,207.82; these ranges are not confidence intervals.")
 
@@ -1036,3 +1036,4 @@ git remote -v
 
 if __name__ == "__main__":
     build()
+
