@@ -6,15 +6,15 @@
 
 ## 0:30–1:00 — The data and safeguards
 
-“I generated a fictional 60-day payments world with 2,000 customers and planted four documented attack patterns. Each seed has 350 planted fraud events in its later-date holdout. The answer key stays separate from event features. Behavioral history is computed in timestamp order before the current event is added.”
+"I generated a fictional 60-day payments world with 2,000 customers and four documented attack patterns. Each of 30 later-date test periods contains 350 simulated fraud cases. The answer key stays separate from event features. Behavioral history is computed in timestamp order before the current event is added."
 
 ## 1:00–1:45 — The comparison
 
-“I compared transparent rules with a logistic baseline, then mapped their scores into approve, challenge, review, or decline actions under a daily review cap. Across 10 synthetic seeds, logistic captured 90.43% of fraud value on average versus 73.15% for rules. It had lower modeled net cost in all 10 runs.”
+"I compared transparent rules with a logistic baseline, then mapped their scores into approve, challenge, review, or decline actions under a daily review cap. Across 30 synthetic seeds, logistic captured 77.51% of fraud value on average versus 73.73% for rules. Its modeled cost was lower in all 30 paired runs. Fraud-capture lift varied: the median was 3.66 percentage points, but the range included runs where logistic captured less."
 
 ## 1:45–2:20 — The business interpretation
 
-“The median paired cost difference was −$22,635 per holdout, with a range from −$25,345 to −$19,903. Logistic challenged a median 3,462 fewer legitimate payments, while sending 214 more legitimate payments to investigator review. Those are synthetic scenario outputs, not observed savings. The result depends on fictional challenge stop rates, recovery, customer value, and unit costs.”
+"The median paired cost difference was −$15,502 per test period, ranging from −$22,482 to −$11,208. Logistic challenged a median 4,464 fewer good payments and sent 108 fewer good payments to review. Those are synthetic scenario outputs, not observed savings. The comparison depends on fictional challenge effectiveness, review recovery, customer value, and unit costs."
 
 ## 2:20–2:45 — Show the interactive artifact
 
@@ -22,7 +22,7 @@ Open the live dashboard. Change daily review capacity and economic assumptions. 
 
 ## 2:45–3:00 — Close with limits and next step
 
-“This is a reproducible project prototype, not a production fraud control. Ten seeds show how this simulator behaves under repeated random draws; they do not prove a real-world ranking or quantify statistical uncertainty for real customers. The next step would be validating the assumptions and thresholds against representative governed payment data.”
+"This is a reproducible project prototype, not a production fraud control. Thirty seeds show how this simulator behaves under repeated random draws; they do not prove a real-world ranking or quantify uncertainty for actual customers. A separate nested campaign check has 175 fraud events in one seed, so it is a focused diagnostic rather than repeated evidence. The next step would be validating the assumptions and thresholds against representative governed payment data."
 
 ## Likely reviewer questions
 
@@ -32,6 +32,6 @@ Open the live dashboard. Change daily review capacity and economic assumptions. 
 
 **Why is the modeled cost negative?** Approved legitimate payment margin is represented as a negative cost. The total is an assumption-driven net-cost calculation, not realized profit.
 
-**What is the biggest limitation?** The data, fraud scenarios, intervention probabilities, and unit economics are synthetic. More planted events and repeated seeds reduce simulation noise, but they do not make the scenarios representative of actual fraud.
+**What is the biggest limitation?** The data, fraud scenarios, intervention probabilities, and unit economics are synthetic. More simulated events and repeated seeds reduce run-to-run noise inside the simulator, but they do not make the scenarios representative of actual fraud.
 
 **Why is SQLite used?** It keeps the local analytical project self-contained. The current workload does not justify operating a database server.

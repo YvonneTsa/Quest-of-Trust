@@ -36,7 +36,7 @@ Amounts use a log-normal draw around customer typical spend. Channel, authentica
 
 ## 4. Fraud injection and truth boundary — `src/simulation/inject_fraud.py`
 
-Fraud events are created after baseline events, in two phases. Each typology appears in both the training era and later evaluation era. A nested `add_event` function shares the transaction counter and event counter with its parent function; `nonlocal` means assignments update those parent-scope variables. It creates a raw transaction row and a separate truth row with an event ID and typology.
+Fraud events are created after baseline events, in two phases. Each typology appears in both the training era and later evaluation era. A nested `add_event` function shares the transaction counter and event counter with its parent function; `nonlocal` means assignments update those parent-scope variables. It creates a raw transaction row and a separate truth row with an event ID, typology, and restricted campaign identity.
 
 The returned `transactions` table contains no fraud field. The separate truth table contains injected transaction IDs and scenario metadata. `run_project.py` builds features first, then uses transaction IDs to construct an in-memory label for training and evaluation. This order keeps a future answer key out of the investigative feature process.
 
@@ -64,17 +64,23 @@ The score is capped at 100 so an unusual event with many signals remains on a fa
 
 The logistic model calculates `1 / (1 + exp(-linear_score))` to return a number between 0 and 1. Full-batch gradient descent repeatedly adjusts coefficients to reduce weighted logistic error. Positive-class weights are capped because fraud is rare. L2 regularization discourages extreme coefficients. This compact NumPy implementation is a teaching baseline, not a library-grade production learner.
 
-The latest 30% of dates are held out. Earlier rows fit the coefficients and choose a threshold band; later rows are evaluated. This approximates the operational question: how does a strategy behave on events that occur after its model-building history?
+The latest 30% of dates are held out. Earlier rows are divided into disjoint fit and campaign-stratified validation samples. The logistic model is fit only on the fit rows, then the threshold band is selected on validation rows. The later dates are evaluated only after both model and thresholds are fixed.
 
 ## 8. Actions, review capacity, and costs — `src/decisions/policies.py`
 
-Scores below the challenge threshold are approved; progressively higher scores are challenged, reviewed, or declined. The threshold grid is short and visible. Each candidate is applied to training labels and ranked by the configured training net cost; the selected band is then applied to the holdout.
+Scores below the challenge threshold are approved; progressively higher scores are challenged, reviewed, or declined. The threshold grid is short and visible. Each candidate is applied to validation labels and ranked by validation net cost; the selected band is then applied to the untouched later-date holdout.
 
 Review candidates are sorted by score within each day. Only the top `capacity` remain in REVIEW. Overflow candidates become CHALLENGE, which models a practical fallback when investigator capacity is full.
 
 `policy_costs` calculates one dollar-cost row at a time from the action, amount, fraud label (offline only), and `Economics`. Approved fraud costs amount plus chargeback. Challenged/reviewed fraud has residual expected loss after the assumed intervention effect. Legitimate approvals earn an assumed margin; challenges and reviews incur unit cost; a false decline incurs an assumed attrition share of lifetime value and lost margin.
 
 `evaluate_policy` reports fraud value captured, remaining fraud loss, precision/recall among interventions, good-customer challenge/review counts, false declines, review overflow, and net cost. On the rare-event data, accuracy would mostly describe the many ordinary events, so it is not treated as the project objective.
+
+## 9. Validation, unseen campaigns, and business break-even checks
+
+`run_project.py` repeats the evaluation over 30 seeds by default. A second model partitions campaign identities into separate fit, validation, and holdout groups. Half of the numbered campaigns per typology are never used to fit that campaign-check model or choose its thresholds; their later-phase events form an independent campaign-generalization result.
+
+`business_sensitivity()` varies one fictional economic assumption at a time and compares modeled cost for Rules and Logistic. For cost parameters it holds decisions fixed so the effect of each assumption is visible. Capacity scenarios rerun the policy routing using the selected thresholds. The detailed split, interpretation, and evidence limits are in [`evaluation_design.md`](evaluation_design.md).
 
 ## 9. Sensitivities, groups, and typologies — `src/run_project.py`
 
@@ -93,4 +99,3 @@ Group diagnostics summarize challenge, review, decline, false-decline, and plant
 ## 11. How to change and learn safely
 
 Change one named assumption at a time. Run the pipeline again, compare the resulting files, and record why the change was made. Start with `src/config.py` for population, horizon, and economics; use command options for row counts and capacity. Do not change fraud labels or outcome logic to make a strategy appear successful. The best strategy can change when data or business assumptions change, and that trade-off is the central point of TrustHold.
-

@@ -7,11 +7,11 @@ APPROVE,68500,Rules
 CHALLENGE,5447,Rules
 REVIEW,228,Rules
 DECLINE,62,Rules
-APPROVE,71647,Logistic
-CHALLENGE,1917,Logistic
-REVIEW,497,Logistic
-DECLINE,176,Logistic
-APPROVE,68289,Rules + logistic
-CHALLENGE,5571,Rules + logistic
-REVIEW,298,Rules + logistic
-DECLINE,79,Rules + logistic
+APPROVE,73231,Logistic
+CHALLENGE,841,Logistic
+REVIEW,116,Logistic
+DECLINE,49,Logistic
+APPROVE,68475,Rules + logistic
+CHALLENGE,5459,Rules + logistic
+REVIEW,241,Rules + logistic
+DECLINE,62,Rules + logistic

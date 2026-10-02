@@ -34,11 +34,17 @@ The synthetic generator emits separate tables so the business entities and event
 | `impact_by_customer_group` | Held-out action/friction/fraud rates by segment and KYC band. | Offline descriptive monitoring only |
 | `restricted/fraud_ground_truth.Transaction_ID` | Injected event key, stored separately for offline evaluation. | **No** |
 | `restricted/fraud_ground_truth.Typology` | Planted scenario label. | **No** |
+| `restricted/fraud_ground_truth.Campaign_ID`, `Campaign_Number` | Restricted grouping keys for keeping related planted attack events together in threshold validation and the unseen-campaign evaluation. | **No** |
 | `test_decisions.Decision` | Strategy output: APPROVE, CHALLENGE, REVIEW, DECLINE. | Produced by the simulation |
 | `strategy_metrics` | One row per strategy for the default seed's later-date holdout, including capture, false declines, customer friction, review overflow, modeled cost, and PR-AUC where a continuous score exists. | Offline evaluation output |
-| `seed_stability_by_run` | One row per seed and strategy (Rules or Logistic), with the same holdout outcome metrics. | Offline evaluation output |
+| `campaign_holdout_metrics` | Default-seed strategy outcomes when half of numbered campaign identities were kept out of both model fitting and threshold selection. | Offline evaluation output |
+| `seed_stability_by_run` | One row per seed and strategy (Rules or Logistic), with the later-date holdout outcome metrics. | Offline evaluation output |
+| `campaign_stability_by_run` | Paired Rules/Logistic outcomes for the default-seed nested campaign check; this is not a multi-seed stability sample. | Offline evaluation output |
 | `seed_stability_summary` | Per-strategy means, medians, and observed minimum/maximum across the configured seeds. | Offline summary; ranges are not confidence intervals |
 | `seed_stability_comparison` | Paired Logistic-minus-Rules differences on each shared seed, including lower-cost win count and observed ranges. | Offline paired comparison |
+| `evaluation_design` | Fit, validation, and holdout row and event counts for both evaluation tracks. | Methodology audit output |
+| `business_sensitivity` | One-variable-at-a-time modeled cost ranges and capacity outcomes for the base-seed test decisions. | Scenario analysis; fictional assumptions only |
+| `business_break_even_summary` | Tested ranges and any approximate Logistic-versus-Rules cost crossover. | Scenario analysis; not a confidence interval |
 | `scenario_surface` | Precomputed outcomes for strategy, daily review-capacity, and fictional economics combinations for the default seed. | Scenario analysis; no live decisions |
 
 ## Leakage boundary
@@ -47,4 +53,4 @@ The synthetic generator emits separate tables so the business entities and event
 
 ## Seed stability outputs
 
-The default run compares ten seeds and plants 350 fraud events in the later-date holdout for every seed. The `seed_stability_*` tables show the output spread observed in this specific synthetic design. They do not encode sampling uncertainty for real customers, confidence intervals, or evidence that the fictional population represents an actual payments book. `seed_stability_by_run` is the row-level source for the summary and paired comparison.
+The default run compares 30 seeds and includes 350 simulated fraud events in each later-date holdout. The nested campaign-identity evaluation is shown for the default seed; it withholds half the campaign identities and contains 175 later-phase fraud events. The primary stability tables show output spread inside this synthetic design. They do not encode sampling uncertainty for real customers, confidence intervals, or evidence that the fictional population represents an actual payments book. Each row-level table is the source for its matching summary and paired comparison.

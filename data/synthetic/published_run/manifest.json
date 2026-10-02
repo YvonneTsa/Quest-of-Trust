@@ -15,7 +15,7 @@
         "action_counts.part001.csv"
       ],
       "rows": 16,
-      "sha256": "aaa4bbae5686382acea68313ec5b1ef4569be8ee5f0242475320b807d46feba8",
+      "sha256": "6ecebc8bd7cee2487533fbc70031bf0c6f82c32f40bef57868610b5050788bdd",
       "ground_truth": false
     },
     "behavior_features": {
@@ -226,7 +226,135 @@
         "behavior_features.part204.csv"
       ],
       "rows": 246314,
-      "sha256": "b8cfea0a2b0bb6b737e6356b639d558647d40b35d0270772e5ebcf25c7ba6cf4",
+      "sha256": "98887327309816550221a163b865dbdc40fcb7686d936747cc6b499d1aba90ae",
+      "ground_truth": false
+    },
+    "business_break_even_summary": {
+      "parts": [
+        "business_break_even_summary.part001.csv"
+      ],
+      "rows": 7,
+      "sha256": "9251d2b3b710b03e79868e3293d6254b1e130cc542484ccf8c22c7148b861565",
+      "ground_truth": false
+    },
+    "business_sensitivity": {
+      "parts": [
+        "business_sensitivity.part001.csv"
+      ],
+      "rows": 282,
+      "sha256": "df78d0b5f798033eb822fb0e292f2113453f3f7cd43e74b66c2950f5dfd00732",
+      "ground_truth": false
+    },
+    "campaign_holdout_decisions": {
+      "parts": [
+        "campaign_holdout_decisions.part001.csv",
+        "campaign_holdout_decisions.part002.csv",
+        "campaign_holdout_decisions.part003.csv",
+        "campaign_holdout_decisions.part004.csv",
+        "campaign_holdout_decisions.part005.csv",
+        "campaign_holdout_decisions.part006.csv",
+        "campaign_holdout_decisions.part007.csv",
+        "campaign_holdout_decisions.part008.csv",
+        "campaign_holdout_decisions.part009.csv",
+        "campaign_holdout_decisions.part010.csv",
+        "campaign_holdout_decisions.part011.csv",
+        "campaign_holdout_decisions.part012.csv",
+        "campaign_holdout_decisions.part013.csv",
+        "campaign_holdout_decisions.part014.csv",
+        "campaign_holdout_decisions.part015.csv",
+        "campaign_holdout_decisions.part016.csv",
+        "campaign_holdout_decisions.part017.csv",
+        "campaign_holdout_decisions.part018.csv",
+        "campaign_holdout_decisions.part019.csv",
+        "campaign_holdout_decisions.part020.csv",
+        "campaign_holdout_decisions.part021.csv",
+        "campaign_holdout_decisions.part022.csv",
+        "campaign_holdout_decisions.part023.csv",
+        "campaign_holdout_decisions.part024.csv",
+        "campaign_holdout_decisions.part025.csv",
+        "campaign_holdout_decisions.part026.csv",
+        "campaign_holdout_decisions.part027.csv",
+        "campaign_holdout_decisions.part028.csv",
+        "campaign_holdout_decisions.part029.csv",
+        "campaign_holdout_decisions.part030.csv",
+        "campaign_holdout_decisions.part031.csv",
+        "campaign_holdout_decisions.part032.csv",
+        "campaign_holdout_decisions.part033.csv",
+        "campaign_holdout_decisions.part034.csv",
+        "campaign_holdout_decisions.part035.csv",
+        "campaign_holdout_decisions.part036.csv",
+        "campaign_holdout_decisions.part037.csv",
+        "campaign_holdout_decisions.part038.csv",
+        "campaign_holdout_decisions.part039.csv",
+        "campaign_holdout_decisions.part040.csv",
+        "campaign_holdout_decisions.part041.csv",
+        "campaign_holdout_decisions.part042.csv",
+        "campaign_holdout_decisions.part043.csv",
+        "campaign_holdout_decisions.part044.csv",
+        "campaign_holdout_decisions.part045.csv",
+        "campaign_holdout_decisions.part046.csv",
+        "campaign_holdout_decisions.part047.csv",
+        "campaign_holdout_decisions.part048.csv",
+        "campaign_holdout_decisions.part049.csv",
+        "campaign_holdout_decisions.part050.csv",
+        "campaign_holdout_decisions.part051.csv",
+        "campaign_holdout_decisions.part052.csv",
+        "campaign_holdout_decisions.part053.csv",
+        "campaign_holdout_decisions.part054.csv",
+        "campaign_holdout_decisions.part055.csv",
+        "campaign_holdout_decisions.part056.csv",
+        "campaign_holdout_decisions.part057.csv",
+        "campaign_holdout_decisions.part058.csv",
+        "campaign_holdout_decisions.part059.csv",
+        "campaign_holdout_decisions.part060.csv",
+        "campaign_holdout_decisions.part061.csv",
+        "campaign_holdout_decisions.part062.csv",
+        "campaign_holdout_decisions.part063.csv",
+        "campaign_holdout_decisions.part064.csv",
+        "campaign_holdout_decisions.part065.csv",
+        "campaign_holdout_decisions.part066.csv",
+        "campaign_holdout_decisions.part067.csv",
+        "campaign_holdout_decisions.part068.csv",
+        "campaign_holdout_decisions.part069.csv",
+        "campaign_holdout_decisions.part070.csv",
+        "campaign_holdout_decisions.part071.csv",
+        "campaign_holdout_decisions.part072.csv",
+        "campaign_holdout_decisions.part073.csv"
+      ],
+      "rows": 296248,
+      "sha256": "3da7420b48f533773f2328e4fa6d0b6dc2ae0da9f65781bd5ec2f982100782a5",
+      "ground_truth": false
+    },
+    "campaign_holdout_metrics": {
+      "parts": [
+        "campaign_holdout_metrics.part001.csv"
+      ],
+      "rows": 4,
+      "sha256": "512de0585089b2fddf0a9e2130086e3525fadc10f18169cbe57d85c38bb4ac97",
+      "ground_truth": false
+    },
+    "campaign_stability_by_run": {
+      "parts": [
+        "campaign_stability_by_run.part001.csv"
+      ],
+      "rows": 2,
+      "sha256": "8976429dc7dfc822bbcee537cc3acf60c89fcc09e107f1453759fc697603b028",
+      "ground_truth": false
+    },
+    "campaign_stability_comparison": {
+      "parts": [
+        "campaign_stability_comparison.part001.csv"
+      ],
+      "rows": 1,
+      "sha256": "91b72982a8a42636a32afd17ce26a3344fb5ecc2b6688016b00468126d8f2268",
+      "ground_truth": false
+    },
+    "campaign_stability_summary": {
+      "parts": [
+        "campaign_stability_summary.part001.csv"
+      ],
+      "rows": 2,
+      "sha256": "df13b9b6245f3588ebc5f982dfd1a787d0a30bce8bf25df1d02bb01a958c87bb",
       "ground_truth": false
     },
     "capacity_sensitivity": {
@@ -234,7 +362,7 @@
         "capacity_sensitivity.part001.csv"
       ],
       "rows": 15,
-      "sha256": "650c8b8d35b928ae39d034eaa617f9766c17268d56ea54c7b1c270791f1dc98f",
+      "sha256": "6e90174d64fd563a687b63a263acb96bfcc781ca6508a3859930452cc04fb7f3",
       "ground_truth": false
     },
     "customers": {
@@ -250,7 +378,7 @@
         "daily_monitoring.part001.csv"
       ],
       "rows": 60,
-      "sha256": "056711878c7c37c04f2915f8aa7184f79c31d3273d472c58f3cebbbd89aaf61f",
+      "sha256": "a3ee69735749ddf6598ff4843d0f65e0baadb9a316d27a21c88f0f08c38403f3",
       "ground_truth": false
     },
     "economic_sensitivity": {
@@ -258,7 +386,15 @@
         "economic_sensitivity.part001.csv"
       ],
       "rows": 24,
-      "sha256": "2d1e957dc41d2a20fa5a4dce57c7a1cbf78ea479eee18759a8e7f92448b5c61b",
+      "sha256": "e939f03b427d9f7b7cf1d25ccacd4847875df6653f2b36db575c0b15c152735d",
+      "ground_truth": false
+    },
+    "evaluation_design": {
+      "parts": [
+        "evaluation_design.part001.csv"
+      ],
+      "rows": 2,
+      "sha256": "bac86298362789379da963452f2a65fcab869221dae1804f6fca220fafad5b79",
       "ground_truth": false
     },
     "impact_by_customer_group": {
@@ -266,7 +402,7 @@
         "impact_by_customer_group.part001.csv"
       ],
       "rows": 40,
-      "sha256": "c1bd8ad962b16f5f18a109b832bd633cabe5779036986fc9b46425dfeb8ce2ea",
+      "sha256": "1eed0df2c20166753602ad80a0e6b5f38223d90b76f1c64ffbbec08a6bc1dc76",
       "ground_truth": false
     },
     "merchants": {
@@ -282,7 +418,7 @@
         "model_coefficients.part001.csv"
       ],
       "rows": 12,
-      "sha256": "693681d9210b85d5b435b26e7666cb4d380d9bfae9a1b93a01d72be4a303548f",
+      "sha256": "4cafea30d3e73d25393a4c573d59d04f6cb328b544c7d1e35d7e149443a53e1c",
       "ground_truth": false
     },
     "scenario_surface": {
@@ -290,15 +426,15 @@
         "scenario_surface.part001.csv"
       ],
       "rows": 120,
-      "sha256": "af1b159cdfc0bfd3658886fc9a4adee0914d30529364a0229ae8ede410a2afb2",
+      "sha256": "87c191618b99ee7543ee5ea25f5f8d023c6762769798e17fe1c26c9905e80320",
       "ground_truth": false
     },
     "seed_stability_by_run": {
       "parts": [
         "seed_stability_by_run.part001.csv"
       ],
-      "rows": 20,
-      "sha256": "1648a17c9f7bffeca9b34054d6e418ff498b9a0f9cbc9a81a923eac37b916865",
+      "rows": 60,
+      "sha256": "9be41477e250971534f866800ac95c50b2172f8f4be282dafade577e6e2c367e",
       "ground_truth": false
     },
     "seed_stability_comparison": {
@@ -306,7 +442,7 @@
         "seed_stability_comparison.part001.csv"
       ],
       "rows": 1,
-      "sha256": "949540c382bbe3f7a6205779410887d4e1610b732c924e80fbdcaffcc75f7edb",
+      "sha256": "9103702617f61188dc37a35460da8e6abb15fa704cf3a50870a04d16387c75f9",
       "ground_truth": false
     },
     "seed_stability_summary": {
@@ -314,7 +450,7 @@
         "seed_stability_summary.part001.csv"
       ],
       "rows": 2,
-      "sha256": "e34132ef183161302be9181122e754a3a02a14646349f28bafd29481fe62bd23",
+      "sha256": "ac6ee6cd1786be0171f9b4ab4e2ecce9ee048c2da450abe9e2ee3c45e73fdc20",
       "ground_truth": false
     },
     "strategy_metrics": {
@@ -322,7 +458,7 @@
         "strategy_metrics.part001.csv"
       ],
       "rows": 4,
-      "sha256": "3add1f1ba7e1370ba047cca8033b8f3a07abf20c554014e14d07a40f2287bbb7",
+      "sha256": "26b03c70829c2c5d584e99fd5ff8fe08f3d01bd63bdb3f1fa282fb1f19c65d49",
       "ground_truth": false
     },
     "terminal_network_summary": {
@@ -419,7 +555,7 @@
         "test_decisions.part074.csv"
       ],
       "rows": 296948,
-      "sha256": "d2785b07b0f6278472800cb82704aade051d0c363dd881f6074e077adccd9e52",
+      "sha256": "f633653ee324124e82be07b779b8cff7f14b335f7ee3e49b717c05ef4ecf896b",
       "ground_truth": false
     },
     "transactions": {
@@ -538,7 +674,7 @@
         "typology_metrics.part001.csv"
       ],
       "rows": 16,
-      "sha256": "e5b6d1431dee0a3d69af6e23685efef29ef2ce5bb0329d8409713408de56abc5",
+      "sha256": "219bfd5051510015a6a88811d9d08c0545de6e46c4d115015880e258a51b7117",
       "ground_truth": false
     },
     "fraud_ground_truth": {
@@ -546,7 +682,7 @@
         "fraud_ground_truth.part001.csv"
       ],
       "rows": 700,
-      "sha256": "1a52f228da553038cd29deeed88c1cf8c4842077cc1af73fc7757ef84087ab39",
+      "sha256": "77d7bafd6a759e212e4c6d231b0c3cdad7737890958ec9ff5376ceac9b83ed8a",
       "ground_truth": true
     }
   }

@@ -275,7 +275,7 @@ def build():
 
     add_heading(doc, "How to Use This Guide", 1)
     add_body(doc, "This guide explains how TrustHold works from the first generated customer through the final decision comparison. It is written for both someone learning the concepts and someone reviewing the project as a portfolio artifact. Start with the quick start if you want to run it; use the code map and table inventory when you want to inspect a specific part.")
-    add_body(doc, "The project is a reproducible educational simulation. It does not use real customer or fraud data. All business costs, fraud patterns, customer profiles, and outcomes are fictional assumptions. Ten generated seeds show run-to-run variation inside this simulator, not uncertainty for a real payments population.")
+    add_body(doc, "The project is a reproducible educational simulation. It does not use real customer or fraud data. All business costs, fraud patterns, customer profiles, and outcomes are fictional assumptions. Thirty generated seeds show run-to-run variation inside this simulator, not uncertainty for a real payments population.")
     add_heading(doc, "Contents", 2)
     for item in [
         "1  Project purpose and design",
@@ -383,21 +383,29 @@ def build():
     add_body(doc, "The generator returns the transaction table and a distinct ground-truth table keyed by transaction ID. The feature builder sees no label column. The pipeline joins the IDs afterward to construct a temporary `Fraud_Label` for model training and offline evaluation. It writes the labels under `data/synthetic/run/restricted/` and excludes them from transaction, feature, decision, monitoring, and SQLite tables. For reproducibility, the public repository also contains the synthetic evaluation labels as a separate, clearly named CSV table. Anyone exploring transactions should keep that table out of SQL investigations and model inputs.")
 
     add_heading(doc, "6  Data Inventory and Field Meanings", 1)
-    add_body(doc, "The published run snapshot contains 20 public CSV tables with 797,106 rows in total, plus 700 restricted ground-truth labels. The total counts different analytical views of the same events; it is not a count of unique transactions. The core `transactions` and `behavior_features` tables each have 246,314 rows. The decision table has one row per default-seed holdout event per strategy.")
+    add_body(doc, "The published run snapshot contains 29 CSV tables and 1,094,394 row records: 28 public analytical tables with 1,093,694 rows, plus 700 separate synthetic fraud labels. The totals include multiple analytical views of the same events; they are not unique-transaction counts. The core `transactions` and `behavior_features` tables each have 246,314 rows. The default-seed decision table has one row per later-date holdout event per strategy.")
     table_rows = [
         ("accounts", "2,000", "Account linked to customer."),
         ("action_counts", "16", "Counts by operating action and strategy."),
         ("behavior_features", "246,314", "One timestamped event with observable features and rule score."),
+        ("business_break_even_summary", "7", "One summary for each fictional business assumption tested."),
+        ("business_sensitivity", "282", "Strategy outcomes across one-at-a-time economic scenarios."),
+        ("campaign_holdout_decisions", "296,248", "74,062 campaign-check events times four strategies."),
+        ("campaign_holdout_metrics", "4", "One result per strategy in the single-seed campaign check."),
+        ("campaign_stability_by_run", "2", "Rules and Logistic outcomes in the one campaign-check seed."),
+        ("campaign_stability_comparison", "1", "Paired Rules-versus-Logistic campaign-check result."),
+        ("campaign_stability_summary", "2", "Per-strategy campaign-check metrics."),
         ("capacity_sensitivity", "15", "Strategy outcomes at five review-capacity settings."),
         ("customers", "2,000", "Fictional customer profile and segment."),
         ("daily_monitoring", "60", "One day of label-free operating signals."),
         ("economic_sensitivity", "24", "Four strategies under six economic assumptions."),
         ("fraud_ground_truth", "700", "Separate synthetic labels for offline evaluation only."),
+        ("evaluation_design", "2", "Fit, validation, and holdout partitions in the default seed."),
         ("impact_by_customer_group", "40", "Held-out outcomes grouped by strategy and customer descriptor."),
         ("merchants", "800", "Fictional business endpoint owner, category, and region."),
         ("model_coefficients", "12", "One coefficient per numeric model feature."),
         ("scenario_surface", "120", "Strategies across capacity and economic assumption combinations."),
-        ("seed_stability_by_run", "20", "Rules and Logistic metrics for each of 10 seeds."),
+        ("seed_stability_by_run", "60", "Rules and Logistic metrics for each of 30 seeds."),
         ("seed_stability_comparison", "1", "Paired Logistic-minus-Rules ranges and cost win count."),
         ("seed_stability_summary", "2", "Per-strategy means, medians, and observed ranges."),
         ("strategy_metrics", "4", "One held-out summary per strategy."),
@@ -490,15 +498,15 @@ def build():
 
     add_heading(doc, "10  Evaluation Results and How to Read Them", 1)
     add_heading(doc, "Temporal split", 2)
-    add_body(doc, "The pipeline sorts the unique dates, assigns the first 70% to training, and reserves the latest 30% for holdout evaluation. In the published 60-day run, the holdout starts February 12, 2026. The default seed's test set contains 74,237 events and 350 planted fraud transactions. The full run has 246,314 transactions and 700 planted fraud events. Using a future period helps reflect changes over time better than a random row split would.")
+    add_body(doc, "The pipeline sorts the unique dates, assigns the first 70% to training, and reserves the latest 30% for holdout evaluation. In the published 60-day run, the holdout starts February 12, 2026. The default seed's test set contains 74,237 events and 350 simulated fraud cases. The full run has 246,314 transactions and 700 simulated fraud cases. Using a future period helps reflect changes over time better than a random row split would.")
     add_heading(doc, "Main held-out comparison", 2)
     add_table(doc, ["Strategy", "Fraud value captured", "False declines", "Net modeled cost", "PR-AUC"], [
         ("Incumbent", "0.00%", "0", "−$15,477.19", "N/A for a score ranking"),
         ("Rules", "73.09%", "30", "−$56,248.77", "0.2655"),
-        ("Logistic", "91.42%", "33", "−$79,150.50", "0.5855"),
-        ("Rules + logistic", "82.27%", "30", "−$62,823.34", "0.4119"),
+        ("Logistic", "78.37%", "1", "−$73,729.50", "0.5826"),
+        ("Rules + logistic", "76.26%", "30", "−$58,811.13", "0.2981"),
     ], [1.25, 1.25, 0.9, 1.4, 1.2], font_size=7.6)
-    add_body(doc, "Under the base fictional economics and the default 250-case daily review capacity, Logistic has the lowest modeled cost and captures the most fraud value of the three scored strategies. It also sends 410 legitimate events to review and 1,838 legitimate events to challenge in this seed's holdout. Rules sends 140 legitimate events to review and 5,305 to challenge. These are one-seed outcomes; the ten-seed analysis later in this guide provides observed variation.")
+    add_body(doc, "Under the base fictional economics and the default 250-case daily review capacity, Logistic has the lowest modeled cost among these strategies. In this seed's holdout it captures 78.37% of simulated fraud value, records one false decline, sends 21 good payments to review, and challenges 740. Rules captures 73.09%, records 30 false declines, reviews 140 good payments, and challenges 5,305. These single-seed outcomes are shown separately from the 30-seed comparison later in this guide.")
     add_heading(doc, "What each metric means", 2)
     add_table(doc, ["Metric", "Interpretation"], [
         ("Fraud value captured", "Fraud amount multiplied by assumed intervention effectiveness: 0% approve, 80% challenge, 90% review, 100% decline."),
@@ -514,13 +522,13 @@ def build():
     add_body(doc, "Review-capacity sensitivity tests how many cases the queue can absorb. The evaluated limits are 10, 50, 150, 250, and 500 cases per day. Overflow candidates are routed to CHALLENGE, so changing the limit can change fraud capture, customer friction, and modeled cost.")
     add_body(doc, "Economic sensitivity changes challenge success, false-decline attrition, or review recovery. In the generated output, Logistic remains lowest-cost in the listed scenarios, including lower challenge effectiveness and lower review recovery. That stability is only across the limited assumptions that were tested; it is not a statistical confidence interval or proof of robustness to unmodeled conditions.")
     add_heading(doc, "Across-seed results and uncertainty", 2)
-    add_body(doc, "The pipeline repeats generation, feature construction, model fitting, threshold selection, and holdout evaluation for ten consecutive seeds. Each Rules result is compared with the Logistic result from the same seed, so the cost difference is paired. The table shows means for value capture and medians for event counts and modeled cost, with the observed minimum-to-maximum range across the ten runs.")
+    add_body(doc, "The pipeline repeats generation, feature construction, model fitting, threshold selection, and holdout evaluation for 30 consecutive seeds. Each Rules result is compared with the Logistic result from the same seed, so the cost difference is paired. The table shows means for value capture and medians for event counts and modeled cost, with the observed minimum-to-maximum range across those runs.")
     add_table(doc, ["Strategy", "Fraud value captured mean (range)", "False declines median (range)", "Good payments challenged median (range)", "Good payments reviewed median (range)", "Net modeled cost median (range)"], [
-        ("Rules", "73.15% (68.29–76.44%)", "32.5 (24–45)", "5,210 (4,552–5,764)", "138 (109–155)", "−$53,583 (−$56,249 to −$48,112)"),
-        ("Logistic", "90.43% (85.86–94.26%)", "19.5 (15–33)", "1,787.5 (1,568–1,838)", "328 (248–418)", "−$75,244 (−$79,151 to −$68,812)"),
+        ("Rules", "73.73% (68.29–81.25%)", "31 (19–52)", "5,139 (4,552–5,764)", "126 (88–155)", "−$52,948 (−$58,036 to −$47,036)"),
+        ("Logistic", "77.51% (69.76–87.21%)", "0 (0–2)", "598.5 (181–930)", "19 (7–37)", "−$68,082 (−$73,730 to −$60,293)"),
     ], [0.8, 1.25, 1.05, 1.25, 1.15, 1.4], font_size=7.2)
-    add_body(doc, "Logistic had lower modeled net cost than Rules in 10 of 10 runs. The paired median cost difference was −$22,635, with an observed range from −$25,345 to −$19,903. Logistic captured a median 16.90 percentage points more fraud value (range 14.49–21.36), sent 3,462 fewer good payments to challenge (range 2,852–4,059 fewer), and sent 214 more good payments to review (range 93–273 more). In business terms, the simulated policy trades some customer challenge friction for additional investigator workload.")
-    add_body(doc, "These ranges describe only the ten random draws under the same fictional generator, planted patterns, review capacity, and unit economics. They are not confidence intervals or significance tests for a real book. Repeated seeds can show that the code behaves consistently under its assumptions; validating a real strategy would require representative labeled data and measured intervention outcomes.")
+    add_body(doc, "Logistic had lower modeled net cost than Rules in 30 of 30 runs. The paired median cost difference was −$15,501.82, with an observed range from −$22,482.27 to −$11,207.82. Logistic's median fraud-value-capture lift was 3.66 percentage points (range −1.86 to +14.31), so capture did not improve in every seed. It sent a median 4,463.5 fewer good payments to challenge (range 3,988–5,342 fewer), 108 fewer to review (range 65–138 fewer), and 31 fewer to decline (range 19–51 fewer). In this simulation, the lower modeled cost coincides with fewer interventions and a smaller investigator queue.")
+    add_body(doc, "These ranges describe only the 30 random draws under the same fictional generator, attack patterns, review capacity, and unit economics. They are observed simulator ranges, not confidence intervals, significance tests, or estimates of uncertainty for a real book. Repeated seeds show how results vary under these assumptions; evaluating a real strategy would require representative labeled data and measured intervention outcomes.")
 
     add_heading(doc, "11  SQL Investigations, Network Analysis, and Monitoring", 1)
     add_heading(doc, "SQL investigation files", 2)

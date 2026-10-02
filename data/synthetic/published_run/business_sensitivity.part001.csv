@@ -1,0 +1,283 @@
+Parameter,Parameter_Field,Unit,Value,Strategy,Net_Economic_Cost,Cost_Delta_Logistic_Minus_Rules,Preferred_Strategy,Basis
+Challenge success rate,challenge_fraud_stop_probability,probability,0.0,Rules,-39617.65,-23077.04,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.0,Logistic,-62694.69,-23077.04,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.05,Rules,-40657.1,-22727.27,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.05,Logistic,-63384.37,-22727.27,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.1,Rules,-41696.54,-22377.5,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.1,Logistic,-64074.04,-22377.5,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.15,Rules,-42735.99,-22027.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.15,Logistic,-64763.72,-22027.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.2,Rules,-43775.43,-21677.96,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.2,Logistic,-65453.39,-21677.96,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.25,Rules,-44814.88,-21328.19,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.25,Logistic,-66143.07,-21328.19,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.3,Rules,-45854.32,-20978.42,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.3,Logistic,-66832.74,-20978.42,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.35,Rules,-46893.77,-20628.65,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.35,Logistic,-67522.42,-20628.65,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.4,Rules,-47933.21,-20278.88,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.4,Logistic,-68212.09,-20278.88,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.45,Rules,-48972.66,-19929.11,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.45,Logistic,-68901.77,-19929.11,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.5,Rules,-50012.1,-19579.34,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.5,Logistic,-69591.44,-19579.34,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.55,Rules,-51051.55,-19229.57,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.55,Logistic,-70281.12,-19229.57,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.6,Rules,-52090.99,-18879.81,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.6,Logistic,-70970.8,-18879.81,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.65,Rules,-53130.44,-18530.03,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.65,Logistic,-71660.47,-18530.03,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.7,Rules,-54169.88,-18180.27,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.7,Logistic,-72350.15,-18180.27,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.75,Rules,-55209.33,-17830.49,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.75,Logistic,-73039.82,-17830.49,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.8,Rules,-56248.77,-17480.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.8,Logistic,-73729.5,-17480.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.85,Rules,-57288.22,-17130.95,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.85,Logistic,-74419.17,-17130.95,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.9,Rules,-58327.66,-16781.19,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.9,Logistic,-75108.85,-16781.19,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.95,Rules,-59367.11,-16431.41,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,0.95,Logistic,-75798.52,-16431.41,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,1.0,Rules,-60406.55,-16081.65,Logistic,Fixed base-seed decisions; fictional economics varied
+Challenge success rate,challenge_fraud_stop_probability,probability,1.0,Logistic,-76488.2,-16081.65,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.0,Rules,-31195.36,-18097.36,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.0,Logistic,-49292.72,-18097.36,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.05,Rules,-32587.22,-18063.09,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.05,Logistic,-50650.31,-18063.09,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.1,Rules,-33979.08,-18028.83,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.1,Logistic,-52007.91,-18028.83,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.15,Rules,-35370.93,-17994.58,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.15,Logistic,-53365.51,-17994.58,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.2,Rules,-36762.79,-17960.32,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.2,Logistic,-54723.11,-17960.32,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.25,Rules,-38154.64,-17926.07,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.25,Logistic,-56080.71,-17926.07,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.3,Rules,-39546.5,-17891.81,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.3,Logistic,-57438.31,-17891.81,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.35,Rules,-40938.36,-17857.55,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.35,Logistic,-58795.91,-17857.55,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.4,Rules,-42330.21,-17823.3,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.4,Logistic,-60153.51,-17823.3,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.45,Rules,-43722.07,-17789.04,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.45,Logistic,-61511.11,-17789.04,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.5,Rules,-45113.92,-17754.79,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.5,Logistic,-62868.71,-17754.79,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.55,Rules,-46505.78,-17720.52,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.55,Logistic,-64226.3,-17720.52,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.6,Rules,-47897.64,-17686.26,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.6,Logistic,-65583.9,-17686.26,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.65,Rules,-49289.49,-17652.01,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.65,Logistic,-66941.5,-17652.01,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.7,Rules,-50681.35,-17617.75,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.7,Logistic,-68299.1,-17617.75,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.75,Rules,-52073.2,-17583.5,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.75,Logistic,-69656.7,-17583.5,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.8,Rules,-53465.06,-17549.24,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.8,Logistic,-71014.3,-17549.24,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.85,Rules,-54856.92,-17514.98,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.85,Logistic,-72371.9,-17514.98,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.9,Rules,-56248.77,-17480.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.9,Logistic,-73729.5,-17480.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.95,Rules,-57640.63,-17446.47,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,0.95,Logistic,-75087.1,-17446.47,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,1.0,Rules,-59032.48,-17412.22,Logistic,Fixed base-seed decisions; fictional economics varied
+Review recovery rate,review_fraud_recovery_probability,probability,1.0,Logistic,-76444.7,-17412.22,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.0,Rules,-56998.77,-16755.73,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.0,Logistic,-73754.5,-16755.73,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.0125,Rules,-56811.27,-16936.98,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.0125,Logistic,-73748.25,-16936.98,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.025,Rules,-56623.77,-17118.23,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.025,Logistic,-73742.0,-17118.23,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.0375,Rules,-56436.27,-17299.48,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.0375,Logistic,-73735.75,-17299.48,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.05,Rules,-56248.77,-17480.73,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.05,Logistic,-73729.5,-17480.73,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.0625,Rules,-56061.27,-17661.98,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.0625,Logistic,-73723.25,-17661.98,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.075,Rules,-55873.77,-17843.23,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.075,Logistic,-73717.0,-17843.23,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.0875,Rules,-55686.27,-18024.48,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.0875,Logistic,-73710.75,-18024.48,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.1,Rules,-55498.77,-18205.73,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.1,Logistic,-73704.5,-18205.73,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.1125,Rules,-55311.27,-18386.98,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.1125,Logistic,-73698.25,-18386.98,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.125,Rules,-55123.77,-18568.23,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.125,Logistic,-73692.0,-18568.23,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.1375,Rules,-54936.27,-18749.48,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.1375,Logistic,-73685.75,-18749.48,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.15,Rules,-54748.77,-18930.73,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.15,Logistic,-73679.5,-18930.73,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.1625,Rules,-54561.27,-19111.98,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.1625,Logistic,-73673.25,-19111.98,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.175,Rules,-54373.77,-19293.23,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.175,Logistic,-73667.0,-19293.23,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.1875,Rules,-54186.27,-19474.48,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.1875,Logistic,-73660.75,-19474.48,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.2,Rules,-53998.77,-19655.73,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.2,Logistic,-73654.5,-19655.73,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.2125,Rules,-53811.27,-19836.98,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.2125,Logistic,-73648.25,-19836.98,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.225,Rules,-53623.77,-20018.23,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.225,Logistic,-73642.0,-20018.23,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.2375,Rules,-53436.27,-20199.48,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.2375,Logistic,-73635.75,-20199.48,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.25,Rules,-53248.77,-20380.73,Logistic,Fixed base-seed decisions; fictional economics varied
+False-decline attrition probability,false_decline_probability_of_attrition,probability,0.25,Logistic,-73629.5,-20380.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,0.0,Rules,-57274.77,-16976.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,0.0,Logistic,-74251.5,-16976.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,5.0,Rules,-56134.77,-17536.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,5.0,Logistic,-73671.5,-17536.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,10.0,Rules,-54994.77,-18096.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,10.0,Logistic,-73091.5,-18096.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,15.0,Rules,-53854.77,-18656.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,15.0,Logistic,-72511.5,-18656.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,20.0,Rules,-52714.77,-19216.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,20.0,Logistic,-71931.5,-19216.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,25.0,Rules,-51574.77,-19776.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,25.0,Logistic,-71351.5,-19776.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,30.0,Rules,-50434.77,-20336.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,30.0,Logistic,-70771.5,-20336.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,35.0,Rules,-49294.77,-20896.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,35.0,Logistic,-70191.5,-20896.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,40.0,Rules,-48154.77,-21456.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,40.0,Logistic,-69611.5,-21456.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,45.0,Rules,-47014.77,-22016.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,45.0,Logistic,-69031.5,-22016.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,50.0,Rules,-45874.77,-22576.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,50.0,Logistic,-68451.5,-22576.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,55.0,Rules,-44734.77,-23136.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,55.0,Logistic,-67871.5,-23136.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,60.0,Rules,-43594.77,-23696.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,60.0,Logistic,-67291.5,-23696.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,65.0,Rules,-42454.77,-24256.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,65.0,Logistic,-66711.5,-24256.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,70.0,Rules,-41314.77,-24816.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,70.0,Logistic,-66131.5,-24816.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,75.0,Rules,-40174.77,-25376.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,75.0,Logistic,-65551.5,-25376.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,80.0,Rules,-39034.77,-25936.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,80.0,Logistic,-64971.5,-25936.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,85.0,Rules,-37894.77,-26496.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,85.0,Logistic,-64391.5,-26496.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,90.0,Rules,-36754.77,-27056.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,90.0,Logistic,-63811.5,-27056.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,95.0,Rules,-35614.77,-27616.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,95.0,Logistic,-63231.5,-27616.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,100.0,Rules,-34474.77,-28176.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,100.0,Logistic,-62651.5,-28176.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,105.0,Rules,-33334.77,-28736.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,105.0,Logistic,-62071.5,-28736.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,110.0,Rules,-32194.77,-29296.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,110.0,Logistic,-61491.5,-29296.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,115.0,Rules,-31054.77,-29856.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,115.0,Logistic,-60911.5,-29856.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,120.0,Rules,-29914.77,-30416.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,120.0,Logistic,-60331.5,-30416.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,125.0,Rules,-28774.77,-30976.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,125.0,Logistic,-59751.5,-30976.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,130.0,Rules,-27634.77,-31536.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,130.0,Logistic,-59171.5,-31536.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,135.0,Rules,-26494.77,-32096.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,135.0,Logistic,-58591.5,-32096.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,140.0,Rules,-25354.77,-32656.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,140.0,Logistic,-58011.5,-32656.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,145.0,Rules,-24214.77,-33216.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,145.0,Logistic,-57431.5,-33216.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,150.0,Rules,-23074.77,-33776.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Manual review cost,review_cost,USD per case,150.0,Logistic,-56851.5,-33776.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,0.0,Rules,-58448.77,-17930.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,0.0,Logistic,-76379.5,-17930.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,10.0,Rules,-57568.77,-17750.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,10.0,Logistic,-75319.5,-17750.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,20.0,Rules,-56688.77,-17570.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,20.0,Logistic,-74259.5,-17570.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,30.0,Rules,-55808.77,-17390.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,30.0,Logistic,-73199.5,-17390.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,40.0,Rules,-54928.77,-17210.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,40.0,Logistic,-72139.5,-17210.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,50.0,Rules,-54048.77,-17030.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,50.0,Logistic,-71079.5,-17030.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,60.0,Rules,-53168.77,-16850.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,60.0,Logistic,-70019.5,-16850.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,70.0,Rules,-52288.77,-16670.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,70.0,Logistic,-68959.5,-16670.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,80.0,Rules,-51408.77,-16490.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,80.0,Logistic,-67899.5,-16490.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,90.0,Rules,-50528.77,-16310.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,90.0,Logistic,-66839.5,-16310.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,100.0,Rules,-49648.77,-16130.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,100.0,Logistic,-65779.5,-16130.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,110.0,Rules,-48768.77,-15950.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,110.0,Logistic,-64719.5,-15950.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,120.0,Rules,-47888.77,-15770.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,120.0,Logistic,-63659.5,-15770.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,130.0,Rules,-47008.77,-15590.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,130.0,Logistic,-62599.5,-15590.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,140.0,Rules,-46128.77,-15410.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,140.0,Logistic,-61539.5,-15410.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,150.0,Rules,-45248.77,-15230.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,150.0,Logistic,-60479.5,-15230.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,160.0,Rules,-44368.77,-15050.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,160.0,Logistic,-59419.5,-15050.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,170.0,Rules,-43488.77,-14870.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,170.0,Logistic,-58359.5,-14870.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,180.0,Rules,-42608.77,-14690.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,180.0,Logistic,-57299.5,-14690.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,190.0,Rules,-41728.77,-14510.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,190.0,Logistic,-56239.5,-14510.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,200.0,Rules,-40848.77,-14330.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Chargeback fee,chargeback_fee,USD per event,200.0,Logistic,-55179.5,-14330.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.0,Rules,24247.89,-6174.17,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.0,Logistic,18073.72,-6174.17,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.001,Rules,16930.01,-7202.04,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.001,Logistic,9727.97,-7202.04,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.002,Rules,9612.13,-8229.9,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.002,Logistic,1382.23,-8229.9,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.003,Rules,2294.26,-9257.78,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.003,Logistic,-6963.52,-9257.78,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.004,Rules,-5023.62,-10285.65,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.004,Logistic,-15309.27,-10285.65,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.005,Rules,-12341.5,-11313.52,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.005,Logistic,-23655.02,-11313.52,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.006,Rules,-19659.38,-12341.38,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.006,Logistic,-32000.76,-12341.38,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.007,Rules,-26977.26,-13369.25,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.007,Logistic,-40346.51,-13369.25,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.008,Rules,-34295.14,-14397.12,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.008,Logistic,-48692.26,-14397.12,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.009,Rules,-41613.01,-15424.99,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.009,Logistic,-57038.0,-15424.99,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.01,Rules,-48930.89,-16452.86,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.01,Logistic,-65383.75,-16452.86,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.011,Rules,-56248.77,-17480.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.011,Logistic,-73729.5,-17480.73,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.012,Rules,-63566.65,-18508.6,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.012,Logistic,-82075.25,-18508.6,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.013,Rules,-70884.53,-19536.46,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.013,Logistic,-90420.99,-19536.46,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.014,Rules,-78202.41,-20564.33,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.014,Logistic,-98766.74,-20564.33,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.015,Rules,-85520.29,-21592.2,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.015,Logistic,-107112.49,-21592.2,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.016,Rules,-92838.16,-22620.07,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.016,Logistic,-115458.23,-22620.07,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.017,Rules,-100156.04,-23647.94,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.017,Logistic,-123803.98,-23647.94,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.018,Rules,-107473.92,-24675.81,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.018,Logistic,-132149.73,-24675.81,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.019,Rules,-114791.8,-25703.67,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.019,Logistic,-140495.47,-25703.67,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.02,Rules,-122109.68,-26731.54,Logistic,Fixed base-seed decisions; fictional economics varied
+Legitimate-payment margin,interchange_margin_rate,rate,0.02,Logistic,-148841.22,-26731.54,Logistic,Fixed base-seed decisions; fictional economics varied
+Review capacity per day,review_capacity_per_day,cases per day,10.0,Rules,-54198.31,-17535.63,Logistic,Fixed thresholds; decisions recalculated at each capacity
+Review capacity per day,review_capacity_per_day,cases per day,10.0,Logistic,-71733.94,-17535.63,Logistic,Fixed thresholds; decisions recalculated at each capacity
+Review capacity per day,review_capacity_per_day,cases per day,50.0,Rules,-54893.62,-17991.99,Logistic,Fixed thresholds; decisions recalculated at each capacity
+Review capacity per day,review_capacity_per_day,cases per day,50.0,Logistic,-72885.61,-17991.99,Logistic,Fixed thresholds; decisions recalculated at each capacity
+Review capacity per day,review_capacity_per_day,cases per day,150.0,Rules,-56248.77,-17480.73,Logistic,Fixed thresholds; decisions recalculated at each capacity
+Review capacity per day,review_capacity_per_day,cases per day,150.0,Logistic,-73729.5,-17480.73,Logistic,Fixed thresholds; decisions recalculated at each capacity
+Review capacity per day,review_capacity_per_day,cases per day,250.0,Rules,-56248.77,-17480.73,Logistic,Fixed thresholds; decisions recalculated at each capacity
+Review capacity per day,review_capacity_per_day,cases per day,250.0,Logistic,-73729.5,-17480.73,Logistic,Fixed thresholds; decisions recalculated at each capacity
+Review capacity per day,review_capacity_per_day,cases per day,500.0,Rules,-56248.77,-17480.73,Logistic,Fixed thresholds; decisions recalculated at each capacity
+Review capacity per day,review_capacity_per_day,cases per day,500.0,Logistic,-73729.5,-17480.73,Logistic,Fixed thresholds; decisions recalculated at each capacity

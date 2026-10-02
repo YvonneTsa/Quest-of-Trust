@@ -1,5 +1,5 @@
 Seed,Strategy,Transactions,Fraud_Transactions,Fraud_Value,Fraud_Value_Captured_Pct,Fraud_Loss_After_Intervention,Precision_Among_Interventions,Fraud_Recall,Legitimate_Challenge_Count,Legitimate_Review_Count,False_Declines,Review_Overflow_Count,Net_Economic_Cost,PR_AUC
 20260915,Incumbent,74237,350,67233.18,0.0,75983.18,0.0,0.0,1110,0,0,0,-15477.19,
 20260915,Rules,74237,350,67233.18,73.09,20745.89,0.0457,0.7486,5305,140,30,0,-56248.77,0.2655
-20260915,Logistic,74237,350,67233.18,91.42,7219.04,0.1193,0.8829,1838,410,33,0,-79150.5,0.5855
-20260915,Rules + logistic,74237,350,67233.18,82.27,13749.75,0.0508,0.8629,5447,169,30,0,-62823.34,0.4119
+20260915,Logistic,74237,350,67233.18,78.37,17658.22,0.2425,0.6971,740,21,1,0,-73729.5,0.5826
+20260915,Rules + logistic,74237,350,67233.18,76.26,18176.77,0.0489,0.8057,5310,140,30,0,-58811.13,0.2981

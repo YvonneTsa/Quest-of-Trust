@@ -1,0 +1,8 @@
+Parameter,Unit,Tested_Min,Tested_Max,Base_Value,Break_Even_Value,Ranking_Changes_In_Tested_Range,Preferred_At_Min,Preferred_At_Max,Cost_Delta_At_Min,Cost_Delta_At_Max,Interpretation
+Challenge success rate,probability,0.0,1.0,0.8,,False,Logistic,Logistic,-23077.04,-16081.65,No strategy-rank crossover was observed in the tested fictional range.
+Review recovery rate,probability,0.0,1.0,0.9,,False,Logistic,Logistic,-18097.36,-17412.22,No strategy-rank crossover was observed in the tested fictional range.
+False-decline attrition probability,probability,0.0,0.25,0.05,,False,Logistic,Logistic,-16755.73,-20380.73,No strategy-rank crossover was observed in the tested fictional range.
+Manual review cost,USD per case,0.0,150.0,4.5,,False,Logistic,Logistic,-16976.73,-33776.73,No strategy-rank crossover was observed in the tested fictional range.
+Chargeback fee,USD per event,0.0,200.0,25.0,,False,Logistic,Logistic,-17930.73,-14330.73,No strategy-rank crossover was observed in the tested fictional range.
+Legitimate-payment margin,rate,0.0,0.02,0.011,,False,Logistic,Logistic,-6174.17,-26731.54,No strategy-rank crossover was observed in the tested fictional range.
+Review capacity per day,cases per day,10.0,500.0,250.0,,False,Logistic,Logistic,-17535.63,-17480.73,No strategy-rank crossover was observed in the tested fictional range.

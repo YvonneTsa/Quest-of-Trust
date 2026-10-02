@@ -1,25 +1,25 @@
 Strategy,Transactions,Fraud_Transactions,Fraud_Value,Fraud_Value_Captured_Pct,Fraud_Loss_After_Intervention,Precision_Among_Interventions,Fraud_Recall,Legitimate_Challenge_Count,Legitimate_Review_Count,False_Declines,Review_Overflow_Count,Net_Economic_Cost,Economic_Scenario
 Incumbent,74237,350,67233.18,0.0,75983.18,0.0,0.0,1110,0,0,0,-15477.19,Base assumptions
 Rules,74237,350,67233.18,73.09,20745.89,0.0457,0.7486,5305,140,30,0,-56248.77,Base assumptions
-Logistic,74237,350,67233.18,91.42,7219.04,0.1193,0.8829,1838,410,33,0,-79150.5,Base assumptions
-Rules + logistic,74237,350,67233.18,82.27,13749.75,0.0508,0.8629,5447,169,30,0,-62823.34,Base assumptions
+Logistic,74237,350,67233.18,78.37,17658.22,0.2425,0.6971,740,21,1,0,-73729.5,Base assumptions
+Rules + logistic,74237,350,67233.18,76.26,18176.77,0.0489,0.8057,5310,140,30,0,-58811.13,Base assumptions
 Incumbent,74237,350,67233.18,0.0,75983.18,0.0,0.0,1110,0,0,0,-15477.19,Lower challenge effectiveness
 Rules,74237,350,67233.18,73.09,24903.67,0.0457,0.7486,5305,140,30,0,-52090.99,Lower challenge effectiveness
-Logistic,74237,350,67233.18,91.42,8843.02,0.1193,0.8829,1838,410,33,0,-77526.52,Lower challenge effectiveness
-Rules + logistic,74237,350,67233.18,82.27,16911.78,0.0508,0.8629,5447,169,30,0,-59661.32,Lower challenge effectiveness
+Logistic,74237,350,67233.18,78.37,20416.92,0.2425,0.6971,740,21,1,0,-70970.8,Lower challenge effectiveness
+Rules + logistic,74237,350,67233.18,76.26,22261.81,0.0489,0.8057,5310,140,30,0,-54726.08,Lower challenge effectiveness
 Incumbent,74237,350,67233.18,0.0,75983.18,0.0,0.0,1110,0,0,0,-15477.19,Higher challenge effectiveness
 Rules,74237,350,67233.18,73.09,17627.56,0.0457,0.7486,5305,140,30,0,-59367.11,Higher challenge effectiveness
-Logistic,74237,350,67233.18,91.42,6001.06,0.1193,0.8829,1838,410,33,0,-80368.49,Higher challenge effectiveness
-Rules + logistic,74237,350,67233.18,82.27,11378.24,0.0508,0.8629,5447,169,30,0,-65194.86,Higher challenge effectiveness
+Logistic,74237,350,67233.18,78.37,15589.19,0.2425,0.6971,740,21,1,0,-75798.52,Higher challenge effectiveness
+Rules + logistic,74237,350,67233.18,76.26,15112.98,0.0489,0.8057,5310,140,30,0,-61874.91,Higher challenge effectiveness
 Incumbent,74237,350,67233.18,0.0,75983.18,0.0,0.0,1110,0,0,0,-15477.19,Lower false-decline attrition
 Rules,74237,350,67233.18,73.09,20745.89,0.0457,0.7486,5305,140,30,0,-56848.77,Lower false-decline attrition
-Logistic,74237,350,67233.18,91.42,7219.04,0.1193,0.8829,1838,410,33,0,-79810.5,Lower false-decline attrition
-Rules + logistic,74237,350,67233.18,82.27,13749.75,0.0508,0.8629,5447,169,30,0,-63423.34,Lower false-decline attrition
+Logistic,74237,350,67233.18,78.37,17658.22,0.2425,0.6971,740,21,1,0,-73749.5,Lower false-decline attrition
+Rules + logistic,74237,350,67233.18,76.26,18176.77,0.0489,0.8057,5310,140,30,0,-59411.13,Lower false-decline attrition
 Incumbent,74237,350,67233.18,0.0,75983.18,0.0,0.0,1110,0,0,0,-15477.19,Higher false-decline attrition
 Rules,74237,350,67233.18,73.09,20745.89,0.0457,0.7486,5305,140,30,0,-55498.77,Higher false-decline attrition
-Logistic,74237,350,67233.18,91.42,7219.04,0.1193,0.8829,1838,410,33,0,-78325.5,Higher false-decline attrition
-Rules + logistic,74237,350,67233.18,82.27,13749.75,0.0508,0.8629,5447,169,30,0,-62073.34,Higher false-decline attrition
+Logistic,74237,350,67233.18,78.37,17658.22,0.2425,0.6971,740,21,1,0,-73704.5,Higher false-decline attrition
+Rules + logistic,74237,350,67233.18,76.26,18176.77,0.0489,0.8057,5310,140,30,0,-58061.13,Higher false-decline attrition
 Incumbent,74237,350,67233.18,0.0,75983.18,0.0,0.0,1110,0,0,0,-15477.19,Lower review recovery
 Rules,74237,350,67233.18,73.09,26313.32,0.0457,0.7486,5305,140,30,0,-50681.35,Lower review recovery
-Logistic,74237,350,67233.18,91.42,10069.18,0.1193,0.8829,1838,410,33,0,-76300.36,Lower review recovery
-Rules + logistic,74237,350,67233.18,82.27,20413.82,0.0508,0.8629,5447,169,30,0,-56159.28,Lower review recovery
+Logistic,74237,350,67233.18,78.37,23088.62,0.2425,0.6971,740,21,1,0,-68299.1,Lower review recovery
+Rules + logistic,74237,350,67233.18,76.26,24282.27,0.0489,0.8057,5310,140,30,0,-52705.62,Lower review recovery

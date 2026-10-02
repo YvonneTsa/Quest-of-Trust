@@ -1,6 +1,6 @@
 # Complete synthetic run snapshot
 
-This folder contains the generated TrustHold snapshot as 21 CSV tables split into GitHub-friendly parts: 20 public analytical tables (797,106 rows total) and 700 separate planted-fraud labels. The underlying seed contains 246,314 events, including 700 planted fraud events, with 350 planted fraud events in each later-period holdout. The data are fully synthetic. `fraud_ground_truth` is provided for transparent offline evaluation and must remain separate from model inputs and observable SQL investigations.
+This folder contains the generated TrustHold snapshot as 29 CSV tables split into 480 GitHub-friendly parts: 28 public analytical tables (1,093,694 rows total) and 700 separate synthetic fraud labels. The base seed contains 246,314 events. Its later-date test period contains 350 simulated fraud cases; the nested campaign-identity check contains 175 cases in this default seed. Primary stability outputs summarize 30 deterministic later-date runs. All data and outcomes are synthetic. `fraud_ground_truth` supports transparent offline evaluation and must remain separate from model inputs and observable SQL investigations.
 
 Restore all original CSV tables, joining each table's parts and verifying SHA-256 checksums:
 

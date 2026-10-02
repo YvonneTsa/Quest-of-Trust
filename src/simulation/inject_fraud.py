@@ -19,7 +19,9 @@ def inject_fraud(
         raise ValueError("campaigns_per_typology must be at least 1")
     rng = np.random.default_rng(seed + 3)
     if transactions.empty:
-        return transactions, pd.DataFrame(columns=["Transaction_ID", "Event_ID", "Typology"])
+        return transactions, pd.DataFrame(
+            columns=["Transaction_ID", "Event_ID", "Campaign_ID", "Campaign_Number", "Typology"]
+        )
 
     start = transactions["Timestamp"].min().normalize()
     crisis_day = max(1, int(days * 0.58))
@@ -28,7 +30,17 @@ def inject_fraud(
     next_id = len(transactions) + 1
     event_number = 0
 
-    def add_event(typology, customer_ids, terminal_id, count, amount_range, cadence_seconds, phase):
+    def add_event(
+        typology,
+        campaign_id,
+        campaign_number,
+        customer_ids,
+        terminal_id,
+        count,
+        amount_range,
+        cadence_seconds,
+        phase,
+    ):
         nonlocal next_id, event_number
         event_number += 1
         event_id = f"F{event_number:04d}"
@@ -66,6 +78,8 @@ def inject_fraud(
                 {
                     "Transaction_ID": tx_id,
                     "Event_ID": event_id,
+                    "Campaign_ID": campaign_id,
+                    "Campaign_Number": campaign_number,
                     "Typology": typology,
                     "Crisis_Start": crisis_start,
                     "Event_Start": event_start,
@@ -77,30 +91,36 @@ def inject_fraud(
     customers_ids = customers["Customer_ID"].to_numpy()
     terminal_ids = terminals["Terminal_ID"].to_numpy()
 
-    for _ in range(campaigns_per_typology):
+    for campaign_number in range(1, campaigns_per_typology + 1):
         # A terminal compromise creates a burst across several otherwise unrelated accounts.
+        # The ID exists only in restricted fraud truth so the evaluator can
+        # withhold whole campaigns without exposing labels as model features.
+        campaign_id = f"terminal_compromise_campaign_{campaign_number:02d}"
         compromised_terminal = str(rng.choice(terminal_ids))
         ring_customers = rng.choice(customers_ids, size=min(8, len(customers_ids)), replace=False)
-        add_event("terminal_compromise", ring_customers, compromised_terminal, 16, (35, 420), 900, 1)
-        add_event("terminal_compromise", ring_customers, compromised_terminal, 16, (35, 420), 900, 2)
+        add_event("terminal_compromise", campaign_id, campaign_number, ring_customers, compromised_terminal, 16, (35, 420), 900, 1)
+        add_event("terminal_compromise", campaign_id, campaign_number, ring_customers, compromised_terminal, 16, (35, 420), 900, 2)
 
         # Card testing is represented by short low-value sequences at a shared endpoint.
+        campaign_id = f"card_testing_campaign_{campaign_number:02d}"
         testing_terminal = str(rng.choice(terminal_ids))
         testers = rng.choice(customers_ids, size=min(4, len(customers_ids)), replace=False)
-        add_event("card_testing", testers, testing_terminal, 12, (0.5, 5.0), 45, 1)
-        add_event("card_testing", testers, testing_terminal, 12, (0.5, 5.0), 45, 2)
+        add_event("card_testing", campaign_id, campaign_number, testers, testing_terminal, 12, (0.5, 5.0), 45, 1)
+        add_event("card_testing", campaign_id, campaign_number, testers, testing_terminal, 12, (0.5, 5.0), 45, 2)
 
         # Compromised credentials produce behaviorally unusual higher-value activity.
+        campaign_id = f"credential_compromise_campaign_{campaign_number:02d}"
         credential_customer = str(rng.choice(customers_ids))
         credential_terminal = str(rng.choice(terminal_ids))
-        add_event("credential_compromise", [credential_customer], credential_terminal, 4, (180, 900), 1800, 1)
-        add_event("credential_compromise", [credential_customer], credential_terminal, 4, (180, 900), 1800, 2)
+        add_event("credential_compromise", campaign_id, campaign_number, [credential_customer], credential_terminal, 4, (180, 900), 1800, 1)
+        add_event("credential_compromise", campaign_id, campaign_number, [credential_customer], credential_terminal, 4, (180, 900), 1800, 2)
 
         # ATO adds a rapid, shifted channel/authentication pattern for one account.
+        campaign_id = f"account_takeover_campaign_{campaign_number:02d}"
         ato_customer = str(rng.choice(customers_ids))
         ato_terminal = str(rng.choice(terminal_ids))
-        add_event("account_takeover", [ato_customer], ato_terminal, 3, (120, 700), 1200, 1)
-        add_event("account_takeover", [ato_customer], ato_terminal, 3, (120, 700), 1200, 2)
+        add_event("account_takeover", campaign_id, campaign_number, [ato_customer], ato_terminal, 3, (120, 700), 1200, 1)
+        add_event("account_takeover", campaign_id, campaign_number, [ato_customer], ato_terminal, 3, (120, 700), 1200, 2)
 
     fraud = pd.DataFrame(fraud_rows)
     combined = pd.concat([transactions, fraud], ignore_index=True).sort_values(
