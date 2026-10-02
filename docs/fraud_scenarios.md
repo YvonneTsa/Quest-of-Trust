@@ -14,6 +14,7 @@ The event rates, campaign count, timing, and signatures are design assumptions f
 
 ## How campaign identities are used in evaluation
 
-Campaign IDs are restricted labels used only to construct disjoint groups. The temporal comparison reserves campaign numbers 5 and 10 (per typology) for threshold validation and fits the model using fraud events from the remaining campaigns plus a separate sample of legitimate events. The later-date comparison evaluates all campaign identities on later dates.
+Campaign IDs are restricted labels used only to construct disjoint groups. In the historical window, the model-fit group uses campaign numbers 1, 5, and 9 per typology; threshold validation uses campaigns 3 and 7; campaigns 2, 4, 6, 8, and 10 are excluded from both. The primary temporal comparison then evaluates later-period events from all campaign identities, including campaigns seen in fit or validation and campaigns held out from both.
 
 The separate unseen-campaign comparison uses campaigns 1, 5, and 9 for fitting, campaigns 3 and 7 for threshold validation, and campaigns 2, 4, 6, 8, and 10 as the held-out set. It tests later phases of identities unseen during fit and threshold selection. It still evaluates the same four hand-designed fraud typologies and does not represent an unseen attack type.
+
