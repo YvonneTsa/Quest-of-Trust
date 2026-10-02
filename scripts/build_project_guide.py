@@ -321,7 +321,7 @@ def build():
     add_code(doc, "python -m venv .venv\n.\\.venv\\Scripts\\Activate.ps1\npython -m pip install -r requirements.txt")
     add_heading(doc, "Run the full pipeline", 2)
     add_code(doc, "python -m src.run_project")
-    add_body(doc, "The default run creates 2,000 customers, 800 merchants, 1,200 terminals, and 60 days of activity. It injects ten sampled attack campaigns for each of four typologies and evaluates ten consecutive seeds. Each holdout contains 350 planted fraud events. The run writes CSV outputs and `trusthold.sqlite` under `data/synthetic/run/`, refreshes the case study, and rebuilds the dashboard. Repeating a run with the same code and settings produces the same fictional scenarios.")
+    add_body(doc, "The default run creates 2,000 customers, 800 merchants, 1,200 terminals, and 60 days of activity. It injects ten sampled attack campaigns for each of four typologies and evaluates 30 consecutive seeds for the primary later-date comparison. Each later-date holdout contains 350 planted fraud events. The nested campaign-identity check is reported for the default seed only. The run writes CSV outputs and `trusthold.sqlite` under `data/synthetic/run/`, refreshes the case study, and rebuilds the dashboard. Repeating a run with the same code and settings produces the same fictional scenarios.")
     add_heading(doc, "Run a smaller learning example", 2)
     add_code(doc, "python -m src.run_project --customers 20 --days 30")
     add_body(doc, "The command accepts `--customers`, `--days`, `--merchants`, `--terminals`, `--review-capacity`, `--seed`, `--fraud-campaigns`, `--stability-runs`, and `--output-dir`. The horizon must be long enough for fraud examples to occur on both sides of the temporal split. The default start date is January 1, 2026.")
@@ -346,7 +346,7 @@ def build():
         ("Persistence and outputs", "`src/storage.py`, `src/reporting.py`", "CSV, SQLite, case study, and HTML dashboard."),
         ("Investigation and operations", "`sql/`, `src/monitoring.py`, `src/network_intelligence.py`", "Read-only SQL summaries, daily alerts, and terminal connectivity."),
     ], [1.35, 2.4, 3.15], font_size=8.1)
-    add_body(doc, "The data flow is: generate entities → create ordinary transactions → inject labeled events → build past-only features → create temporary evaluation labels → split by date → fit scores and choose thresholds on training history → evaluate future-period actions → save label-free tables and reports. The label join occurs only after feature construction, which is central to the leakage control.")
+    add_body(doc, "The data flow is: generate entities → create ordinary transactions → inject labeled events → build past-only features → create temporary evaluation labels → split by date → fit scores on fit rows → choose thresholds on a separate campaign-stratified validation sample → evaluate future-period actions → save label-free tables and reports. The label join occurs only after feature construction, which is central to the leakage control.")
 
     add_heading(doc, "4  How the Synthetic World Is Generated", 1)
     add_heading(doc, "Customer profiles", 2)
@@ -637,7 +637,7 @@ def build():
         ("Total", "128 raw points, capped at 100.", "100"),
     ], [2.15, 3.95, 0.8], font_size=8.2)
     add_body(doc, "With the candidate threshold set (0.30, 0.60, 0.90), the 1.00 rule risk would meet the decline threshold. If the event is fraud, modeled decline cost is zero because it prevents the fraud amount and chargeback in this simplified scenario. If it is legitimate, the false-decline cost is 5% × $500 plus the lost 1.1% margin on $260, or $27.86. This example shows why high scores can protect against fraud but still need review of false declines and customer impact.")
-    add_body(doc, "The production run does not decide from this example alone. It selects among four threshold sets using historical training outcomes, then applies the selected set to the later holdout. The actual cost depends on the label used only after scoring, the chosen action, the configured assumptions, and the daily review queue.")
+    add_body(doc, "The run does not decide from this example alone. It selects among four threshold sets using a separate campaign-stratified validation sample from earlier dates, then applies the selected set to the untouched later holdout. The actual cost depends on the label used only after scoring, the chosen action, the configured assumptions, and the daily review queue.")
 
     add_heading(doc, "Appendix B  SQL Examples and Interpretation", 1)
     add_body(doc, "The SQL runner executes all six query files against SQLite. The examples below illustrate how an analyst can move from overall volume to a more specific lead. Neither query reads ground-truth labels.")
@@ -699,3 +699,4 @@ def build():
 
 if __name__ == "__main__":
     build()
+
