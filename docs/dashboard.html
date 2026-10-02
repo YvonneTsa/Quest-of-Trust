@@ -64,7 +64,9 @@
     const compare = d.comparison[0];
     const count = value => Number(value).toLocaleString('en-US',{maximumFractionDigits:1});
     const challengeDelta = Math.abs(compare.Legitimate_Challenge_Delta_Median);
-    document.querySelector('#seed-result').textContent = `Logistic had lower modeled cost in ${compare.Logistic_Lower_Cost_Wins}/${compare.Seeds} runs. Median paired cost difference: ${money(compare.Net_Cost_Delta_Logistic_Minus_Rules_Median)} (range ${money(compare.Net_Cost_Delta_Logistic_Minus_Rules_Min)} to ${money(compare.Net_Cost_Delta_Logistic_Minus_Rules_Max)}). It captured ${compare.Fraud_Capture_Delta_Pct_Points_Median.toFixed(2)} percentage points more fraud value, challenged about ${count(Math.round(challengeDelta))} fewer good payments, and sent about ${count(Math.round(compare.Legitimate_Review_Delta_Median))} more to human review.`;
+    const reviewDelta = Math.abs(compare.Legitimate_Review_Delta_Median);
+    const reviewDirection = compare.Legitimate_Review_Delta_Median < 0 ? 'fewer' : 'more';
+    document.querySelector('#seed-result').textContent = `Logistic had lower modeled cost in ${compare.Logistic_Lower_Cost_Wins}/${compare.Seeds} runs. Median paired cost difference: ${money(compare.Net_Cost_Delta_Logistic_Minus_Rules_Median)} (range ${money(compare.Net_Cost_Delta_Logistic_Minus_Rules_Min)} to ${money(compare.Net_Cost_Delta_Logistic_Minus_Rules_Max)}). It captured ${compare.Fraud_Capture_Delta_Pct_Points_Median.toFixed(2)} percentage points more fraud value, challenged ${count(challengeDelta)} fewer good payments, and sent ${count(reviewDelta)} ${reviewDirection} good payments to human review.`;
     const rangeCell = (row, center, minimum, maximum, format) => `${format(row[center])} (${format(row[minimum])} ${format===money?'to':'–'} ${format(row[maximum])})`;
     const columns = [
       ['Strategy','Strategy'],
@@ -128,3 +130,4 @@
   </script>
 </body>
 </html>
+
